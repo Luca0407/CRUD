@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,52 +8,98 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Org.BouncyCastle.Math.EC.ECCurve;
 
 namespace Simple_Login_FORM
 {
-    public partial class Form1 : Form
+    public partial class CRUD_Personas : Form
     {
-        public Form1()
+        public CRUD_Personas()
         {
             InitializeComponent();
-        }
+			DGVPersonas.AutoGenerateColumns = true;
+			DGVEmpleados.AutoGenerateColumns = true;
+			DGVProveedores.AutoGenerateColumns = true;
+			DGVPersonas.DataSource = itemBindingSource;
+			DGVEmpleados.DataSource = itemBindingSource;
+			DGVProveedores.DataSource = itemBindingSource;
+		}
 
-        private void loadTable() //load values to table
-        {
-            //clear data grid view
-            dgvItems.Rows.Clear();
+		private void loadTable() // load values to table
+{
+			try {
+				// limpiar el DataGridView y el BindingSource
+				//dgvItems.Rows.Clear();
+				itemBindingSource.Clear();
 
-            DataSet ds = new DataSet();
+				DataSet ds = new DataSet();
 
-            //MySQLconnection con = new MySQLconnection(); //create connection
+				using(MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
+					con.Open();
 
-            //create sql query for get data
-            //string sqlQuery = "SELECT * FROM items";
+					// consulta SQL
+					string sqlQuery = "SELECT * FROM personas";
 
-            //Executing
-            //ds = con.LoadData(sqlQuery);
+					// ejecutar consulta y llenar dataset
+					using(MySqlDataAdapter da = new MySqlDataAdapter(sqlQuery, con)) {
+						da.Fill(ds);
+					}
+				}
 
-            //check if data data is available
-            if(ds.Tables[0].Rows.Count == 0)
-            {
-                return;
-            }
+				// verificar si hay filas
+				if(ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0)
+					return;
 
-            for(int n = 0; n < ds.Tables[0].Rows.Count; n++) //loopping through add data to dgv
-            {
-                itemBindingSource.Add(new item
-                {
-                    ID = ds.Tables[0].Rows[n]["ID"].ToString(),
-                    ProductName = ds.Tables[0].Rows[n]["productName"].ToString(),
-                    Price = Convert.ToDouble(ds.Tables[0].Rows[n]["productPrice"].ToString()),
-                    isActive = Convert.ToBoolean(Convert.ToInt32(ds.Tables[0].Rows[n]["isActive"].ToString()))
-                });
-            }
+				// recorrer filas y cargar al BindingSource
+				foreach(DataRow row in ds.Tables[0].Rows) {
+					itemBindingSource.Add(new item {
+						ID = row["ID_persona"].ToString(),
+						Name = row["nombre"].ToString(),
+						Mail = row["mail"].ToString(),
+						Phone = row["telefono"].ToString()
+						//Price = Convert.ToDouble(row["productPrice"]),
+						//isActive = Convert.ToBoolean(Convert.ToInt32(row["isActive"]))
+					});
+				}
+			} catch(Exception ex) {
+				MessageBox.Show("Error al cargar la tabla: " + ex.Message);
+			}
+		}
 
-            
-        }
+		private void CargarClientes() {
+			using(MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
+				con.Open();
+				string query = "SELECT ID_Clientes, DNI, ID_Persona FROM clientes";
+				MySqlDataAdapter da = new MySqlDataAdapter(query, con);
+				DataTable dt = new DataTable();
+				da.Fill(dt);
+				DGVPersonas.DataSource = dt;
+			}
+		}
 
-        private void btnAdd_Click(object sender, EventArgs e)
+		private void CargarEmpleados() {
+			using(MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
+				con.Open();
+				string query = "SELECT ID_empleados, rol, ID_persona FROM empleados";
+				MySqlDataAdapter da = new MySqlDataAdapter(query, con);
+				DataTable dt = new DataTable();
+				da.Fill(dt);
+				DGVEmpleados.DataSource = dt;
+			}
+		}
+
+		private void CargarProveedores() {
+			using(MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
+				con.Open();
+				string query = "SELECT ID_proveedores, pagina, ID_persona FROM proveedores";
+				MySqlDataAdapter da = new MySqlDataAdapter(query, con);
+				DataTable dt = new DataTable();
+				da.Fill(dt);
+				DGVProveedores.DataSource = dt;
+			}
+		}
+
+		private void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
@@ -92,40 +139,38 @@ namespace Simple_Login_FORM
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                loadTable();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
+		private void CRUD_Personas_Load(object sender, EventArgs e) {
+			try {
+				CargarClientes();
+				CargarEmpleados();
+				CargarProveedores();
+			} catch(Exception ex) {
+				MessageBox.Show("Error al cargar datos: " + ex.Message);
+			}
+		}
 
-        private void redirectToUpdateForm(int row)
+		private void redirectToUpdateForm(int row)
         {
             //create item object
             item Item = new item();
 
             //set data
-            Item.ID = dgvItems.Rows[row].Cells[0].Value.ToString();
-            Item.ProductName = dgvItems.Rows[row].Cells[1].Value.ToString();
-            Item.Price = Convert.ToDouble(dgvItems.Rows[row].Cells[2].Value.ToString());
-            Item.isActive = (bool)dgvItems.Rows[row].Cells[3].Value;
+            //Item.ID = dgvItems.Rows[row].Cells[0].Value.ToString();
+            //Item.Name = dgvItems.Rows[row].Cells[1].Value.ToString();
+			//Item.Mail = dgvItems.Rows[row].Cells[1].Value.ToString();
+			//Item.Phone = dgvItems.Rows[row].Cells[1].Value.ToString();
 
-            //show form
-            Form frm = new FrmUpdateItem(Item);
+			//show form
+			Form frm = new FrmUpdateItem(Item);
             frm.ShowDialog();
 
             //load gridview
             loadTable();
         }
 
-        private void deleteData(int row)
+		/*private void deleteData(int row)
         {
-            string ID = dgvItems.Rows[row].Cells[0].Value.ToString();
+            //string ID = dgvItems.Rows[row].Cells[0].Value.ToString();
 
             string sqlQuery = "DELETE FROM items WHERE ID = '" + ID + "';";
 
@@ -134,9 +179,9 @@ namespace Simple_Login_FORM
 
             //Load Table
             loadTable();
-        }
+       } */
 
-        private void dgvItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		/*private void dgvItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -155,6 +200,22 @@ namespace Simple_Login_FORM
             {
                 MessageBox.Show(ex.ToString());
             }
-        }
-    }
+        }*/
+
+		private void panel1_Paint(object sender, PaintEventArgs e) {
+
+		}
+
+		private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e) {
+
+		}
+
+		private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) {
+
+		}
+
+		private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e) {
+
+		}
+	}
 }

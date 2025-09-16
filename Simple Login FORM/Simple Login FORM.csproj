@@ -192,7 +192,6 @@
     <EmbeddedResource Include="FrmUpdateItem.resx">
       <DependentUpon>FrmUpdateItem.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Properties\DataSources\PORTAL.MODEL.item.datasource" />
     <Compile Include="item.cs" />
   </ItemGroup>
   <ItemGroup>

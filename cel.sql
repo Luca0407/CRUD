@@ -63,7 +63,7 @@ CREATE TABLE `clientes` (
   PRIMARY KEY (`ID_clientes`),
   KEY `ID_persona_idx` (`ID_persona`),
   CONSTRAINT `IDpersona` FOREIGN KEY (`ID_persona`) REFERENCES `personas` (`ID_persona`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,6 +72,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+INSERT INTO `clientes` VALUES (1,'40123456',21);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,7 +125,7 @@ CREATE TABLE `empleados` (
   KEY `ID_persona_idx` (`ID_persona`),
   CONSTRAINT `ID_persona` FOREIGN KEY (`ID_persona`) REFERENCES `personas` (`ID_persona`),
   CONSTRAINT `ID_rol` FOREIGN KEY (`rol`) REFERENCES `roles` (`ID_roles`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,7 +134,7 @@ CREATE TABLE `empleados` (
 
 LOCK TABLES `empleados` WRITE;
 /*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
-INSERT INTO `empleados` VALUES (1,3,1,'12345678'),(2,3,2,'Contr4señ4'),(3,3,3,''),(4,3,7,'1'),(5,3,8,'123'),(6,3,9,'1234'),(7,3,13,'1234'),(8,2,14,'1'),(9,1,15,'lucad');
+INSERT INTO `empleados` VALUES (1,3,1,'12345678'),(2,3,2,'Contr4señ4'),(3,3,3,''),(4,3,7,'1'),(5,3,8,'123'),(6,3,9,'1234'),(7,3,13,'1234'),(8,2,14,'1'),(9,1,15,'lucad'),(10,2,16,'asdafdsfaf'),(11,3,17,'2'),(12,3,18,'2sssdd');
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -283,7 +284,7 @@ CREATE TABLE `personas` (
   `apellido` varchar(45) DEFAULT NULL,
   `domicilio` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`ID_persona`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -292,7 +293,7 @@ CREATE TABLE `personas` (
 
 LOCK TABLES `personas` WRITE;
 /*!40000 ALTER TABLE `personas` DISABLE KEYS */;
-INSERT INTO `personas` VALUES (1,'Luca','luca11maxi@gmail.com','3644223841',NULL,NULL),(2,'usuario','correo@mail.com','12',NULL,NULL),(3,'','','312',NULL,NULL),(4,'','','2',NULL,NULL),(5,'','','2213',NULL,NULL),(6,'','','23',NULL,NULL),(7,'12','1','1',NULL,NULL),(8,'a','1312','423',NULL,NULL),(9,'sos','123','5678',NULL,NULL),(10,'a','a','1',NULL,NULL),(11,'Usuario1','correo@gmail.com','3644',NULL,NULL),(12,'Usuario1','correo@gmail.com','3644',NULL,NULL),(13,'Usuario1','correo@gmail.com','3644',NULL,NULL),(14,'asdd','1','1',NULL,NULL),(15,'asd','oasd@asd.c','123',NULL,NULL);
+INSERT INTO `personas` VALUES (1,'Luca','luca11maxi@gmail.com','3644223841',NULL,NULL),(2,'usuario','correo@mail.com','12',NULL,NULL),(3,'','','312',NULL,NULL),(4,'','','2',NULL,NULL),(5,'','','2213',NULL,NULL),(6,'','','23',NULL,NULL),(7,'12','1','1',NULL,NULL),(8,'a','1312','423',NULL,NULL),(9,'sos','123','5678',NULL,NULL),(10,'a','a','1',NULL,NULL),(11,'Usuario1','correo@gmail.com','3644',NULL,NULL),(12,'Usuario1','correo@gmail.com','3644',NULL,NULL),(13,'Usuario1','correo@gmail.com','3644',NULL,NULL),(14,'asdd','1','1',NULL,NULL),(15,'asd','oasd@asd.c','123',NULL,NULL),(16,'Luca222','asdasdasdasad@gmail.com','1231231',NULL,NULL),(17,'luca11','a@g.c','3',NULL,NULL),(18,'luca','asdasd@gmasd.com','123123',NULL,NULL),(20,'Provetech','provetech@gmail.com','3644123456',NULL,'Lopez y Planes 174'),(21,'Cliente1','correo@mail.com','3644888765',NULL,NULL);
 /*!40000 ALTER TABLE `personas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -371,7 +372,7 @@ CREATE TABLE `proveedores` (
   PRIMARY KEY (`ID_proveedores`),
   KEY `ID_persona_idx` (`ID_persona`),
   CONSTRAINT `IDpersonas` FOREIGN KEY (`ID_persona`) REFERENCES `personas` (`ID_persona`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -380,6 +381,7 @@ CREATE TABLE `proveedores` (
 
 LOCK TABLES `proveedores` WRITE;
 /*!40000 ALTER TABLE `proveedores` DISABLE KEYS */;
+INSERT INTO `proveedores` VALUES (1,'provetech.com.ar',20);
 /*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -543,4 +545,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-09-15 20:11:07
+-- Dump completed on 2025-09-16 18:42:42

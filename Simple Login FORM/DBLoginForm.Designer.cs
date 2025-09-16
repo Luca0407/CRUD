@@ -46,17 +46,21 @@
 			// 
 			// button1
 			// 
+			this.button1.BackColor = System.Drawing.Color.Black;
+			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.button1.ForeColor = System.Drawing.Color.Transparent;
 			this.button1.Location = new System.Drawing.Point(167, 189);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(75, 23);
 			this.button1.TabIndex = 2;
 			this.button1.Text = "Aplicar";
-			this.button1.UseVisualStyleBackColor = true;
+			this.button1.UseVisualStyleBackColor = false;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
+			this.label1.ForeColor = System.Drawing.Color.Transparent;
 			this.label1.Location = new System.Drawing.Point(40, 20);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(80, 16);
@@ -66,6 +70,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
+			this.label2.ForeColor = System.Drawing.Color.Transparent;
 			this.label2.Location = new System.Drawing.Point(40, 88);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(103, 16);
@@ -76,14 +81,21 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.ClientSize = new System.Drawing.Size(266, 237);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.PassBox);
 			this.Controls.Add(this.UserBox);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "DBLoginForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "DBLoginForm";
+			this.TopMost = true;
+			this.Load += new System.EventHandler(this.DBLoginForm_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

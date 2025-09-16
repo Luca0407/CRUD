@@ -1,6 +1,6 @@
 ﻿namespace Simple_Login_FORM 
 {
-    partial class Form1
+    partial class CRUD_Personas
     {
         /// <summary>
         /// Required designer variable.
@@ -28,200 +28,242 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dgvItems = new System.Windows.Forms.DataGridView();
-            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtProductName = new System.Windows.Forms.TextBox();
-            this.txtbPrice = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.chkActive = new System.Windows.Forms.CheckBox();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isActiveDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Update = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Highlight;
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1267, 64);
-            this.panel1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(12, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(346, 31);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Simple CRUD Application";
-            // 
-            // dgvItems
-            // 
-            this.dgvItems.AllowUserToAddRows = false;
-            this.dgvItems.AllowUserToDeleteRows = false;
-            this.dgvItems.AutoGenerateColumns = false;
-            this.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.iDDataGridViewTextBoxColumn,
-            this.productNameDataGridViewTextBoxColumn,
-            this.priceDataGridViewTextBoxColumn,
-            this.isActiveDataGridViewCheckBoxColumn,
-            this.Update,
-            this.Delete});
-            this.dgvItems.DataSource = this.itemBindingSource;
-            this.dgvItems.Location = new System.Drawing.Point(18, 166);
-            this.dgvItems.Name = "dgvItems";
-            this.dgvItems.ReadOnly = true;
-            this.dgvItems.Size = new System.Drawing.Size(1237, 454);
-            this.dgvItems.TabIndex = 1;
-            this.dgvItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItems_CellContentClick);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(28, 105);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Product name";
-            // 
-            // txtProductName
-            // 
-            this.txtProductName.Location = new System.Drawing.Point(107, 102);
-            this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(251, 20);
-            this.txtProductName.TabIndex = 3;
-            // 
-            // txtbPrice
-            // 
-            this.txtbPrice.Location = new System.Drawing.Point(491, 102);
-            this.txtbPrice.Name = "txtbPrice";
-            this.txtbPrice.Size = new System.Drawing.Size(251, 20);
-            this.txtbPrice.TabIndex = 5;
-            this.txtbPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbPrice_KeyPress);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(454, 105);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(31, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Price";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(798, 105);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 13);
-            this.label4.TabIndex = 6;
-            // 
-            // chkActive
-            // 
-            this.chkActive.AutoSize = true;
-            this.chkActive.Location = new System.Drawing.Point(804, 105);
-            this.chkActive.Name = "chkActive";
-            this.chkActive.Size = new System.Drawing.Size(56, 17);
-            this.chkActive.TabIndex = 7;
-            this.chkActive.Text = "Active";
-            this.chkActive.UseVisualStyleBackColor = true;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(975, 105);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 8;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // productNameDataGridViewTextBoxColumn
-            // 
-            this.productNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.productNameDataGridViewTextBoxColumn.DataPropertyName = "ProductName";
-            this.productNameDataGridViewTextBoxColumn.HeaderText = "ProductName";
-            this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
-            this.productNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // priceDataGridViewTextBoxColumn
-            // 
-            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
-            this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
-            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
-            this.priceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // isActiveDataGridViewCheckBoxColumn
-            // 
-            this.isActiveDataGridViewCheckBoxColumn.DataPropertyName = "isActive";
-            this.isActiveDataGridViewCheckBoxColumn.HeaderText = "isActive";
-            this.isActiveDataGridViewCheckBoxColumn.Name = "isActiveDataGridViewCheckBoxColumn";
-            this.isActiveDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // Update
-            // 
-            this.Update.HeaderText = "Update";
-            this.Update.Name = "Update";
-            this.Update.ReadOnly = true;
-            this.Update.Text = "Update";
-            this.Update.UseColumnTextForButtonValue = true;
-            // 
-            // Delete
-            // 
-            this.Delete.HeaderText = "Delete";
-            this.Delete.Name = "Delete";
-            this.Delete.ReadOnly = true;
-            this.Delete.Text = "Delete";
-            this.Delete.UseColumnTextForButtonValue = true;
-            // 
-            // Form1
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1267, 632);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.chkActive);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtbPrice);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtProductName);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.dgvItems);
-            this.Controls.Add(this.panel1);
-            this.Name = "Form1";
-            this.Text = "Simple CRUD with MySql";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+			this.components = new System.ComponentModel.Container();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.label1 = new System.Windows.Forms.Label();
+			this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.label2 = new System.Windows.Forms.Label();
+			this.txtProductName = new System.Windows.Forms.TextBox();
+			this.txtbPrice = new System.Windows.Forms.TextBox();
+			this.label3 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.chkActive = new System.Windows.Forms.CheckBox();
+			this.btnAdd = new System.Windows.Forms.Button();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.DGVPersonas = new System.Windows.Forms.DataGridView();
+			this.DGVEmpleados = new System.Windows.Forms.DataGridView();
+			this.DGVProveedores = new System.Windows.Forms.DataGridView();
+			this.panel1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
+			this.tabControl1.SuspendLayout();
+			this.tabPage1.SuspendLayout();
+			this.tabPage2.SuspendLayout();
+			this.tabPage3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.DGVPersonas)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.DGVEmpleados)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.DGVProveedores)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// panel1
+			// 
+			this.panel1.BackColor = System.Drawing.SystemColors.Highlight;
+			this.panel1.Controls.Add(this.label1);
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel1.Location = new System.Drawing.Point(0, 0);
+			this.panel1.Margin = new System.Windows.Forms.Padding(4);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(1689, 79);
+			this.panel1.TabIndex = 0;
+			this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+			this.label1.Location = new System.Drawing.Point(16, 22);
+			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(431, 39);
+			this.label1.TabIndex = 0;
+			this.label1.Text = "Simple CRUD Application";
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(37, 129);
+			this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(90, 16);
+			this.label2.TabIndex = 2;
+			this.label2.Text = "Product name";
+			// 
+			// txtProductName
+			// 
+			this.txtProductName.Location = new System.Drawing.Point(143, 126);
+			this.txtProductName.Margin = new System.Windows.Forms.Padding(4);
+			this.txtProductName.Name = "txtProductName";
+			this.txtProductName.Size = new System.Drawing.Size(333, 22);
+			this.txtProductName.TabIndex = 3;
+			// 
+			// txtbPrice
+			// 
+			this.txtbPrice.Location = new System.Drawing.Point(655, 126);
+			this.txtbPrice.Margin = new System.Windows.Forms.Padding(4);
+			this.txtbPrice.Name = "txtbPrice";
+			this.txtbPrice.Size = new System.Drawing.Size(333, 22);
+			this.txtbPrice.TabIndex = 5;
+			this.txtbPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbPrice_KeyPress);
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(605, 129);
+			this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(38, 16);
+			this.label3.TabIndex = 4;
+			this.label3.Text = "Price";
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(1064, 129);
+			this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(0, 16);
+			this.label4.TabIndex = 6;
+			// 
+			// chkActive
+			// 
+			this.chkActive.AutoSize = true;
+			this.chkActive.Location = new System.Drawing.Point(1072, 129);
+			this.chkActive.Margin = new System.Windows.Forms.Padding(4);
+			this.chkActive.Name = "chkActive";
+			this.chkActive.Size = new System.Drawing.Size(66, 20);
+			this.chkActive.TabIndex = 7;
+			this.chkActive.Text = "Active";
+			this.chkActive.UseVisualStyleBackColor = true;
+			// 
+			// btnAdd
+			// 
+			this.btnAdd.Location = new System.Drawing.Point(1300, 129);
+			this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
+			this.btnAdd.Name = "btnAdd";
+			this.btnAdd.Size = new System.Drawing.Size(100, 28);
+			this.btnAdd.TabIndex = 8;
+			this.btnAdd.Text = "Add";
+			this.btnAdd.UseVisualStyleBackColor = true;
+			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+			// 
+			// tabControl1
+			// 
+			this.tabControl1.Controls.Add(this.tabPage1);
+			this.tabControl1.Controls.Add(this.tabPage2);
+			this.tabControl1.Controls.Add(this.tabPage3);
+			this.tabControl1.Location = new System.Drawing.Point(12, 163);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(1665, 603);
+			this.tabControl1.TabIndex = 9;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+			this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.tabPage1.Controls.Add(this.DGVPersonas);
+			this.tabPage1.Location = new System.Drawing.Point(4, 25);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(1657, 574);
+			this.tabPage1.TabIndex = 0;
+			this.tabPage1.Text = "tabPage1";
+			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// tabPage2
+			// 
+			this.tabPage2.Controls.Add(this.DGVEmpleados);
+			this.tabPage2.Location = new System.Drawing.Point(4, 25);
+			this.tabPage2.Name = "tabPage2";
+			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage2.Size = new System.Drawing.Size(1657, 574);
+			this.tabPage2.TabIndex = 1;
+			this.tabPage2.Text = "tabPage2";
+			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// tabPage3
+			// 
+			this.tabPage3.Controls.Add(this.DGVProveedores);
+			this.tabPage3.Location = new System.Drawing.Point(4, 25);
+			this.tabPage3.Name = "tabPage3";
+			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage3.Size = new System.Drawing.Size(1657, 574);
+			this.tabPage3.TabIndex = 2;
+			this.tabPage3.Text = "tabPage3";
+			this.tabPage3.UseVisualStyleBackColor = true;
+			// 
+			// DGVPersonas
+			// 
+			this.DGVPersonas.AutoGenerateColumns = false;
+			this.DGVPersonas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.DGVPersonas.DataSource = this.itemBindingSource;
+			this.DGVPersonas.Location = new System.Drawing.Point(-2, -2);
+			this.DGVPersonas.Name = "DGVPersonas";
+			this.DGVPersonas.RowHeadersWidth = 51;
+			this.DGVPersonas.RowTemplate.Height = 24;
+			this.DGVPersonas.Size = new System.Drawing.Size(1657, 578);
+			this.DGVPersonas.TabIndex = 0;
+			this.DGVPersonas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+			// 
+			// DGVEmpleados
+			// 
+			this.DGVEmpleados.AutoGenerateColumns = false;
+			this.DGVEmpleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.DGVEmpleados.DataSource = this.itemBindingSource;
+			this.DGVEmpleados.Location = new System.Drawing.Point(-4, 0);
+			this.DGVEmpleados.Name = "DGVEmpleados";
+			this.DGVEmpleados.RowHeadersWidth = 51;
+			this.DGVEmpleados.RowTemplate.Height = 24;
+			this.DGVEmpleados.Size = new System.Drawing.Size(1665, 578);
+			this.DGVEmpleados.TabIndex = 0;
+			this.DGVEmpleados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
+			// 
+			// DGVProveedores
+			// 
+			this.DGVProveedores.AutoGenerateColumns = false;
+			this.DGVProveedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.DGVProveedores.DataSource = this.itemBindingSource;
+			this.DGVProveedores.Location = new System.Drawing.Point(-4, 0);
+			this.DGVProveedores.Name = "DGVProveedores";
+			this.DGVProveedores.RowHeadersWidth = 51;
+			this.DGVProveedores.RowTemplate.Height = 24;
+			this.DGVProveedores.Size = new System.Drawing.Size(1665, 578);
+			this.DGVProveedores.TabIndex = 0;
+			this.DGVProveedores.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
+			// 
+			// CRUD_Personas
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(1689, 778);
+			this.Controls.Add(this.tabControl1);
+			this.Controls.Add(this.btnAdd);
+			this.Controls.Add(this.chkActive);
+			this.Controls.Add(this.label4);
+			this.Controls.Add(this.txtbPrice);
+			this.Controls.Add(this.label3);
+			this.Controls.Add(this.txtProductName);
+			this.Controls.Add(this.label2);
+			this.Controls.Add(this.panel1);
+			this.Margin = new System.Windows.Forms.Padding(4);
+			this.Name = "CRUD_Personas";
+			this.Text = "Simple CRUD with MySql";
+			this.Load += new System.EventHandler(this.CRUD_Personas_Load);
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
+			this.tabControl1.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
+			this.tabPage2.ResumeLayout(false);
+			this.tabPage3.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.DGVPersonas)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.DGVEmpleados)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.DGVProveedores)).EndInit();
+			this.ResumeLayout(false);
+			this.PerformLayout();
 
         }
 
@@ -229,7 +271,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dgvItems;
         private System.Windows.Forms.BindingSource itemBindingSource;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtProductName;
@@ -242,8 +283,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isActiveDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewButtonColumn Update;
-        private System.Windows.Forms.DataGridViewButtonColumn Delete;
-    }
+		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.TabPage tabPage2;
+		private System.Windows.Forms.TabPage tabPage3;
+		private System.Windows.Forms.DataGridView DGVPersonas;
+		private System.Windows.Forms.DataGridView DGVEmpleados;
+		private System.Windows.Forms.DataGridView DGVProveedores;
+	}
 }
 

@@ -30,9 +30,7 @@ namespace Simple_Login_FORM
         {
             try
             {
-                txtProductName.Text = Item.ProductName;
-                txtbPrice.Text = Item.Price.ToString();
-                chkActive.Checked = Item.isActive;
+                txtProductName.Text = Item.Name;
             }
             catch (Exception ex)
             {

@@ -105,7 +105,7 @@ namespace Simple_Login_FORM
 
 				this.Hide();
 				LoginForm fm = new LoginForm();
-				fm.Show();
+				fm.ShowDialog();
 			} catch(Exception ex) {
 				MessageBox.Show("Error: " + ex.Message);
 			} finally {
