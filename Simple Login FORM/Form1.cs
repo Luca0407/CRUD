@@ -99,7 +99,7 @@ namespace Simple_Login_FORM
 			}
 		}
 
-		private void btnAdd_Click(object sender, EventArgs e)
+		/*private void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
@@ -123,7 +123,7 @@ namespace Simple_Login_FORM
             {
                 MessageBox.Show(ex.ToString());
             }
-        }
+        }*/
 
         private void txtbPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -215,6 +215,21 @@ namespace Simple_Login_FORM
 		}
 
 		private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e) {
+
+		}
+
+		private void button1_Click(object sender, EventArgs e) {
+			this.Hide();
+			RepuestosServiciosForm fm = new RepuestosServiciosForm();
+			fm.ShowDialog();
+			this.Close();
+		}
+
+		private void tabPage1_Click(object sender, EventArgs e) {
+
+		}
+
+		private void label1_Click(object sender, EventArgs e) {
 
 		}
 	}

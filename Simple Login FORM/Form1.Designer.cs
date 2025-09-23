@@ -30,6 +30,7 @@
         {
 			this.components = new System.ComponentModel.Container();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.button1 = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
 			this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.label2 = new System.Windows.Forms.Label();
@@ -37,37 +38,48 @@
 			this.txtbPrice = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
-			this.chkActive = new System.Windows.Forms.CheckBox();
 			this.btnAdd = new System.Windows.Forms.Button();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.DGVPersonas = new System.Windows.Forms.DataGridView();
+			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.DGVEmpleados = new System.Windows.Forms.DataGridView();
+			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.DGVProveedores = new System.Windows.Forms.DataGridView();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
-			this.tabPage2.SuspendLayout();
-			this.tabPage3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.DGVPersonas)).BeginInit();
+			this.tabPage2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.DGVEmpleados)).BeginInit();
+			this.tabPage3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.DGVProveedores)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panel1
 			// 
 			this.panel1.BackColor = System.Drawing.SystemColors.Highlight;
+			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel1.Location = new System.Drawing.Point(0, 0);
 			this.panel1.Margin = new System.Windows.Forms.Padding(4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(1689, 79);
+			this.panel1.Size = new System.Drawing.Size(1753, 79);
 			this.panel1.TabIndex = 0;
 			this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+			// 
+			// button1
+			// 
+			this.button1.ForeColor = System.Drawing.Color.Transparent;
+			this.button1.Location = new System.Drawing.Point(1571, 30);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(170, 39);
+			this.button1.TabIndex = 1;
+			this.button1.Text = "Gestión de Recursos";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// label1
 			// 
@@ -77,9 +89,10 @@
 			this.label1.Location = new System.Drawing.Point(16, 22);
 			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(431, 39);
+			this.label1.Size = new System.Drawing.Size(353, 39);
 			this.label1.TabIndex = 0;
-			this.label1.Text = "Simple CRUD Application";
+			this.label1.Text = "Gestion de Personas";
+			this.label1.Click += new System.EventHandler(this.label1_Click);
 			// 
 			// label2
 			// 
@@ -127,37 +140,26 @@
 			this.label4.Size = new System.Drawing.Size(0, 16);
 			this.label4.TabIndex = 6;
 			// 
-			// chkActive
-			// 
-			this.chkActive.AutoSize = true;
-			this.chkActive.Location = new System.Drawing.Point(1072, 129);
-			this.chkActive.Margin = new System.Windows.Forms.Padding(4);
-			this.chkActive.Name = "chkActive";
-			this.chkActive.Size = new System.Drawing.Size(66, 20);
-			this.chkActive.TabIndex = 7;
-			this.chkActive.Text = "Active";
-			this.chkActive.UseVisualStyleBackColor = true;
-			// 
 			// btnAdd
 			// 
-			this.btnAdd.Location = new System.Drawing.Point(1300, 129);
+			this.btnAdd.ForeColor = System.Drawing.Color.Transparent;
+			this.btnAdd.Location = new System.Drawing.Point(1050, 123);
 			this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
 			this.btnAdd.Name = "btnAdd";
 			this.btnAdd.Size = new System.Drawing.Size(100, 28);
 			this.btnAdd.TabIndex = 8;
 			this.btnAdd.Text = "Add";
 			this.btnAdd.UseVisualStyleBackColor = true;
-			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
 			// 
 			// tabControl1
 			// 
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage2);
 			this.tabControl1.Controls.Add(this.tabPage3);
-			this.tabControl1.Location = new System.Drawing.Point(12, 163);
+			this.tabControl1.Location = new System.Drawing.Point(12, 164);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(1665, 603);
+			this.tabControl1.Size = new System.Drawing.Size(1660, 602);
 			this.tabControl1.TabIndex = 9;
 			// 
 			// tabPage1
@@ -168,10 +170,26 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 25);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(1657, 574);
+			this.tabPage1.Size = new System.Drawing.Size(1652, 573);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "tabPage1";
 			this.tabPage1.UseVisualStyleBackColor = true;
+			this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+			// 
+			// DGVPersonas
+			// 
+			this.DGVPersonas.AutoGenerateColumns = false;
+			this.DGVPersonas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.DGVPersonas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.DGVPersonas.DataSource = this.itemBindingSource;
+			this.DGVPersonas.Location = new System.Drawing.Point(-2, -2);
+			this.DGVPersonas.Name = "DGVPersonas";
+			this.DGVPersonas.RightToLeft = System.Windows.Forms.RightToLeft.No;
+			this.DGVPersonas.RowHeadersWidth = 51;
+			this.DGVPersonas.RowTemplate.Height = 24;
+			this.DGVPersonas.Size = new System.Drawing.Size(1652, 573);
+			this.DGVPersonas.TabIndex = 0;
+			this.DGVPersonas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
 			// 
 			// tabPage2
 			// 
@@ -179,38 +197,15 @@
 			this.tabPage2.Location = new System.Drawing.Point(4, 25);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(1657, 574);
+			this.tabPage2.Size = new System.Drawing.Size(1652, 573);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "tabPage2";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
-			// tabPage3
-			// 
-			this.tabPage3.Controls.Add(this.DGVProveedores);
-			this.tabPage3.Location = new System.Drawing.Point(4, 25);
-			this.tabPage3.Name = "tabPage3";
-			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage3.Size = new System.Drawing.Size(1657, 574);
-			this.tabPage3.TabIndex = 2;
-			this.tabPage3.Text = "tabPage3";
-			this.tabPage3.UseVisualStyleBackColor = true;
-			// 
-			// DGVPersonas
-			// 
-			this.DGVPersonas.AutoGenerateColumns = false;
-			this.DGVPersonas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.DGVPersonas.DataSource = this.itemBindingSource;
-			this.DGVPersonas.Location = new System.Drawing.Point(-2, -2);
-			this.DGVPersonas.Name = "DGVPersonas";
-			this.DGVPersonas.RowHeadersWidth = 51;
-			this.DGVPersonas.RowTemplate.Height = 24;
-			this.DGVPersonas.Size = new System.Drawing.Size(1657, 578);
-			this.DGVPersonas.TabIndex = 0;
-			this.DGVPersonas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-			// 
 			// DGVEmpleados
 			// 
 			this.DGVEmpleados.AutoGenerateColumns = false;
+			this.DGVEmpleados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.DGVEmpleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.DGVEmpleados.DataSource = this.itemBindingSource;
 			this.DGVEmpleados.Location = new System.Drawing.Point(-4, 0);
@@ -221,9 +216,21 @@
 			this.DGVEmpleados.TabIndex = 0;
 			this.DGVEmpleados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
 			// 
+			// tabPage3
+			// 
+			this.tabPage3.Controls.Add(this.DGVProveedores);
+			this.tabPage3.Location = new System.Drawing.Point(4, 25);
+			this.tabPage3.Name = "tabPage3";
+			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage3.Size = new System.Drawing.Size(1652, 573);
+			this.tabPage3.TabIndex = 2;
+			this.tabPage3.Text = "tabPage3";
+			this.tabPage3.UseVisualStyleBackColor = true;
+			// 
 			// DGVProveedores
 			// 
 			this.DGVProveedores.AutoGenerateColumns = false;
+			this.DGVProveedores.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.DGVProveedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.DGVProveedores.DataSource = this.itemBindingSource;
 			this.DGVProveedores.Location = new System.Drawing.Point(-4, 0);
@@ -238,10 +245,9 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1689, 778);
+			this.ClientSize = new System.Drawing.Size(1753, 808);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.btnAdd);
-			this.Controls.Add(this.chkActive);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.txtbPrice);
 			this.Controls.Add(this.label3);
@@ -251,16 +257,17 @@
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "CRUD_Personas";
 			this.Text = "Simple CRUD with MySql";
+			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.Load += new System.EventHandler(this.CRUD_Personas_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
-			this.tabPage2.ResumeLayout(false);
-			this.tabPage3.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.DGVPersonas)).EndInit();
+			this.tabPage2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.DGVEmpleados)).EndInit();
+			this.tabPage3.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.DGVProveedores)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -277,7 +284,6 @@
         private System.Windows.Forms.TextBox txtbPrice;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox chkActive;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn;
@@ -290,6 +296,7 @@
 		private System.Windows.Forms.DataGridView DGVPersonas;
 		private System.Windows.Forms.DataGridView DGVEmpleados;
 		private System.Windows.Forms.DataGridView DGVProveedores;
+		private System.Windows.Forms.Button button1;
 	}
 }
 

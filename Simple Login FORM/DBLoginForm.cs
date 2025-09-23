@@ -1,15 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using Simple_Login_FORM;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Org.BouncyCastle.Math.EC.ECCurve;
 
 namespace Simple_Login_FORM {
 	public partial class DBLoginForm: Form {
@@ -26,28 +18,57 @@ namespace Simple_Login_FORM {
 				return;
 			}
 
-			// Guardamos temporalmente en DbConfig
 			DBConfig.UserId = user;
 			DBConfig.Password = pass;
 
-			// Intentamos conectar
-			using(MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
-				try {
-					con.Open(); // Si abre, el usuario existe y la pass es correcta
-					this.DialogResult = DialogResult.OK;
-					this.Close();
-				} catch(MySql.Data.MySqlClient.MySqlException ex) {
-					MessageBox.Show("Error al conectar con la base de datos:\n" + ex.Message, "Conexión fallida");
-					// Si falla, limpiamos lo guardado
-					DBConfig.UserId = null;
-					DBConfig.Password = null;
+			if(TryLogin(DBConfig.UserId, DBConfig.Password)) {
+				// Guardamos en Settings
+				Properties.Settings.Default.UserId = user;
+				Properties.Settings.Default.Password = pass;
+				Properties.Settings.Default.Save();
+
+				this.DialogResult = DialogResult.OK;
+				this.Close();
+			} else {
+				DBConfig.UserId = null;
+				DBConfig.Password = null;
+				MessageBox.Show("Usuario o contraseña incorrectos.", "Conexión fallida");
+			}
+		}
+
+		private void DBLoginForm_Load(object sender, EventArgs e) {
+			// Cargar desde Settings
+			string user = Properties.Settings.Default.UserId;
+			string pass = Properties.Settings.Default.Password;
+
+			if(!string.IsNullOrEmpty(user) && !string.IsNullOrEmpty(pass)) {
+				// Mostrar en los TextBox
+				UserBox.Text = user;
+				PassBox.Text = pass;
+
+				// Intentar login automático
+				if(TryLogin(user, pass)) {
+					DBConfig.UserId = user;
+					DBConfig.Password = pass;
+
+					this.BeginInvoke(new Action(() =>
+					{
+						this.DialogResult = DialogResult.OK;
+						this.Close();
+					}));
 				}
 			}
 		}
 
-
-		private void DBLoginForm_Load(object sender, EventArgs e) {
-
+		private bool TryLogin(string user, string pass) {
+			using(MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
+				try {
+					con.Open();
+					return true;
+				} catch {
+					return false;
+				}
+			}
 		}
 	}
 }

@@ -76,3 +76,4 @@ C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login F
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.PassForm.resources
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.DBLoginForm.resources
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.CRUD_Personas.resources
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.RepuestosServiciosForm.resources
