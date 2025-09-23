@@ -58,10 +58,10 @@ namespace Simple_Login_FORM
 					if(i == 0) {
 						MessageBox.Show("Usuario o contraseña incorrecto.", "ERROR");
 					} else {
-						this.Hide();
-						CRUD_Personas fm = new CRUD_Personas();
-						fm.ShowDialog();
-						this.Close();
+						this.Hide();							// Estas 4 lineas
+						CRUD_Personas fm = new CRUD_Personas(); // sirven para
+						fm.ShowDialog();						// cerrar el formulario
+						this.Close();							// actual y abrir otro.
 					}
 				}
 			} catch(Exception el) {
