@@ -1,0 +1,186 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Runtime.InteropServices;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
+using MySqlX.XDevAPI;
+
+
+namespace Simple_Login_FORM
+{
+    public partial class menu : Form
+    {
+
+
+        public menu()
+        {
+            InitializeComponent();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HTCAPTION = 0x2;
+
+        
+
+        private void btnMaximizar_Click(object sender, EventArgs e) // Botón de maximizar
+        {
+            this.WindowState = FormWindowState.Maximized;
+			btnMaximizar.Visible = false;
+            pictureBox3.Visible = true;
+
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            this.WindowState=FormWindowState.Normal;
+            pictureBox3.Visible = false;
+            btnMaximizar.Visible = true;
+
+        }
+
+
+        private void btnMinimizar_Click(object sender, EventArgs e) // Botón de minimizar
+        {
+            this.WindowState = FormWindowState.Minimized;
+            // ⚠️ no toco la visibilidad de otros botones acá
+        }
+
+        
+
+
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint ="SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int  lParam);
+
+        
+        
+
+        private void panel7_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnEmpleado_Click(object sender, EventArgs e)
+        {
+			panel9.Controls.Clear();
+
+			// Crea la instancia
+			empleados frmClientes = new empleados();
+
+			// Asegura que se comporte como control hijo y se ajuste al panel
+			frmClientes.TopLevel = false;
+			frmClientes.FormBorderStyle = FormBorderStyle.None;
+			frmClientes.Dock = DockStyle.Fill; // ← Esto hace que se ajuste al 100% del panel
+
+			// Agrega y muestra
+			panel9.Controls.Add(frmClientes);
+			frmClientes.Show();
+		}
+
+        private void panel8_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnReportes_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnCompras_Click(object sender, EventArgs e)
+        {
+			panel9.Controls.Clear();
+
+			// Crea la instancia
+			proveedor frmClientes = new proveedor();
+
+			// Asegura que se comporte como control hijo y se ajuste al panel
+			frmClientes.TopLevel = false;
+			frmClientes.FormBorderStyle = FormBorderStyle.None;
+			frmClientes.Dock = DockStyle.Fill; // ← Esto hace que se ajuste al 100% del panel
+
+			// Agrega y muestra
+			panel9.Controls.Add(frmClientes);
+			frmClientes.Show();
+		}
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnVentas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
+
+        private void panel1_Paint_1(object sender, PaintEventArgs e)
+        {
+           
+        }
+
+        private void panelContenedor_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            // Limpia el panel
+            panel9.Controls.Clear();
+
+            // Crea la instancia
+            clientes frmClientes = new clientes();
+
+            // Asegura que se comporte como control hijo y se ajuste al panel
+            frmClientes.TopLevel = false;
+            frmClientes.FormBorderStyle = FormBorderStyle.None;
+            frmClientes.Dock = DockStyle.Fill; // ← Esto hace que se ajuste al 100% del panel
+
+            // Agrega y muestra
+            panel9.Controls.Add(frmClientes);
+            frmClientes.Show();
+        }
+
+        private void panel9_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+    }
+}
