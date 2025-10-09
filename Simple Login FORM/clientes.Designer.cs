@@ -34,7 +34,8 @@
 			this.button3 = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
-			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.fullName = new System.Windows.Forms.TextBox();
+			this.button4 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -86,7 +87,7 @@
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(40, 82);
+			this.label1.Location = new System.Drawing.Point(40, 29);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(87, 20);
 			this.label1.TabIndex = 7;
@@ -97,20 +98,31 @@
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.Location = new System.Drawing.Point(133, 99);
+			this.label3.Location = new System.Drawing.Point(133, 48);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(145, 20);
 			this.label3.TabIndex = 11;
 			this.label3.Text = "Nombre y Apellido";
 			this.label3.Click += new System.EventHandler(this.label3_Click);
 			// 
-			// textBox2
+			// fullName
 			// 
-			this.textBox2.Location = new System.Drawing.Point(284, 99);
-			this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(190, 22);
-			this.textBox2.TabIndex = 10;
+			this.fullName.Location = new System.Drawing.Point(300, 46);
+			this.fullName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.fullName.Name = "fullName";
+			this.fullName.Size = new System.Drawing.Size(190, 22);
+			this.fullName.TabIndex = 10;
+			// 
+			// button4
+			// 
+			this.button4.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button4.Location = new System.Drawing.Point(509, 38);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(32, 32);
+			this.button4.TabIndex = 12;
+			this.button4.Text = "🔍";
+			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.button4_Click);
 			// 
 			// clientes
 			// 
@@ -118,8 +130,9 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoSize = true;
 			this.ClientSize = new System.Drawing.Size(1280, 720);
+			this.Controls.Add(this.button4);
 			this.Controls.Add(this.label3);
-			this.Controls.Add(this.textBox2);
+			this.Controls.Add(this.fullName);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.button3);
 			this.Controls.Add(this.button2);
@@ -146,6 +159,7 @@
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.TextBox textBox2;
+		private System.Windows.Forms.TextBox fullName;
+		private System.Windows.Forms.Button button4;
 	}
 }

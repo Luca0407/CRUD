@@ -16,39 +16,63 @@ using System.Windows.Forms;
 
 namespace Simple_Login_FORM
 {
-    public partial class clientes : Form
-    {
-        public clientes()
-        {
-            InitializeComponent();
-            this.TopLevel = false;
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.AutoScroll = false; // O true si quieres scroll cuando el contenido es grande
+	public partial class clientes : Form
+	{
+		public clientes()
+		{
+			InitializeComponent();
+			this.TopLevel = false;
+			this.FormBorderStyle = FormBorderStyle.None;
+			this.AutoScroll = false; // O true si quieres scroll cuando el contenido es grande
 			this.Dock = DockStyle.Fill;
 			dataGridView1.KeyDown += dataGridView1_KeyDown;
+			ListarNombres();
+		}
+
+		private void ListarNombres() {
+			try {
+				using(MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
+					con.Open();
+					string nombres = "SELECT DISTINCT CONCAT_WS(' ', nombre, apellido) as NombreCompleto FROM personas WHERE tipo = 'c'";
+					MySqlCommand cmd = new MySqlCommand(nombres, con);
+					MySqlDataReader reader = cmd.ExecuteReader();
+
+					AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
+
+					while(reader.Read()) {
+						coleccion.Add(reader.GetString("NombreCompleto"));
+					}
+
+					fullName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+					fullName.AutoCompleteSource = AutoCompleteSource.CustomSource;
+					fullName.AutoCompleteCustomSource = coleccion; // asignás solo una vez
+				}
+			} catch(Exception ex) {
+				MessageBox.Show("Error al cargar nombres: " + ex.Message);
+			}
 		}
 
 		private void clientes_Load(object sender, EventArgs e)
-        {
-            ListarClientes();
+		{
+			ListarClientes();
 			dataGridView1.AllowUserToAddRows = false;
 			dataGridView1.MultiSelect = true;
 		}
 
 		public void ListarClientes()
-        {
-            using (MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString()))
-            {
-                con.Open();
-                string sql = @"SELECT p.ID_persona, p.nombre, p.apellido, c.DNI, p.mail, p.telefono, p.domicilio
-                            FROM clientes c 
-                            INNER JOIN personas p ON c.ID_persona = p.ID_persona
-                            WHERE p.tipo = 'c'";
-                MySqlCommand cmd = new MySqlCommand(sql, con);
-                MySqlDataAdapter da = new MySqlDataAdapter(sql, con);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dataGridView1.DataSource = dt;
+		{
+			using (MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString()))
+			{
+				con.Open();
+				string sql = @"SELECT p.ID_persona, p.nombre, p.apellido, c.DNI, p.mail, p.telefono, p.domicilio
+							FROM clientes c 
+							INNER JOIN personas p ON c.ID_persona = p.ID_persona
+							WHERE p.tipo = 'c'";
+				MySqlCommand cmd = new MySqlCommand(sql, con);
+				MySqlDataAdapter da = new MySqlDataAdapter(sql, con);
+				DataTable dt = new DataTable();
+				da.Fill(dt);
+				dataGridView1.DataSource = dt;
 				dataGridView1.Columns["ID_persona"].Visible = false;
 			}
 		}
@@ -196,6 +220,30 @@ namespace Simple_Login_FORM
 			}
 		}
 
+		public DataTable FiltrarClientes(string nombre) {
+			DataTable dt = new DataTable();
+			try {
+				using(MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
+					con.Open();
+					string sql = @"SELECT * FROM
+									(SELECT p.ID_persona, CONCAT(p.nombre, ' ', p.apellido) AS NombreCompleto, c.DNI, p.mail, p.telefono, p.domicilio, p.tipo
+								    FROM clientes c
+								    INNER JOIN personas p ON c.ID_persona = p.ID_persona) AS sub
+								WHERE (@NombreCompleto IS NULL OR sub.NombreCompleto LIKE @NombreCompleto) AND sub.tipo = 'c';";
+					using(MySqlCommand cmd = new MySqlCommand(sql, con)) {
+						cmd.Parameters.AddWithValue("@NombreCompleto",
+							string.IsNullOrWhiteSpace(nombre) ? (object) DBNull.Value : $"%{nombre}%");
+
+						MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+						adapter.Fill(dt);
+					}
+				}
+			} catch(Exception ex) {
+				MessageBox.Show("Error al buscar clientes: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			return dt;
+		}
+
 		private void dataGridView1_KeyDown(object sender, KeyEventArgs e) {
 			if(e.KeyCode == Keys.Enter) {
 				e.SuppressKeyPress = true; // evita que se mueva a la siguiente celda
@@ -260,15 +308,15 @@ namespace Simple_Login_FORM
 
 		}
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+		private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		{
 
-        }
+		}
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
+		private void textBox1_TextChanged(object sender, EventArgs e)
+		{
 
-        }
+		}
 
 		private void label3_Click(object sender, EventArgs e) {
 
@@ -280,6 +328,13 @@ namespace Simple_Login_FORM
 
 		private void textBox4_TextChanged(object sender, EventArgs e) {
 
+		}
+
+		private void button4_Click(object sender, EventArgs e) {
+			string nombre_completo = fullName.Text;
+
+			DataTable resultados = FiltrarClientes(nombre_completo);
+			dataGridView1.DataSource = resultados;
 		}
 	}
 }
