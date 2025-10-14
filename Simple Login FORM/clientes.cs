@@ -11,6 +11,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -30,6 +31,7 @@ namespace Simple_Login_FORM
 		}
 
 		private void ListarNombres() {
+			adding = false;
 			try {
 				using(MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
 					con.Open();
@@ -43,7 +45,7 @@ namespace Simple_Login_FORM
 						coleccion.Add(reader.GetString("NombreCompleto"));
 					}
 
-					fullName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+					fullName.AutoCompleteMode = AutoCompleteMode.Suggest;
 					fullName.AutoCompleteSource = AutoCompleteSource.CustomSource;
 					fullName.AutoCompleteCustomSource = coleccion; // asignás solo una vez
 				}
@@ -57,10 +59,12 @@ namespace Simple_Login_FORM
 			ListarClientes();
 			dataGridView1.AllowUserToAddRows = false;
 			dataGridView1.MultiSelect = true;
+			dataGridView1.EditingControlShowing += dataGridView1_EditingControlShowing;
 		}
 
 		public void ListarClientes()
 		{
+			adding = false;
 			using (MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString()))
 			{
 				con.Open();
@@ -103,6 +107,7 @@ namespace Simple_Login_FORM
 		}
 
 		public void EliminarCliente() {
+			adding = false;
 			if(dataGridView1.SelectedRows.Count == 0) {
 				MessageBox.Show("Selecciona al menos una fila para eliminar.");
 				return;
@@ -221,17 +226,20 @@ namespace Simple_Login_FORM
 		}
 
 		public DataTable FiltrarClientes(string nombre) {
+			adding = false;
 			DataTable dt = new DataTable();
 			try {
 				using(MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
 					con.Open();
-					string sql = @"SELECT * FROM
-									(SELECT p.ID_persona, CONCAT(p.nombre, ' ', p.apellido) AS NombreCompleto, c.DNI, p.mail, p.telefono, p.domicilio, p.tipo
-								    FROM clientes c
-								    INNER JOIN personas p ON c.ID_persona = p.ID_persona) AS sub
-								WHERE (@NombreCompleto IS NULL OR sub.NombreCompleto LIKE @NombreCompleto) AND sub.tipo = 'c';";
+
+					string sql = @"SELECT p.ID_persona, p.nombre, p.apellido, c.DNI, p.mail, p.telefono, p.domicilio, p.tipo
+                           FROM clientes c
+                           INNER JOIN personas p ON c.ID_persona = p.ID_persona
+                           WHERE p.tipo = 'c'
+                           AND (@nombre IS NULL OR p.nombre LIKE @nombre OR p.apellido LIKE @nombre);";
+
 					using(MySqlCommand cmd = new MySqlCommand(sql, con)) {
-						cmd.Parameters.AddWithValue("@NombreCompleto",
+						cmd.Parameters.AddWithValue("@nombre",
 							string.IsNullOrWhiteSpace(nombre) ? (object) DBNull.Value : $"%{nombre}%");
 
 						MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
@@ -244,8 +252,43 @@ namespace Simple_Login_FORM
 			return dt;
 		}
 
+		private bool EsCorreoValido(string correo) {
+			string patron = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+			return Regex.IsMatch(correo, patron);
+		}
+
+		private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e) {
+			if(e.Control is TextBox textBox) {
+				textBox.KeyPress -= SoloNumeros_KeyPress;
+				textBox.KeyPress -= SoloLetras_KeyPress;
+
+				string columnName = dataGridView1.Columns[dataGridView1.CurrentCell.ColumnIndex].Name;
+
+				if(columnName == "DNI" || columnName == "telefono") {
+					textBox.MaxLength = 10;
+					textBox.KeyPress += SoloNumeros_KeyPress;
+				} else if(columnName == "nombre" || columnName == "apellido") {
+					textBox.MaxLength = 20;
+					textBox.KeyPress += SoloLetras_KeyPress;
+				}
+			}
+		}
+
+		private void SoloNumeros_KeyPress(object sender, KeyPressEventArgs e) {
+			if(!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) {
+				e.Handled = true;
+			}
+		}
+
+		private void SoloLetras_KeyPress(object sender, KeyPressEventArgs e) {
+			if(!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && e.KeyChar != ' ') {
+				e.Handled = true;
+			}
+		}
+
+
 		private void dataGridView1_KeyDown(object sender, KeyEventArgs e) {
-			if(e.KeyCode == Keys.Enter) {
+			if(e.KeyCode == Keys.Enter && adding == true) {
 				e.SuppressKeyPress = true; // evita que se mueva a la siguiente celda
 
 				// ✅ Forzar guardar el texto editado antes de leer valores
@@ -262,10 +305,24 @@ namespace Simple_Login_FORM
 					string telefono = dataGridView1.CurrentRow.Cells["telefono"].Value?.ToString();
 					string domicilio = dataGridView1.CurrentRow.Cells["domicilio"].Value?.ToString();
 
-					// ✅ Validar que no haya campos vacíos
+					if(!EsCorreoValido(mail)) {
+						MessageBox.Show("El correo electrónico no es válido", "Error");
+						return;
+					}
+
+					if(dni.Length != 10) {
+						MessageBox.Show("El número de DNI no es válido", "Error");
+						return;
+					}
+
+					if(telefono.Length != 10) {
+						MessageBox.Show("El número de teléfono no es válido", "Error");
+						return;
+					}
+
 					if(string.IsNullOrWhiteSpace(nombre) ||
 						string.IsNullOrWhiteSpace(apellido) ||
-						string.IsNullOrWhiteSpace(dni)) {
+						string.IsNullOrWhiteSpace(domicilio)) {
 						MessageBox.Show("Completa todos los campos obligatorios antes de guardar.");
 						return;
 					}
@@ -276,6 +333,7 @@ namespace Simple_Login_FORM
 
 					// ✅ Bloquear la fila recién creada después de insertar
 					dataGridView1.CurrentRow.ReadOnly = true;
+					adding = false;
 				} catch(Exception ex) {
 					MessageBox.Show(ex.ToString(), "Error");
 				}
@@ -283,14 +341,9 @@ namespace Simple_Login_FORM
 		}
 
 		private void button3_Click(object sender, EventArgs e) {
-			if(dataGridView1.SelectedRows.Count == 0) {
-				MessageBox.Show("Por favor, selecciona una fila para editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				return;
-			}
-
-			// Solo permitir editar una fila a la vez
-			if(dataGridView1.SelectedRows.Count > 1) {
-				MessageBox.Show("Selecciona solo una fila para editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			adding = false;
+			if(dataGridView1.SelectedRows.Count != 1) {
+				MessageBox.Show("Por favor, selecciona solo una fila para editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				return;
 			}
 
@@ -326,15 +379,23 @@ namespace Simple_Login_FORM
 
 		}
 
-		private void textBox4_TextChanged(object sender, EventArgs e) {
-
-		}
-
 		private void button4_Click(object sender, EventArgs e) {
 			string nombre_completo = fullName.Text;
-
 			DataTable resultados = FiltrarClientes(nombre_completo);
+
+			dataGridView1.DataSource = null;
+			dataGridView1.Rows.Clear();
+			dataGridView1.Columns.Clear();
+
 			dataGridView1.DataSource = resultados;
+
+			if(dataGridView1.Columns.Contains("tipo"))
+				dataGridView1.Columns["ID_persona"].Visible = false;
+				dataGridView1.Columns["tipo"].Visible = false;
+		}
+
+		private void fullName_TextChanged(object sender, EventArgs e) {
+
 		}
 	}
 }

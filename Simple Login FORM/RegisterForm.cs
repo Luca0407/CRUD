@@ -50,7 +50,6 @@ namespace Simple_Login_FORM
 
 		private void CreateButton_Click(object sender, EventArgs e) {
 			System.Windows.Forms.TextBox[] datos = { PhoneBox, PasswordBox, EmailBox, UsernameBox };
-
 			try {
 				// Limpia los placeholders si quedaron
 				datos.Zip(placeholders, (box, ph) =>

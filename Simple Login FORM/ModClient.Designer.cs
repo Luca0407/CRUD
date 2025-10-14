@@ -41,7 +41,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(503, 59);
+			this.button1.Location = new System.Drawing.Point(526, 59);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(110, 45);
 			this.button1.TabIndex = 7;
@@ -63,60 +63,59 @@
 			// 
 			this.nameBox.Location = new System.Drawing.Point(25, 82);
 			this.nameBox.Name = "nameBox";
-			this.nameBox.Size = new System.Drawing.Size(100, 22);
+			this.nameBox.Size = new System.Drawing.Size(174, 22);
 			this.nameBox.TabIndex = 0;
 			// 
 			// surnameBox
 			// 
-			this.surnameBox.Location = new System.Drawing.Point(157, 82);
+			this.surnameBox.Location = new System.Drawing.Point(25, 156);
 			this.surnameBox.Name = "surnameBox";
-			this.surnameBox.Size = new System.Drawing.Size(100, 22);
-			this.surnameBox.TabIndex = 1;
+			this.surnameBox.Size = new System.Drawing.Size(174, 22);
+			this.surnameBox.TabIndex = 3;
 			// 
 			// mailBox
 			// 
-			this.mailBox.Location = new System.Drawing.Point(25, 156);
+			this.mailBox.Location = new System.Drawing.Point(216, 82);
 			this.mailBox.Name = "mailBox";
-			this.mailBox.Size = new System.Drawing.Size(100, 22);
-			this.mailBox.TabIndex = 3;
+			this.mailBox.Size = new System.Drawing.Size(169, 22);
+			this.mailBox.TabIndex = 1;
 			// 
 			// phoneBox
 			// 
-			this.phoneBox.Location = new System.Drawing.Point(157, 156);
+			this.phoneBox.Location = new System.Drawing.Point(400, 156);
 			this.phoneBox.Name = "phoneBox";
-			this.phoneBox.Size = new System.Drawing.Size(100, 22);
-			this.phoneBox.TabIndex = 4;
+			this.phoneBox.Size = new System.Drawing.Size(97, 22);
+			this.phoneBox.TabIndex = 5;
 			// 
 			// domBox
 			// 
-			this.domBox.Location = new System.Drawing.Point(290, 156);
+			this.domBox.Location = new System.Drawing.Point(216, 156);
 			this.domBox.Name = "domBox";
-			this.domBox.Size = new System.Drawing.Size(100, 22);
-			this.domBox.TabIndex = 5;
+			this.domBox.Size = new System.Drawing.Size(169, 22);
+			this.domBox.TabIndex = 4;
 			// 
 			// dniBox
 			// 
-			this.dniBox.Location = new System.Drawing.Point(290, 82);
+			this.dniBox.Location = new System.Drawing.Point(400, 82);
 			this.dniBox.Name = "dniBox";
-			this.dniBox.Size = new System.Drawing.Size(100, 22);
+			this.dniBox.Size = new System.Drawing.Size(97, 22);
 			this.dniBox.TabIndex = 2;
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
 			this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-			this.label2.Location = new System.Drawing.Point(154, 53);
+			this.label2.Location = new System.Drawing.Point(22, 127);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(57, 16);
 			this.label2.TabIndex = 8;
 			this.label2.Text = "Apellido";
-			this.label2.Click += new System.EventHandler(this.label2_Click);
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
 			this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-			this.label3.Location = new System.Drawing.Point(22, 127);
+			this.label3.Location = new System.Drawing.Point(213, 53);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(41, 16);
 			this.label3.TabIndex = 9;
@@ -126,7 +125,7 @@
 			// 
 			this.label4.AutoSize = true;
 			this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-			this.label4.Location = new System.Drawing.Point(154, 127);
+			this.label4.Location = new System.Drawing.Point(397, 127);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(61, 16);
 			this.label4.TabIndex = 10;
@@ -136,7 +135,7 @@
 			// 
 			this.label5.AutoSize = true;
 			this.label5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-			this.label5.Location = new System.Drawing.Point(287, 127);
+			this.label5.Location = new System.Drawing.Point(213, 127);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(63, 16);
 			this.label5.TabIndex = 11;
@@ -146,7 +145,7 @@
 			// 
 			this.label6.AutoSize = true;
 			this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-			this.label6.Location = new System.Drawing.Point(287, 53);
+			this.label6.Location = new System.Drawing.Point(401, 53);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(30, 16);
 			this.label6.TabIndex = 12;
@@ -154,7 +153,7 @@
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(503, 156);
+			this.button2.Location = new System.Drawing.Point(526, 156);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(110, 45);
 			this.button2.TabIndex = 13;

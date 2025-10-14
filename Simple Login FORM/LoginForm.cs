@@ -19,7 +19,7 @@ namespace Simple_Login_FORM
 			InitializeComponent();
 			this.MaximizeBox = false;
 			this.FormBorderStyle = FormBorderStyle.FixedSingle;
-			UsernameBox.MaxLength = 45;
+			UsernameBox.MaxLength = 20;
 			PasswordBox.MaxLength = 16;
 			PasswordBox.KeyPress += PasswordBox_KeyPress;
 		}
