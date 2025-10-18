@@ -182,4 +182,4 @@ C:\Users\Usuario\Desktop\pop\CRUD-main\Simple Login FORM\obj\Debug\Simple Login 
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.menu.resources
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.proveedor.resources
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.empleados.resources
-C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.ModClient.resources
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.ModPersona.resources

@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Simple_Login_FORM {
-	public partial class ModClient: Form {
+	public partial class ModPersona: Form {
 		private string id_cliente;
-		public ModClient(DataGridViewCell id) {
+		public ModPersona(DataGridViewCell id) {
 			InitializeComponent();
 			id_cliente = id.Value.ToString();
 			ClienteSeleccionado(int.Parse(id_cliente));

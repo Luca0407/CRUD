@@ -1,5 +1,5 @@
 ﻿namespace Simple_Login_FORM {
-	partial class ModClient {
+	partial class ModPersona {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>

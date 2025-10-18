@@ -7,6 +7,15 @@ namespace Simple_Login_FORM {
 	public partial class DBLoginForm: Form {
 		public DBLoginForm() {
 			InitializeComponent();
+			this.KeyPreview = true;
+			this.KeyDown += new KeyEventHandler(onKeyDown);
+		}
+
+		private void onKeyDown(object sender, KeyEventArgs e) {
+			if(e.KeyCode == Keys.Enter) {
+				button1.Focus();
+				button1_Click(sender, e);
+			}
 		}
 
 		private void button1_Click(object sender, EventArgs e) {

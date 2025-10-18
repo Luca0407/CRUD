@@ -115,11 +115,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ModClient.cs">
+    <Compile Include="ModPersona.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ModClient.Designer.cs">
-      <DependentUpon>ModClient.cs</DependentUpon>
+    <Compile Include="ModPersona.Designer.cs">
+      <DependentUpon>ModPersona.cs</DependentUpon>
     </Compile>
     <Compile Include="clientes.cs">
       <SubType>Form</SubType>
@@ -172,8 +172,8 @@
     </Compile>
     <Compile Include="Program1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ModClient.resx">
-      <DependentUpon>ModClient.cs</DependentUpon>
+    <EmbeddedResource Include="ModPersona.resx">
+      <DependentUpon>ModPersona.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="clientes.resx">
       <DependentUpon>clientes.cs</DependentUpon>

@@ -264,12 +264,15 @@ namespace Simple_Login_FORM
 
 				string columnName = dataGridView1.Columns[dataGridView1.CurrentCell.ColumnIndex].Name;
 
-				if(columnName == "DNI" || columnName == "telefono") {
+				if(columnName == "telefono") {
 					textBox.MaxLength = 10;
 					textBox.KeyPress += SoloNumeros_KeyPress;
 				} else if(columnName == "nombre" || columnName == "apellido") {
 					textBox.MaxLength = 20;
 					textBox.KeyPress += SoloLetras_KeyPress;
+				} else if(columnName == "DNI") {
+					textBox.MaxLength = 8;
+					textBox.KeyPress += SoloNumeros_KeyPress;
 				}
 			}
 		}
@@ -310,7 +313,7 @@ namespace Simple_Login_FORM
 						return;
 					}
 
-					if(dni.Length != 10) {
+					if(dni.Length != 8) {
 						MessageBox.Show("El número de DNI no es válido", "Error");
 						return;
 					}
@@ -347,7 +350,7 @@ namespace Simple_Login_FORM
 				return;
 			}
 
-			using(ModClient pf = new ModClient(dataGridView1.SelectedRows[0].Cells[0])) {
+			using(ModPersona pf = new ModPersona(dataGridView1.SelectedRows[0].Cells[0])) {
 				if(pf.ShowDialog() == DialogResult.OK) {
 					ListarClientes();
 				} else {

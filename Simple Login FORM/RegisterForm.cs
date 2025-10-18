@@ -20,10 +20,11 @@ namespace Simple_Login_FORM
 		static string phone_ph = "número de 10 digitos";
 		static string pass_ph = "hasta16caractere";
 		static string mail_ph = "correo@mail.com";
-		static string user_ph = "usuario";
-		string[] placeholders = { phone_ph, pass_ph, mail_ph, user_ph};
+		static string user_ph = "nombre";
+		static string surname_ph = "apellido";
+		static string dom_ph = "domicilio";
+		string[] placeholders = { phone_ph, pass_ph, mail_ph, user_ph, surname_ph, dom_ph};
 		
-
 		MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString());
         public RegisterForm()
         {
@@ -32,8 +33,10 @@ namespace Simple_Login_FORM
 			this.FormBorderStyle = FormBorderStyle.FixedSingle;
 			PasswordBox.MaxLength = 16;
 			PhoneBox.MaxLength = 10;
-			UsernameBox.MaxLength = 45;
+			UsernameBox.MaxLength = 20;
+			SurnameBox.MaxLength = 20;
 			EmailBox.MaxLength = 45;
+			DomBox.MaxLength = 45;
 			PasswordBox.KeyPress += PasswordBox_KeyPress;
 			PhoneBox.KeyPress += PhoneBox_KeyPress;
 		}
@@ -51,6 +54,7 @@ namespace Simple_Login_FORM
 		private void CreateButton_Click(object sender, EventArgs e) {
 			System.Windows.Forms.TextBox[] datos = { PhoneBox, PasswordBox, EmailBox, UsernameBox };
 			try {
+				string selected = RoleBox.SelectedItem.ToString();
 				// Limpia los placeholders si quedaron
 				datos.Zip(placeholders, (box, ph) =>
 					new {
@@ -76,11 +80,14 @@ namespace Simple_Login_FORM
 
 				// 🔹 INSERT en personas
 				using(MySqlCommand cmd = con.CreateCommand()) {
-					cmd.CommandText = @"INSERT INTO personas (mail, nombre, telefono) 
-                                VALUES (@mail, @nombre, @telefono)";
+					cmd.CommandText = @"INSERT INTO personas (mail, nombre, apellido, telefono, domicilio, tipo) 
+                                VALUES (@mail, @nombre, @apellido, @telefono, @domicilio, @tipo)";
 					cmd.Parameters.AddWithValue("@mail", EmailBox.Text);
 					cmd.Parameters.AddWithValue("@nombre", UsernameBox.Text);
+					cmd.Parameters.AddWithValue("@apellido", SurnameBox.Text);
 					cmd.Parameters.AddWithValue("@telefono", PhoneBox.Text);
+					cmd.Parameters.AddWithValue("@domicilio", DomBox.Text);
+					cmd.Parameters.AddWithValue("@tipo", "e");
 					cmd.ExecuteNonQuery();
 				}
 
@@ -98,7 +105,7 @@ namespace Simple_Login_FORM
 				}
 
 				MessageBox.Show("Usuario registrado con éxito!");
-
+				this.DialogResult = DialogResult.OK;
 				this.Close();
 			} catch(Exception ex) {
 				MessageBox.Show("Error: " + ex.Message);
@@ -172,6 +179,34 @@ namespace Simple_Login_FORM
 			}
 		}
 
+		private void SurnameBox_Enter(object sender, EventArgs e) {
+			if(SurnameBox.ForeColor != Color.Black) {
+				SurnameBox.Text = "";
+				SurnameBox.ForeColor = Color.Black;
+			}
+		}
+
+		private void SurnameBox_Leave(object sender, EventArgs e) {
+			if(string.IsNullOrWhiteSpace(SurnameBox.Text)) {
+				SurnameBox.Text = user_ph;
+				SurnameBox.ForeColor = Color.DarkGray;
+			}
+		}
+
+		private void DomBox_Enter(object sender, EventArgs e) {
+			if(DomBox.ForeColor != Color.Black) {
+				DomBox.Text = "";
+				DomBox.ForeColor = Color.Black;
+			}
+		}
+
+		private void DomBox_Leave(object sender, EventArgs e) {
+			if(string.IsNullOrWhiteSpace(DomBox.Text)) {
+				DomBox.Text = user_ph;
+				DomBox.ForeColor = Color.DarkGray;
+			}
+		}
+
 		private void RegisterForm_Load(object sender, EventArgs e) {
 
 		}
@@ -221,6 +256,18 @@ namespace Simple_Login_FORM
 				e.Handled = true; // Bloquea el caracter
 				MessageBox.Show("Solo se permiten números", "Advertencia");
 			}
+		}
+
+		private void label5_Click(object sender, EventArgs e) {
+
+		}
+
+		private void textBox1_TextChanged(object sender, EventArgs e) {
+
+		}
+
+		private void DomBox_TextChanged(object sender, EventArgs e) {
+
 		}
 	}
 }

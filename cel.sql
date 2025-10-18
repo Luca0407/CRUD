@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 8.0.42, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `celulares` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `celulares`;
+-- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: celulares
 -- ------------------------------------------------------
--- Server version	8.0.43
+-- Server version	8.0.39
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -60,8 +62,8 @@ CREATE TABLE `clientes` (
   `ID_persona` int NOT NULL,
   PRIMARY KEY (`ID_clientes`),
   KEY `ID_persona_idx` (`ID_persona`),
-  CONSTRAINT `IDpersona` FOREIGN KEY (`ID_persona`) REFERENCES `personas` (`ID_persona`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb3;
+  CONSTRAINT `IDpersona` FOREIGN KEY (`ID_persona`) REFERENCES `personas` (`ID_persona`)
+) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +72,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (2,'23123456',1),(3,'30111222',2),(8,'31222333',7),(9,'35566777',8),(10,'36677888',9);
+INSERT INTO `clientes` VALUES (109,'1235456789',26),(124,'1234556789',104),(126,'1231231231',106),(138,'123',99);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -132,7 +134,7 @@ CREATE TABLE `empleados` (
 
 LOCK TABLES `empleados` WRITE;
 /*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
-INSERT INTO `empleados` VALUES (1,3,1,'12345678'),(2,3,2,'Contr4señ4'),(4,3,7,'1'),(5,3,8,'123'),(6,3,9,'1234'),(7,3,13,'1234'),(8,2,14,'1'),(9,1,15,'lucad'),(10,2,16,'asdafdsfaf'),(11,3,17,'2'),(12,3,18,'2sssdd');
+INSERT INTO `empleados` VALUES (1,3,1,'12345678');
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,7 +204,7 @@ CREATE TABLE `marcas` (
   `nombre_marca` varchar(45) NOT NULL,
   `modelo` varchar(45) NOT NULL,
   PRIMARY KEY (`ID_marcas`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -211,7 +213,7 @@ CREATE TABLE `marcas` (
 
 LOCK TABLES `marcas` WRITE;
 /*!40000 ALTER TABLE `marcas` DISABLE KEYS */;
-INSERT INTO `marcas` VALUES (1,'Iphone','X'),(2,'LG','K50s');
+INSERT INTO `marcas` VALUES (1,'Iphone','X'),(2,'LG','K50s'),(3,'Samsung','Galaxy A54'),(4,'Motorola','G73'),(5,'Xiaomi','Redmi Note 12'),(6,'Huawei','P30 Lite'),(7,'Nokia','G20'),(8,'Apple','iPhone 13 Pro');
 /*!40000 ALTER TABLE `marcas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -277,14 +279,14 @@ DROP TABLE IF EXISTS `personas`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `personas` (
   `ID_persona` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) NOT NULL,
+  `nombre` varchar(20) NOT NULL,
+  `apellido` varchar(20) DEFAULT NULL,
   `mail` varchar(45) NOT NULL,
   `telefono` varchar(10) NOT NULL,
-  `apellido` varchar(45) DEFAULT NULL,
   `domicilio` varchar(45) DEFAULT NULL,
   `tipo` varchar(1) NOT NULL,
   PRIMARY KEY (`ID_persona`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -293,7 +295,7 @@ CREATE TABLE `personas` (
 
 LOCK TABLES `personas` WRITE;
 /*!40000 ALTER TABLE `personas` DISABLE KEYS */;
-INSERT INTO `personas` VALUES (1,'Luca','2','b',NULL,'2','c'),(2,'usuario','correo@mail.com','12',NULL,NULL,'c'),(7,'12','1','1',NULL,NULL,'c'),(8,'a','1312','423',NULL,NULL,'c'),(9,'sos','s1','3334',NULL,'r5','c'),(11,'Usuario1','correo@gmail.com','3644',NULL,NULL,''),(12,'Usuario1','correo@gmail.com','3644',NULL,NULL,''),(13,'Usuario1','correo@gmail.com','3644',NULL,NULL,''),(14,'asdd','1','1',NULL,NULL,''),(15,'asd','oasd@asd.c','123',NULL,NULL,''),(16,'Luca222','asdasdasdasad@gmail.com','1231231',NULL,NULL,''),(17,'luca11','a@g.c','3',NULL,NULL,''),(18,'luca','asdasd@gmasd.com','123123',NULL,NULL,''),(20,'Provetech','provetech@gmail.com','3644123456',NULL,'Lopez y Planes 174',''),(22,'Lucía','lucia.perez@mail.com','3415551234','Pérez','San Martín 123',''),(23,'Juan','juan.gomez@mail.com','3415555678','Gómez','Belgrano 456',''),(24,'María','maria.lopez@mail.com','3415559012','López','Mitre 789',''),(25,'Carlos','carlos.ramirez@mail.com','3415553456','Ramírez','Av. Libertad 101',''),(26,'Ana','ana.sanchez@mail.com','3415557890','Sánchez','Córdoba 202',''),(27,'Martín','martin.fernandez@mail.com','3415552345','Fernández','Urquiza 303',''),(28,'Paula','paula.rodriguez@mail.com','3415556789','Rodríguez','Entre Ríos 404',''),(29,'Diego','diego.martinez@mail.com','3415551122','Martínez','Italia 505',''),(30,'Sofía','sofia.garcia@mail.com','3415553344','García','España 606',''),(31,'Fernando','fernando.alvarez@mail.com','3415555566','Álvarez','Francia 707',''),(32,'TecnoSur','contacto@tecnosur.com.ar','3415551111','Distribuciones','Av. Rivadavia 1234',''),(33,'InsumosGlobal','ventas@insumosglobal.com.ar','3415552222','Mayorista','Córdoba 567',''),(34,'SoftArg','info@softarg.com.ar','3415553333','Proveedores','San Martín 890','');
+INSERT INTO `personas` VALUES (1,'Luca',NULL,'2','b','2','e'),(20,'Provetech',NULL,'provetech@gmail.com','3644123456','Lopez y Planes 174','p'),(26,'Juan','Aurelio','mail@gmail.com','2345677889','Manzana 53, Parcela 18, Barrio Rucci','c'),(32,'TecnoSur','Distribuciones','contacto@tecnosur.com.ar','3415551111','Av. Rivadavia 1234','p'),(33,'InsumosGlobal','Mayorista','ventas@insumosglobal.com.ar','3415552222','Córdoba 567','p'),(34,'SoftArg','Proveedores','info@softarg.com.ar','3415553333','San Martín 890','p'),(99,'Martín','Fernández','martin.fernandez@mail.com','2352345233','Urquiza 30312','c'),(104,'Pedro','Picapiedras','asdads@sm.com','1223134123','34','c'),(106,'alberto','Camus','deotrolado@gmail.com','4564564564','sisi nono','c'),(119,'Franz','Kafka','qween@bic.ho','1234565123','1122 north','c'),(120,'Gabriel','Elizondo','gabriel@gmail.com','3644642127','rucci','c'),(121,'Gabriel','Elizondo','gabriel@gmail.com','3644642127','rucci','c');
 /*!40000 ALTER TABLE `personas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -346,7 +348,7 @@ CREATE TABLE `productos` (
   CONSTRAINT `ID_marca` FOREIGN KEY (`marca`) REFERENCES `marcas` (`ID_marcas`),
   CONSTRAINT `ID_tipo_producto` FOREIGN KEY (`tipo_producto`) REFERENCES `tipos_productos` (`ID_tipos_productos`),
   CONSTRAINT `proveedor_pieza` FOREIGN KEY (`proveedor`) REFERENCES `proveedores` (`ID_proveedores`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -355,7 +357,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,150000.00,500000.00,3,1,1,3),(2,120000.00,300000.00,3,1,2,3);
+INSERT INTO `productos` VALUES (1,150000.00,500000.00,3,1,1,3),(2,120000.00,300000.00,3,1,2,3),(3,180000.00,420000.00,5,5,3,3),(4,160000.00,390000.00,2,6,4,3),(5,190000.00,480000.00,4,7,5,3),(6,5000.00,12000.00,15,5,3,1),(7,4000.00,9500.00,20,6,4,1),(8,3500.00,8000.00,25,9,5,1),(9,2500.00,6000.00,30,10,6,1),(10,2000.00,5000.00,40,7,7,1),(11,800.00,2500.00,50,9,3,2),(12,1200.00,3000.00,60,10,5,2),(13,3000.00,8000.00,15,6,8,2),(14,1000.00,2500.00,70,5,4,2),(15,2500.00,6000.00,40,7,1,2);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -373,7 +375,7 @@ CREATE TABLE `proveedores` (
   PRIMARY KEY (`ID_proveedores`),
   KEY `ID_persona_idx` (`ID_persona`),
   CONSTRAINT `IDpersonas` FOREIGN KEY (`ID_persona`) REFERENCES `personas` (`ID_persona`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -382,7 +384,7 @@ CREATE TABLE `proveedores` (
 
 LOCK TABLES `proveedores` WRITE;
 /*!40000 ALTER TABLE `proveedores` DISABLE KEYS */;
-INSERT INTO `proveedores` VALUES (1,'provetech.com.ar',20),(2,'tecnosur.com.ar',22),(3,'insumosglobal.com.ar',23),(4,'softarg.com.ar',24);
+INSERT INTO `proveedores` VALUES (1,'provetech.com.ar',20),(5,NULL,32),(6,NULL,33),(7,NULL,34),(8,'cellworld.com.ar',34),(9,'repuestotech.com.ar',33),(10,'gadgetparts.com.ar',32);
 /*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -547,4 +549,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-09-30  0:52:26
+-- Dump completed on 2025-10-14 15:18:16
