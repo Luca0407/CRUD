@@ -115,6 +115,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Personas.cs" />
     <Compile Include="ModPersona.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -60,6 +60,7 @@ CREATE TABLE `clientes` (
   `ID_clientes` int NOT NULL AUTO_INCREMENT,
   `DNI` varchar(45) DEFAULT NULL,
   `ID_persona` int NOT NULL,
+  `cuil` varchar(11) DEFAULT NULL,
   PRIMARY KEY (`ID_clientes`),
   KEY `ID_persona_idx` (`ID_persona`),
   CONSTRAINT `IDpersona` FOREIGN KEY (`ID_persona`) REFERENCES `personas` (`ID_persona`)
@@ -72,7 +73,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (109,'1235456789',26),(124,'1234556789',104),(126,'1231231231',106),(138,'123',99);
+INSERT INTO `clientes` VALUES (109,'1235456789',26,NULL),(124,'1234556789',104,NULL),(126,'1231231231',106,NULL),(138,'123',99,NULL);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,7 +203,6 @@ DROP TABLE IF EXISTS `marcas`;
 CREATE TABLE `marcas` (
   `ID_marcas` int NOT NULL AUTO_INCREMENT,
   `nombre_marca` varchar(45) NOT NULL,
-  `modelo` varchar(45) NOT NULL,
   PRIMARY KEY (`ID_marcas`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -213,7 +213,7 @@ CREATE TABLE `marcas` (
 
 LOCK TABLES `marcas` WRITE;
 /*!40000 ALTER TABLE `marcas` DISABLE KEYS */;
-INSERT INTO `marcas` VALUES (1,'Iphone','X'),(2,'LG','K50s'),(3,'Samsung','Galaxy A54'),(4,'Motorola','G73'),(5,'Xiaomi','Redmi Note 12'),(6,'Huawei','P30 Lite'),(7,'Nokia','G20'),(8,'Apple','iPhone 13 Pro');
+INSERT INTO `marcas` VALUES (1,'Iphone'),(2,'LG'),(3,'Samsung'),(4,'Motorola'),(5,'Xiaomi'),(6,'Huawei'),(7,'Nokia'),(8,'Apple');
 /*!40000 ALTER TABLE `marcas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -341,6 +341,7 @@ CREATE TABLE `productos` (
   `proveedor` int NOT NULL,
   `marca` int NOT NULL,
   `tipo_producto` int NOT NULL,
+  `modelo` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`ID_productos`),
   KEY `proveedor_pieza_idx` (`proveedor`),
   KEY `ID_marca_idx` (`marca`),
@@ -357,7 +358,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,150000.00,500000.00,3,1,1,3),(2,120000.00,300000.00,3,1,2,3),(3,180000.00,420000.00,5,5,3,3),(4,160000.00,390000.00,2,6,4,3),(5,190000.00,480000.00,4,7,5,3),(6,5000.00,12000.00,15,5,3,1),(7,4000.00,9500.00,20,6,4,1),(8,3500.00,8000.00,25,9,5,1),(9,2500.00,6000.00,30,10,6,1),(10,2000.00,5000.00,40,7,7,1),(11,800.00,2500.00,50,9,3,2),(12,1200.00,3000.00,60,10,5,2),(13,3000.00,8000.00,15,6,8,2),(14,1000.00,2500.00,70,5,4,2),(15,2500.00,6000.00,40,7,1,2);
+INSERT INTO `productos` VALUES (1,150000.00,500000.00,3,1,1,3,'X'),(2,120000.00,300000.00,3,1,2,3,'K50s'),(3,180000.00,420000.00,5,5,3,3,'Galaxy A54'),(4,160000.00,390000.00,2,6,4,3,'G73'),(5,190000.00,480000.00,4,7,5,3,'Redmi Note 12'),(6,5000.00,12000.00,15,5,3,1,'Galaxy A54'),(7,4000.00,9500.00,20,6,4,1,'G73'),(8,3500.00,8000.00,25,9,5,1,'Redmi Note 12'),(9,2500.00,6000.00,30,10,6,1,'P30 Lite'),(10,2000.00,5000.00,40,7,7,1,'G20'),(11,800.00,2500.00,50,9,3,2,'Galaxy A54'),(12,1200.00,3000.00,60,10,5,2,'Redmi Note 12'),(13,3000.00,8000.00,15,6,8,2,'iPhone 13 Pro'),(14,1000.00,2500.00,70,5,4,2,'G73'),(15,2500.00,6000.00,40,7,1,2,'X');
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -372,6 +373,7 @@ CREATE TABLE `proveedores` (
   `ID_proveedores` int NOT NULL AUTO_INCREMENT,
   `pagina` varchar(100) DEFAULT NULL,
   `ID_persona` int NOT NULL,
+  `cuit` varchar(11) DEFAULT NULL,
   PRIMARY KEY (`ID_proveedores`),
   KEY `ID_persona_idx` (`ID_persona`),
   CONSTRAINT `IDpersonas` FOREIGN KEY (`ID_persona`) REFERENCES `personas` (`ID_persona`)
@@ -384,7 +386,7 @@ CREATE TABLE `proveedores` (
 
 LOCK TABLES `proveedores` WRITE;
 /*!40000 ALTER TABLE `proveedores` DISABLE KEYS */;
-INSERT INTO `proveedores` VALUES (1,'provetech.com.ar',20),(5,NULL,32),(6,NULL,33),(7,NULL,34),(8,'cellworld.com.ar',34),(9,'repuestotech.com.ar',33),(10,'gadgetparts.com.ar',32);
+INSERT INTO `proveedores` VALUES (1,'provetech.com.ar',20,NULL),(5,NULL,32,NULL),(6,NULL,33,NULL),(7,NULL,34,NULL),(8,'cellworld.com.ar',34,NULL),(9,'repuestotech.com.ar',33,NULL),(10,'gadgetparts.com.ar',32,NULL);
 /*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -549,4 +551,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-10-14 15:18:16
+-- Dump completed on 2025-10-20 14:10:03

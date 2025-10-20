@@ -3,20 +3,56 @@
   "WorkspaceRootPath": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\simple login form\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|solutionrelative:simple login form\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\simple login form\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|solutionrelative:simple login form\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\simple login form\\proveedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|solutionrelative:simple login form\\proveedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|c:\\users\\luca\\downloads\\programacion\\simple-csharp-loginform-main\\simple login form\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|solutionrelative:simple login form\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\simple login form\\modpersona.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|solutionrelative:simple login form\\modpersona.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|c:\\users\\luca\\downloads\\programacion\\simple-csharp-loginform-main\\simple login form\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|solutionrelative:simple login form\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|c:\\users\\luca\\downloads\\programacion\\simple-csharp-loginform-main\\simple login form\\personas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|solutionrelative:simple login form\\personas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|c:\\users\\luca\\downloads\\programacion\\simple-csharp-loginform-main\\simple login form\\clientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|solutionrelative:simple login form\\clientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|c:\\users\\luca\\downloads\\programacion\\simple-csharp-loginform-main\\simple login form\\program1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|solutionrelative:simple login form\\program1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\simple login form\\clientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|solutionrelative:simple login form\\clientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\simple login form\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|solutionrelative:simple login form\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|c:\\users\\luca\\downloads\\programacion\\simple-csharp-loginform-main\\simple login form\\empleados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|solutionrelative:simple login form\\empleados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|c:\\users\\luca\\downloads\\programacion\\simple-csharp-loginform-main\\simple login form\\proveedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|solutionrelative:simple login form\\proveedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|c:\\users\\luca\\downloads\\programacion\\simple-csharp-loginform-main\\simple login form\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\simple login form\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|solutionrelative:simple login form\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|c:\\users\\luca\\downloads\\programacion\\simple-csharp-loginform-main\\simple login form\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{34158B2D-FEB2-4F04-AEFE-A32A1B91E439}|Simple Login FORM\\Simple Login FORM.csproj|solutionrelative:simple login form\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,30 +62,144 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
+              "Title": "LoginForm.cs",
+              "DocumentMoniker": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\LoginForm.cs",
+              "RelativeDocumentMoniker": "Simple Login FORM\\LoginForm.cs",
+              "ToolTip": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\LoginForm.cs",
+              "RelativeToolTip": "Simple Login FORM\\LoginForm.cs",
+              "ViewState": "AgIAAHMAAAAAAAAAAAAuwIYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T17:51:27.159Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LoginForm.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\LoginForm.cs",
+              "RelativeDocumentMoniker": "Simple Login FORM\\LoginForm.cs",
+              "ToolTip": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\LoginForm.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Simple Login FORM\\LoginForm.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T17:50:29.643Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program1.cs",
+              "DocumentMoniker": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\Program1.cs",
+              "RelativeDocumentMoniker": "Simple Login FORM\\Program1.cs",
+              "ToolTip": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\Program1.cs",
+              "RelativeToolTip": "Simple Login FORM\\Program1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T17:45:04.001Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "clientes.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\clientes.cs",
+              "RelativeDocumentMoniker": "Simple Login FORM\\clientes.cs",
+              "ToolTip": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\clientes.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Simple Login FORM\\clientes.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T17:22:36.308Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Personas.cs",
+              "DocumentMoniker": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\Personas.cs",
+              "RelativeDocumentMoniker": "Simple Login FORM\\Personas.cs",
+              "ToolTip": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\Personas.cs",
+              "RelativeToolTip": "Simple Login FORM\\Personas.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAuwB0AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T17:01:56.62Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ModPersona.cs",
+              "DocumentMoniker": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\ModPersona.cs",
+              "RelativeDocumentMoniker": "Simple Login FORM\\ModPersona.cs",
+              "ToolTip": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\ModPersona.cs",
+              "RelativeToolTip": "Simple Login FORM\\ModPersona.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAMAAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T00:54:38.36Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "RegisterForm.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\RegisterForm.cs",
+              "RelativeDocumentMoniker": "Simple Login FORM\\RegisterForm.cs",
+              "ToolTip": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\RegisterForm.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Simple Login FORM\\RegisterForm.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T01:52:15.014Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "clientes.cs",
+              "DocumentMoniker": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\clientes.cs",
+              "RelativeDocumentMoniker": "Simple Login FORM\\clientes.cs",
+              "ToolTip": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\clientes.cs",
+              "RelativeToolTip": "Simple Login FORM\\clientes.cs",
+              "ViewState": "AgIAAFABAAAAAAAAAAAMwGABAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T01:00:30.364Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "menu.cs",
+              "DocumentMoniker": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\menu.cs",
+              "RelativeDocumentMoniker": "Simple Login FORM\\menu.cs",
+              "ToolTip": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\menu.cs",
+              "RelativeToolTip": "Simple Login FORM\\menu.cs",
+              "ViewState": "AgIAAJ0AAAAAAAAAAAAgwKMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-19T23:12:25.398Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "RegisterForm.cs",
               "DocumentMoniker": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\RegisterForm.cs",
               "RelativeDocumentMoniker": "Simple Login FORM\\RegisterForm.cs",
               "ToolTip": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\RegisterForm.cs",
               "RelativeToolTip": "Simple Login FORM\\RegisterForm.cs",
-              "ViewState": "AgIAAFcAAAAAAAAAAAAcwFgAAAA8AAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAASwBEAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-14T18:57:47.107Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "proveedor.cs",
               "DocumentMoniker": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\proveedor.cs",
               "RelativeDocumentMoniker": "Simple Login FORM\\proveedor.cs",
               "ToolTip": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\proveedor.cs",
               "RelativeToolTip": "Simple Login FORM\\proveedor.cs",
-              "ViewState": "AgIAAD4AAAAAAAAAAAA6wFQAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAH0BAAAAAAAAAAAtwIkBAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-14T18:29:49.137Z",
               "EditorCaption": ""
@@ -57,19 +207,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "empleados.cs",
-              "DocumentMoniker": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\empleados.cs",
-              "RelativeDocumentMoniker": "Simple Login FORM\\empleados.cs",
-              "ToolTip": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\empleados.cs",
-              "RelativeToolTip": "Simple Login FORM\\empleados.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAmwDsAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-14T18:28:57.648Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "menu.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\menu.cs",
               "RelativeDocumentMoniker": "Simple Login FORM\\menu.cs",
@@ -78,6 +215,19 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-14T18:23:07.571Z",
               "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "empleados.cs",
+              "DocumentMoniker": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\empleados.cs",
+              "RelativeDocumentMoniker": "Simple Login FORM\\empleados.cs",
+              "ToolTip": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\empleados.cs",
+              "RelativeToolTip": "Simple Login FORM\\empleados.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAYwDQAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-14T18:28:57.648Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -38,7 +38,7 @@ namespace Simple_Login_FORM
                 using (MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString()))
                 {
                     con.Open();
-                    string nombres = "SELECT DISTINCT CONCAT_WS(' ', nombre, apellido) as NombreCompleto FROM personas WHERE tipo = 'p'";
+                    string nombres = "SELECT DISTINCT nombre FROM personas WHERE tipo = 'p'";
                     MySqlCommand cmd = new MySqlCommand(nombres, con);
                     MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -46,7 +46,7 @@ namespace Simple_Login_FORM
 
                     while (reader.Read())
                     {
-                        coleccion.Add(reader.GetString("NombreCompleto"));
+                        coleccion.Add(reader.GetString("nombre"));
                     }
 
                     fullName.AutoCompleteMode = AutoCompleteMode.Suggest;
@@ -74,7 +74,7 @@ namespace Simple_Login_FORM
             using (MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString()))
             {
                 con.Open();
-                string sql = @"SELECT p.ID_persona, p.nombre, p.apellido, f.pagina, p.mail, p.telefono, p.domicilio
+                string sql = @"SELECT p.ID_persona, p.nombre, f.pagina, p.mail, p.telefono, p.domicilio, p.tipo
 							FROM proveedores f
 							INNER JOIN personas p ON f.ID_persona = p.ID_persona
 							WHERE p.tipo = 'p'";
@@ -88,17 +88,16 @@ namespace Simple_Login_FORM
 			}
         }
 
-        public void CrearProveedor(string nombre, string apellido, string mail, string telefono, string domicilio, string pagina)
+        public void CrearProveedor(string nombre, string mail, string telefono, string domicilio, string pagina)
         {
             using (MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString()))
             {
                 con.Open();
 
                 // Insertar en personas
-                string sqlPersona = "INSERT INTO personas (nombre, apellido, mail, telefono, domicilio, tipo) VALUES (@nombre, @apellido, @mail, @telefono, @domicilio, 'p')";
+                string sqlPersona = "INSERT INTO personas (nombre, mail, telefono, domicilio, tipo) VALUES (@nombre, @mail, @telefono, @domicilio, 'p')";
                 MySqlCommand cmd = new MySqlCommand(sqlPersona, con);
                 cmd.Parameters.AddWithValue("@nombre", nombre);
-                cmd.Parameters.AddWithValue("@apellido", apellido);
                 cmd.Parameters.AddWithValue("@mail", mail);
                 cmd.Parameters.AddWithValue("@telefono", telefono);
                 cmd.Parameters.AddWithValue("@domicilio", domicilio);
@@ -145,16 +144,16 @@ namespace Simple_Login_FORM
                         if (fila.IsNewRow)
                             continue;
 
-                        string pagina = fila.Cells["pagina"].Value?.ToString();
-                        if (string.IsNullOrEmpty(pagina))
+                        string id = fila.Cells["ID_persona"].Value?.ToString();
+                        if (string.IsNullOrEmpty(id))
                             continue;
 
                         // 1️⃣ Buscar ID_persona
                         int idPersona = 0;
-                        string sqlGetId = "SELECT ID_persona FROM provedores WHERE pagina = @pagina";
+                        string sqlGetId = "SELECT ID_persona FROM proveedores WHERE ID_persona = @id";
                         using (MySqlCommand cmdGet = new MySqlCommand(sqlGetId, con))
                         {
-                            cmdGet.Parameters.AddWithValue("@pagina", pagina);
+                            cmdGet.Parameters.AddWithValue("@id", id);
                             object resultId = cmdGet.ExecuteScalar();
                             if (resultId == null)
                                 continue;
@@ -162,10 +161,10 @@ namespace Simple_Login_FORM
                         }
 
                         // 2️⃣ Eliminar primero de clientes
-                        string sqlDeleteCliente = "DELETE FROM proveedores WHERE pagina = @pagina";
+                        string sqlDeleteCliente = "DELETE FROM proveedores WHERE ID_persona = @id";
                         using (MySqlCommand cmdDelCliente = new MySqlCommand(sqlDeleteCliente, con))
                         {
-                            cmdDelCliente.Parameters.AddWithValue("@pagina", pagina);
+                            cmdDelCliente.Parameters.AddWithValue("@id", id);
                             cmdDelCliente.ExecuteNonQuery();
                         }
 
@@ -183,7 +182,8 @@ namespace Simple_Login_FORM
                         {
                             if (ex.Number == 1451) // Error de restricción de clave foránea
                             {
-                                MessageBox.Show($"No se pudo eliminar la persona con pagina {pagina} porque está vinculada a otra tabla.");
+                                MessageBox.Show($"No se pudo eliminar la persona con ID {id} porque está vinculada a otra tabla.");
+                                return;
                             }
                             else
                             {
@@ -267,7 +267,7 @@ namespace Simple_Login_FORM
                 {
                     con.Open();
 
-                    string sql = @"SELECT p.ID_persona, p.nombre, p.apellido, f.pagina, p.mail, p.telefono, p.domicilio, p.tipo
+                    string sql = @"SELECT p.ID_persona, p.nombre, f.pagina, p.mail, p.telefono, p.domicilio, p.tipo
                            FROM proveedores f
                            INNER JOIN personas p ON f.ID_persona = p.ID_persona
                            WHERE p.tipo = 'p'
@@ -305,7 +305,7 @@ namespace Simple_Login_FORM
 
                 string columnName = dataGridView1.Columns[dataGridView1.CurrentCell.ColumnIndex].Name;
 
-                if (columnName == "pagina" || columnName == "telefono")
+                if (columnName == "telefono")
                 {
                     textBox.MaxLength = 10;
                     textBox.KeyPress += SoloNumeros_KeyPress;
@@ -350,7 +350,6 @@ namespace Simple_Login_FORM
                 try
                 {
                     string nombre = dataGridView1.CurrentRow.Cells["nombre"].Value?.ToString();
-                    string apellido = dataGridView1.CurrentRow.Cells["apellido"].Value?.ToString();
                     string pagina = dataGridView1.CurrentRow.Cells["pagina"].Value?.ToString();
                     string mail = dataGridView1.CurrentRow.Cells["mail"].Value?.ToString();
                     string telefono = dataGridView1.CurrentRow.Cells["telefono"].Value?.ToString();
@@ -362,12 +361,6 @@ namespace Simple_Login_FORM
                         return;
                     }
 
-                    if (pagina.Length != 10)
-                    {
-                        MessageBox.Show("El número de DNI no es válido", "Error");
-                        return;
-                    }
-
                     if (telefono.Length != 10)
                     {
                         MessageBox.Show("El número de teléfono no es válido", "Error");
@@ -375,14 +368,13 @@ namespace Simple_Login_FORM
                     }
 
                     if (string.IsNullOrWhiteSpace(nombre) ||
-                        string.IsNullOrWhiteSpace(apellido) ||
                         string.IsNullOrWhiteSpace(domicilio))
                     {
                         MessageBox.Show("Completa todos los campos obligatorios antes de guardar.");
                         return;
                     }
 
-                    CrearProveedor(nombre, apellido, mail, telefono, domicilio, pagina);
+                    CrearProveedor(nombre, mail, telefono, domicilio, pagina);
 
                     MessageBox.Show("Cliente guardado correctamente.");
 
@@ -406,7 +398,7 @@ namespace Simple_Login_FORM
                 return;
             }
 
-            using (ModPersona pf = new ModPersona(dataGridView1.SelectedRows[0].Cells[0]))
+            using (ModPersona pf = new ModPersona(dataGridView1.SelectedRows[0].Cells[0], 3))
             {
                 if (pf.ShowDialog() == DialogResult.OK)
                 {

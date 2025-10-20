@@ -37,6 +37,7 @@
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
+			this.roleBox = new System.Windows.Forms.ComboBox();
 			this.SuspendLayout();
 			// 
 			// button1
@@ -161,13 +162,27 @@
 			this.button2.UseVisualStyleBackColor = true;
 			this.button2.Click += new System.EventHandler(this.button2_Click);
 			// 
-			// ModClient
+			// roleBox
+			// 
+			this.roleBox.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.roleBox.FormattingEnabled = true;
+			this.roleBox.Items.AddRange(new object[] {
+            "administrador",
+            "técnico",
+            "recepcionista"});
+			this.roleBox.Location = new System.Drawing.Point(400, 82);
+			this.roleBox.Name = "roleBox";
+			this.roleBox.Size = new System.Drawing.Size(97, 24);
+			this.roleBox.TabIndex = 14;
+			// 
+			// ModPersona
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.ClientSize = new System.Drawing.Size(660, 254);
+			this.Controls.Add(this.roleBox);
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.label6);
 			this.Controls.Add(this.label5);
@@ -185,7 +200,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "ModClient";
+			this.Name = "ModPersona";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "ModClient";
 			this.TopMost = true;
@@ -211,5 +226,6 @@
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.ComboBox roleBox;
 	}
 }

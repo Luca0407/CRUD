@@ -72,5 +72,66 @@ namespace Simple_Login_FORM
 				MessageBox.Show("Caracter no permitido en la contraseña", "Advertencia");
 			}
 		}
-	}
+
+        private void UsernameBox_TextChanged(object sender, EventArgs e)
+        {
+			
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PasswordBox_TextChanged(object sender, EventArgs e)
+        {
+			
+        }
+
+        private void UsernameBox_Enter(object sender, EventArgs e)
+        {
+			if (UsernameBox.Text == "USUARIO") {
+				UsernameBox.Text = "";
+				UsernameBox.ForeColor = Color.LightGray;
+
+			 
+			 }
+        }
+
+        private void UsernameBox_Leave(object sender, EventArgs e)
+        {
+			if(UsernameBox.Text == "") {
+				UsernameBox.Text = "USUARIO";
+				UsernameBox.ForeColor = Color.DimGray;
+
+			}
+        }
+
+        private void PasswordBox_Enter(object sender, EventArgs e)
+        {
+			if (PasswordBox.Text != "")
+			{
+				PasswordBox.Text = "";
+				PasswordBox.ForeColor = Color.LightGray;
+				PasswordBox.UseSystemPasswordChar = true;
+				PasswordBox.PasswordChar = '*';
+			}
+        }
+
+        private void PasswordBox_Leave(object sender, EventArgs e)
+        {
+			if (PasswordBox.Text == "")
+			{
+				PasswordBox.Text = "CONTRASEÑA";
+				PasswordBox.ForeColor = Color.DimGray;
+				PasswordBox.UseSystemPasswordChar = false;
+				PasswordBox.PasswordChar = (char) 0;
+			}
+        }
+    }
 }

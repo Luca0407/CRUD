@@ -350,7 +350,7 @@ namespace Simple_Login_FORM
 				return;
 			}
 
-			using(ModPersona pf = new ModPersona(dataGridView1.SelectedRows[0].Cells[0])) {
+			using(ModPersona pf = new ModPersona(dataGridView1.SelectedRows[0].Cells[0], 1)) {
 				if(pf.ShowDialog() == DialogResult.OK) {
 					ListarClientes();
 				} else {

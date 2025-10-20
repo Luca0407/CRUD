@@ -47,9 +47,10 @@ namespace Simple_Login_FORM {
 		public void ListarEmpleado() {
 			using(MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
 				con.Open();
-				string sql = @"SELECT p.ID_persona, p.nombre, p.apellido, e.rol, p.mail, p.telefono, p.domicilio, e.contraseña, p.tipo
+				string sql = @"SELECT p.ID_persona, p.nombre, p.apellido, r.nombre_rol as rol, p.mail, p.telefono, p.domicilio, e.contraseña, p.tipo
 							FROM empleados e
 							INNER JOIN personas p ON e.ID_persona = p.ID_persona
+							INNER JOIN roles r ON e.rol = r.ID_roles
 							WHERE p.tipo = 'e'";
 				MySqlCommand cmd = new MySqlCommand(sql, con);
 				MySqlDataAdapter da = new MySqlDataAdapter(sql, con);
@@ -60,6 +61,7 @@ namespace Simple_Login_FORM {
 				dataGridView1.Columns["tipo"].Visible = false;
 			}
 		}
+
 		public void EliminarCliente() {
 			if(dataGridView1.SelectedRows.Count == 0) {
 				MessageBox.Show("Selecciona al menos una fila para eliminar.");
@@ -142,6 +144,7 @@ namespace Simple_Login_FORM {
 				if(pf.ShowDialog() == DialogResult.OK) {
 					ListarEmpleado();
 
+
 				} else {
 					MessageBox.Show("Inserción cancelada", "Cancelada");
 				}
@@ -154,11 +157,12 @@ namespace Simple_Login_FORM {
 				using(MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
 					con.Open();
 
-					string sql = @"SELECT p.ID_persona, p.nombre, p.apellido, e.rol, p.mail, p.telefono, p.domicilio, e.contraseña, p.tipo
-                           FROM empleados e
-                           INNER JOIN personas p ON e.ID_persona = p.ID_persona
-                           WHERE p.tipo = 'e'
-                           AND (@nombre IS NULL OR p.nombre LIKE @nombre OR p.apellido LIKE @nombre);";
+					string sql = @"SELECT p.ID_persona, p.nombre, p.apellido, r.nombre_rol as rol, p.mail, p.telefono, p.domicilio, e.contraseña, p.tipo
+							FROM empleados e
+							INNER JOIN personas p ON e.ID_persona = p.ID_persona
+							INNER JOIN roles r ON e.rol = r.ID_roles
+							WHERE p.tipo = 'e'
+							AND (@nombre IS NULL OR p.nombre LIKE @nombre OR p.apellido LIKE @nombre);";
 
 					using(MySqlCommand cmd = new MySqlCommand(sql, con)) {
 						cmd.Parameters.AddWithValue("@nombre",
@@ -192,7 +196,7 @@ namespace Simple_Login_FORM {
 				return;
 			}
 
-			using(ModPersona pf = new ModPersona(dataGridView1.SelectedRows[0].Cells[0])) {
+			using(ModPersona pf = new ModPersona(dataGridView1.SelectedRows[0].Cells[0], 2)) {
 				if(pf.ShowDialog() == DialogResult.OK) {
 					ListarEmpleado();
 				} else {
