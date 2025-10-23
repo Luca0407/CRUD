@@ -74,7 +74,7 @@ namespace Simple_Login_FORM
             using (MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString()))
             {
                 con.Open();
-                string sql = @"SELECT p.ID_persona, p.nombre, f.pagina, p.mail, p.telefono, p.domicilio, p.tipo
+                string sql = @"SELECT p.ID_persona, p.nombre, f.pagina, p.mail, p.telefono, p.domicilio, p.tipo, f.cuit
 							FROM proveedores f
 							INNER JOIN personas p ON f.ID_persona = p.ID_persona
 							WHERE p.tipo = 'p'";
@@ -267,7 +267,7 @@ namespace Simple_Login_FORM
                 {
                     con.Open();
 
-                    string sql = @"SELECT p.ID_persona, p.nombre, f.pagina, p.mail, p.telefono, p.domicilio, p.tipo
+                    string sql = @"SELECT p.ID_persona, p.nombre, f.pagina, p.mail, p.telefono, p.domicilio, p.tipo, f.cuit
                            FROM proveedores f
                            INNER JOIN personas p ON f.ID_persona = p.ID_persona
                            WHERE p.tipo = 'p'
@@ -376,7 +376,7 @@ namespace Simple_Login_FORM
 
                     CrearProveedor(nombre, mail, telefono, domicilio, pagina);
 
-                    MessageBox.Show("Cliente guardado correctamente.");
+                    MessageBox.Show("Proveedor guardado correctamente.");
 
                     // ✅ Bloquear la fila recién creada después de insertar
                     dataGridView1.CurrentRow.ReadOnly = true;
@@ -398,19 +398,20 @@ namespace Simple_Login_FORM
                 return;
             }
 
-            using (ModPersona pf = new ModPersona(dataGridView1.SelectedRows[0].Cells[0], 3))
-            {
-                if (pf.ShowDialog() == DialogResult.OK)
-                {
-                    ListarProveedores();
-                }
-                else
-                {
-                    MessageBox.Show("Modificación cancelada", "Cancelada");
-                }
+			var cellValue = dataGridView1.SelectedRows[0].Cells[0].Value;
+			if(cellValue == null || !int.TryParse(cellValue.ToString(), out int idNum)) {
+				MessageBox.Show("El ID de la fila seleccionada no es válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
 
-            }
-        }
+			using(ModPersona pf = new ModPersona(idNum, 3)) {
+				if(pf.ShowDialog() == DialogResult.OK) {
+					ListarProveedores();
+				} else {
+					MessageBox.Show("Modificación cancelada", "Cancelada");
+				}
+			}
+		}
 
         private void label1_Click(object sender, EventArgs e)
         {

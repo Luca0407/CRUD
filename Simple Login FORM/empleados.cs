@@ -196,13 +196,18 @@ namespace Simple_Login_FORM {
 				return;
 			}
 
-			using(ModPersona pf = new ModPersona(dataGridView1.SelectedRows[0].Cells[0], 2)) {
+			var cellValue = dataGridView1.SelectedRows[0].Cells[0].Value;
+			if(cellValue == null || !int.TryParse(cellValue.ToString(), out int idNum)) {
+				MessageBox.Show("El ID de la fila seleccionada no es válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			using(ModPersona pf = new ModPersona(idNum, 2)) {
 				if(pf.ShowDialog() == DialogResult.OK) {
 					ListarEmpleado();
 				} else {
 					MessageBox.Show("Modificación cancelada", "Cancelada");
 				}
-
 			}
 		}
 

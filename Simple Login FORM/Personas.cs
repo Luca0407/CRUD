@@ -45,9 +45,30 @@ namespace Simple_Login_FORM {
 		public string Telefono {
 			get; set;
 		}
+		public string Cuil {
+			get; set;
+		}
 	}
 
 	public class Proveedores {
-	
+		public string Nombre {
+			get; set;
+		}
+		public string Mail {
+			get; set;
+		}
+		public string Telefono {
+			get; set;
+		}
+		public string Domicilio {
+			get; set;
+		}
+		public string Pagina {
+			get; set;
+		}
+		
+		public string Cuit {
+			get; set;
+		}
 	}
 }

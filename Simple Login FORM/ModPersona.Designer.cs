@@ -38,11 +38,13 @@
 			this.label6 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.roleBox = new System.Windows.Forms.ComboBox();
+			this.label7 = new System.Windows.Forms.Label();
+			this.cuiBox = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(526, 59);
+			this.button1.Location = new System.Drawing.Point(756, 59);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(110, 45);
 			this.button1.TabIndex = 7;
@@ -78,28 +80,28 @@
 			// 
 			this.mailBox.Location = new System.Drawing.Point(216, 82);
 			this.mailBox.Name = "mailBox";
-			this.mailBox.Size = new System.Drawing.Size(169, 22);
+			this.mailBox.Size = new System.Drawing.Size(202, 22);
 			this.mailBox.TabIndex = 1;
 			// 
 			// phoneBox
 			// 
-			this.phoneBox.Location = new System.Drawing.Point(400, 156);
+			this.phoneBox.Location = new System.Drawing.Point(433, 156);
 			this.phoneBox.Name = "phoneBox";
-			this.phoneBox.Size = new System.Drawing.Size(97, 22);
+			this.phoneBox.Size = new System.Drawing.Size(143, 22);
 			this.phoneBox.TabIndex = 5;
 			// 
 			// domBox
 			// 
 			this.domBox.Location = new System.Drawing.Point(216, 156);
 			this.domBox.Name = "domBox";
-			this.domBox.Size = new System.Drawing.Size(169, 22);
+			this.domBox.Size = new System.Drawing.Size(202, 22);
 			this.domBox.TabIndex = 4;
 			// 
 			// dniBox
 			// 
-			this.dniBox.Location = new System.Drawing.Point(400, 82);
+			this.dniBox.Location = new System.Drawing.Point(433, 82);
 			this.dniBox.Name = "dniBox";
-			this.dniBox.Size = new System.Drawing.Size(97, 22);
+			this.dniBox.Size = new System.Drawing.Size(143, 22);
 			this.dniBox.TabIndex = 2;
 			// 
 			// label2
@@ -126,7 +128,7 @@
 			// 
 			this.label4.AutoSize = true;
 			this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-			this.label4.Location = new System.Drawing.Point(397, 127);
+			this.label4.Location = new System.Drawing.Point(430, 127);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(61, 16);
 			this.label4.TabIndex = 10;
@@ -146,7 +148,7 @@
 			// 
 			this.label6.AutoSize = true;
 			this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-			this.label6.Location = new System.Drawing.Point(401, 53);
+			this.label6.Location = new System.Drawing.Point(434, 53);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(30, 16);
 			this.label6.TabIndex = 12;
@@ -154,7 +156,7 @@
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(526, 156);
+			this.button2.Location = new System.Drawing.Point(756, 156);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(110, 45);
 			this.button2.TabIndex = 13;
@@ -164,16 +166,34 @@
 			// 
 			// roleBox
 			// 
+			this.roleBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.roleBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.roleBox.FormattingEnabled = true;
 			this.roleBox.Items.AddRange(new object[] {
             "administrador",
             "técnico",
             "recepcionista"});
-			this.roleBox.Location = new System.Drawing.Point(400, 82);
+			this.roleBox.Location = new System.Drawing.Point(433, 82);
 			this.roleBox.Name = "roleBox";
-			this.roleBox.Size = new System.Drawing.Size(97, 24);
+			this.roleBox.Size = new System.Drawing.Size(143, 24);
 			this.roleBox.TabIndex = 14;
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+			this.label7.Location = new System.Drawing.Point(590, 88);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(29, 16);
+			this.label7.TabIndex = 15;
+			this.label7.Text = "Cuil";
+			// 
+			// cuiBox
+			// 
+			this.cuiBox.Location = new System.Drawing.Point(593, 121);
+			this.cuiBox.Name = "cuiBox";
+			this.cuiBox.Size = new System.Drawing.Size(144, 22);
+			this.cuiBox.TabIndex = 16;
 			// 
 			// ModPersona
 			// 
@@ -181,7 +201,9 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-			this.ClientSize = new System.Drawing.Size(660, 254);
+			this.ClientSize = new System.Drawing.Size(888, 254);
+			this.Controls.Add(this.cuiBox);
+			this.Controls.Add(this.label7);
 			this.Controls.Add(this.roleBox);
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.label6);
@@ -202,9 +224,9 @@
 			this.MinimizeBox = false;
 			this.Name = "ModPersona";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "ModClient";
+			this.Text = "ModPersona";
 			this.TopMost = true;
-			this.Load += new System.EventHandler(this.ModClient_Load);
+			this.Load += new System.EventHandler(this.ModPersona_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -227,5 +249,7 @@
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.ComboBox roleBox;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.TextBox cuiBox;
 	}
 }

@@ -21,7 +21,15 @@ namespace Simple_Login_FORM
         public menu()
         {
             InitializeComponent();
-        }
+			// Asegurate que panel9 se redimensione con el form
+			panel9.Dock = DockStyle.Fill;
+
+			// Evento: cuando cambie el tamaño del panel forzamos ajuste de hijos
+			panel9.SizeChanged += Panel9_SizeChanged;
+
+			// También hook al Resize del formulario principal por si hiciera falta
+			this.Resize += Menu_Resize;
+		}
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
@@ -56,11 +64,24 @@ namespace Simple_Login_FORM
             // ⚠️ no toco la visibilidad de otros botones acá
         }
 
-        
+		private void Menu_Resize(object sender, EventArgs e) {
+			// Llamamos al mismo manejador para centralizar la lógica
+			Panel9_SizeChanged(panel9, EventArgs.Empty);
+		}
 
+		private void Panel9_SizeChanged(object sender, EventArgs e) {
+			// Forzamos a que cada control llene exactamente el panel
+			foreach(Control ctrl in panel9.Controls) {
+				// Si es un Form (lo están siendo) o cualquier control, fija tamaño y posición
+				ctrl.Dock = DockStyle.Fill;
+				ctrl.Location = new Point(0, 0);
+				ctrl.Size = panel9.ClientSize;
+				ctrl.BringToFront();
+				ctrl.Refresh();
+			}
+		}
 
-
-        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+		[DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint ="SendMessage")]
         private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int  lParam);
@@ -86,8 +107,16 @@ namespace Simple_Login_FORM
 			frmClientes.Dock = DockStyle.Fill; // ← Esto hace que se ajuste al 100% del panel
 
 			// Agrega y muestra
+			panel9.SuspendLayout();
 			panel9.Controls.Add(frmClientes);
 			frmClientes.Show();
+			frmClientes.Location = new Point(0, 0);
+			frmClientes.Size = panel9.ClientSize;
+			frmClientes.BringToFront();
+			panel9.ResumeLayout(false);
+
+			// Ejecutar el ajuste por si el panel cambió poco después
+			Panel9_SizeChanged(panel9, EventArgs.Empty);
 		}
 
         private void panel8_Paint(object sender, PaintEventArgs e)
@@ -123,8 +152,15 @@ namespace Simple_Login_FORM
 			frmClientes.Dock = DockStyle.Fill; // ← Esto hace que se ajuste al 100% del panel
 
 			// Agrega y muestra
+			panel9.SuspendLayout();
 			panel9.Controls.Add(frmClientes);
 			frmClientes.Show();
+			frmClientes.Location = new Point(0, 0);
+			frmClientes.Size = panel9.ClientSize;
+			frmClientes.BringToFront();
+			panel9.ResumeLayout(false);
+			// Ejecutar el ajuste por si el panel cambió poco después
+			Panel9_SizeChanged(panel9, EventArgs.Empty);
 		}
 
         private void panel4_Paint(object sender, PaintEventArgs e)
@@ -167,10 +203,15 @@ namespace Simple_Login_FORM
             frmClientes.FormBorderStyle = FormBorderStyle.None;
             frmClientes.Dock = DockStyle.Fill; // ← Esto hace que se ajuste al 100% del panel
 
-            // Agrega y muestra
-            panel9.Controls.Add(frmClientes);
+			// Agrega y muestra
+			panel9.SuspendLayout();
+			panel9.Controls.Add(frmClientes);
             frmClientes.Show();
-        }
+			frmClientes.Location = new Point(0, 0);
+			frmClientes.Size = panel9.ClientSize;
+			frmClientes.BringToFront();
+			panel9.ResumeLayout(false);
+		}
 
         private void panel9_Paint(object sender, PaintEventArgs e)
         {

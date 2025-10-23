@@ -77,7 +77,7 @@
 			// panel9
 			// 
 			this.panel9.AutoSize = true;
-			this.panel9.BackColor = System.Drawing.Color.DimGray;
+			this.panel9.BackColor = System.Drawing.Color.Transparent;
 			this.panel9.Location = new System.Drawing.Point(268, 43);
 			this.panel9.Margin = new System.Windows.Forms.Padding(4);
 			this.panel9.Name = "panel9";
@@ -363,6 +363,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "menu";
+			this.Opacity = 0.95D;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "menu";
 			this.panelContenedor.ResumeLayout(false);

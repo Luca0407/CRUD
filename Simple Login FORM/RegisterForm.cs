@@ -104,7 +104,7 @@ namespace Simple_Login_FORM
 					cmd.ExecuteNonQuery();
 				}
 
-				MessageBox.Show("Usuario registrado con éxito!");
+				MessageBox.Show("Empleado registrado con éxito!");
 				this.DialogResult = DialogResult.OK;
 				this.Close();
 			} catch(Exception ex) {
@@ -213,29 +213,6 @@ namespace Simple_Login_FORM
 
 		private void label4_Click(object sender, EventArgs e) {
 
-		}
-
-		private void RoleBox_SelectedIndexChanged(object sender, EventArgs e) {
-			// Guarda la opción actual
-			string selected = RoleBox.SelectedItem.ToString();
-
-			// Definí cuál es la opción por defecto
-			string defaultOption = "recepcionista";
-
-			// Definí cuáles requieren contraseña
-			List<string> opcionesConPassword = new List<string> { "administrador", "técnico" };
-
-			if(opcionesConPassword.Contains(selected)) {
-				using(PassForm pf = new PassForm()) {
-					if(pf.ShowDialog() == DialogResult.OK && pf.ValidatedPassword) {
-						// ✅ Se mantiene la selección
-						return;
-					} else {
-						// ❌ Contraseña incorrecta → volver a la opción por defecto
-						RoleBox.SelectedItem = defaultOption;
-					}
-				}
-			}
 		}
 
 		private void PasswordBox_KeyPress(object sender, KeyPressEventArgs e) {
