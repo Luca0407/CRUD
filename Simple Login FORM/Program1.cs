@@ -19,7 +19,7 @@ namespace Simple_Login_FORM
 			DBLoginForm loginForm = new DBLoginForm();
 			if(loginForm.ShowDialog() == DialogResult.OK) {
 				// Si se ingresaron datos válidos, abrir el resto de la app
-				Application.Run(new LoginForm()); // o tu Form inicial
+				Application.Run(new menu()); // o tu Form inicial
 			} else {
 				Application.Exit();
 			}

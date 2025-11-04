@@ -68,8 +68,8 @@ namespace Simple_Login_FORM
 			using (MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString()))
 			{
 				con.Open();
-				string sql = @"SELECT p.ID_persona, p.nombre, p.apellido, c.DNI, p.mail, p.telefono, p.domicilio, c.cuil
-							FROM clientes c 
+				string sql = @"SELECT p.ID_persona, p.nombre as Nombre, p.apellido as Apellido, c.DNI, p.mail as Email, p.telefono as Teléfono, 
+							p.domicilio as Domicilio, c.cuil as CUIL FROM clientes c 
 							INNER JOIN personas p ON c.ID_persona = p.ID_persona
 							WHERE p.tipo = 'c'";
 				MySqlCommand cmd = new MySqlCommand(sql, con);
@@ -232,15 +232,17 @@ namespace Simple_Login_FORM
 				using(MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
 					con.Open();
 
-					string sql = @"SELECT p.ID_persona, p.nombre, p.apellido, c.DNI, p.mail, p.telefono, p.domicilio, p.tipo, c.cuil
-                           FROM clientes c
-                           INNER JOIN personas p ON c.ID_persona = p.ID_persona
-                           WHERE p.tipo = 'c'
-                           AND (@nombre IS NULL OR p.nombre LIKE @nombre OR p.apellido LIKE @nombre);";
+					string sql = @"SELECT p.ID_persona, p.nombre as Nombre, p.apellido as Apellido, c.DNI, p.mail as Email, p.telefono as Teléfono, 
+							p.domicilio as Domilicio, p.tipo as Tipo, c.cuil as CUIL FROM clientes c
+							INNER JOIN personas p ON c.ID_persona = p.ID_persona
+							WHERE Tipo = 'c'
+							AND (@nombre IS NULL OR Nombre LIKE @nombre OR Apellido LIKE @nombre OR CONCAT_WS(' ', nombre, apellido) LIKE @nombrecomp);";
 
 					using(MySqlCommand cmd = new MySqlCommand(sql, con)) {
 						cmd.Parameters.AddWithValue("@nombre",
 							string.IsNullOrWhiteSpace(nombre) ? (object) DBNull.Value : $"%{nombre}%");
+						cmd.Parameters.AddWithValue("@nombrecomp",
+							string.IsNullOrWhiteSpace(nombre) ? (object) DBNull.Value : $"{nombre}");
 
 						MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
 						adapter.Fill(dt);
@@ -396,10 +398,11 @@ namespace Simple_Login_FORM
 			dataGridView1.Columns.Clear();
 
 			dataGridView1.DataSource = resultados;
-
+			fullName.Clear();
 			if(dataGridView1.Columns.Contains("tipo"))
 				dataGridView1.Columns["ID_persona"].Visible = false;
 				dataGridView1.Columns["tipo"].Visible = false;
+			
 		}
 
 		private void fullName_TextChanged(object sender, EventArgs e) {

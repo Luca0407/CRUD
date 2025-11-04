@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `celulares` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `celulares`;
--- MySQL dump 10.13  Distrib 8.0.42, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: celulares
 -- ------------------------------------------------------
--- Server version	8.0.43
+-- Server version	8.0.39
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -92,11 +90,14 @@ CREATE TABLE `detalles_venta` (
   `pagado` tinyint NOT NULL,
   `producto` int NOT NULL,
   `ID_venta` int NOT NULL,
+  `num_factura` int DEFAULT NULL,
   PRIMARY KEY (`ID_detalle`),
   KEY `ID_venta_idx` (`ID_venta`),
   KEY `IDproducto_idx` (`producto`),
+  KEY `num_factura_idx` (`num_factura`),
   CONSTRAINT `IDproducto` FOREIGN KEY (`producto`) REFERENCES `productos` (`ID_productos`),
-  CONSTRAINT `IDventa` FOREIGN KEY (`ID_venta`) REFERENCES `ventas` (`ID_ventas`)
+  CONSTRAINT `IDventa` FOREIGN KEY (`ID_venta`) REFERENCES `ventas` (`ID_ventas`),
+  CONSTRAINT `num_factura` FOREIGN KEY (`num_factura`) REFERENCES `factura` (`num_factura`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -171,16 +172,11 @@ DROP TABLE IF EXISTS `factura`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `factura` (
   `num_factura` int NOT NULL AUTO_INCREMENT,
-  `venta_individual` int NOT NULL,
   `venta_total` int NOT NULL,
   `pagado` tinyint NOT NULL,
   `fecha_venta` datetime NOT NULL,
   `tipo_factura` varchar(1) NOT NULL,
-  PRIMARY KEY (`num_factura`),
-  KEY `ventatotal_idx` (`venta_total`),
-  KEY `ventaind_idx` (`venta_individual`),
-  CONSTRAINT `ventaind` FOREIGN KEY (`venta_individual`) REFERENCES `detalles_venta` (`ID_detalle`),
-  CONSTRAINT `ventatotal` FOREIGN KEY (`venta_total`) REFERENCES `ventas` (`ID_ventas`)
+  PRIMARY KEY (`num_factura`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -551,4 +547,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-10-23 14:55:29
+-- Dump completed on 2025-10-28 14:52:00

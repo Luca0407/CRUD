@@ -99,20 +99,20 @@ namespace Simple_Login_FORM
 			panel9.Controls.Clear();
 
 			// Crea la instancia
-			empleados frmClientes = new empleados();
+			empleados frmEmpleado = new empleados();
 
 			// Asegura que se comporte como control hijo y se ajuste al panel
-			frmClientes.TopLevel = false;
-			frmClientes.FormBorderStyle = FormBorderStyle.None;
-			frmClientes.Dock = DockStyle.Fill; // ← Esto hace que se ajuste al 100% del panel
+			frmEmpleado.TopLevel = false;
+			frmEmpleado.FormBorderStyle = FormBorderStyle.None;
+			frmEmpleado.Dock = DockStyle.Fill; // ← Esto hace que se ajuste al 100% del panel
 
 			// Agrega y muestra
 			panel9.SuspendLayout();
-			panel9.Controls.Add(frmClientes);
-			frmClientes.Show();
-			frmClientes.Location = new Point(0, 0);
-			frmClientes.Size = panel9.ClientSize;
-			frmClientes.BringToFront();
+			panel9.Controls.Add(frmEmpleado);
+			frmEmpleado.Show();
+			frmEmpleado.Location = new Point(0, 0);
+			frmEmpleado.Size = panel9.ClientSize;
+			frmEmpleado.BringToFront();
 			panel9.ResumeLayout(false);
 
 			// Ejecutar el ajuste por si el panel cambió poco después
@@ -144,20 +144,20 @@ namespace Simple_Login_FORM
 			panel9.Controls.Clear();
 
 			// Crea la instancia
-			proveedor frmClientes = new proveedor();
+			proveedor frmProveedor = new proveedor();
 
 			// Asegura que se comporte como control hijo y se ajuste al panel
-			frmClientes.TopLevel = false;
-			frmClientes.FormBorderStyle = FormBorderStyle.None;
-			frmClientes.Dock = DockStyle.Fill; // ← Esto hace que se ajuste al 100% del panel
+			frmProveedor.TopLevel = false;
+			frmProveedor.FormBorderStyle = FormBorderStyle.None;
+			frmProveedor.Dock = DockStyle.Fill; // ← Esto hace que se ajuste al 100% del panel
 
 			// Agrega y muestra
 			panel9.SuspendLayout();
-			panel9.Controls.Add(frmClientes);
-			frmClientes.Show();
-			frmClientes.Location = new Point(0, 0);
-			frmClientes.Size = panel9.ClientSize;
-			frmClientes.BringToFront();
+			panel9.Controls.Add(frmProveedor);
+			frmProveedor.Show();
+			frmProveedor.Location = new Point(0, 0);
+			frmProveedor.Size = panel9.ClientSize;
+			frmProveedor.BringToFront();
 			panel9.ResumeLayout(false);
 			// Ejecutar el ajuste por si el panel cambió poco después
 			Panel9_SizeChanged(panel9, EventArgs.Empty);
@@ -170,8 +170,27 @@ namespace Simple_Login_FORM
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
+			panel9.Controls.Clear();
 
-        }
+			// Crea la instancia
+			ventas frmVentas = new ventas();
+
+			// Asegura que se comporte como control hijo y se ajuste al panel
+			frmVentas.TopLevel = false;
+			frmVentas.FormBorderStyle = FormBorderStyle.None;
+			frmVentas.Dock = DockStyle.Fill; // ← Esto hace que se ajuste al 100% del panel
+
+			// Agrega y muestra
+			panel9.SuspendLayout();
+			panel9.Controls.Add(frmVentas);
+			frmVentas.Show();
+			frmVentas.Location = new Point(0, 0);
+			frmVentas.Size = panel9.ClientSize;
+			frmVentas.BringToFront();
+			panel9.ResumeLayout(false);
+			// Ejecutar el ajuste por si el panel cambió poco después
+			Panel9_SizeChanged(panel9, EventArgs.Empty);
+		}
 
         
 
@@ -211,6 +230,8 @@ namespace Simple_Login_FORM
 			frmClientes.Size = panel9.ClientSize;
 			frmClientes.BringToFront();
 			panel9.ResumeLayout(false);
+
+			Panel9_SizeChanged(panel9, EventArgs.Empty);
 		}
 
         private void panel9_Paint(object sender, PaintEventArgs e)
@@ -223,5 +244,28 @@ namespace Simple_Login_FORM
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
-    }
+
+		private void Productos_Click(object sender, EventArgs e) {
+			panel9.Controls.Clear();
+
+			// Crea la instancia
+			productos frmProductos = new productos();
+
+			// Asegura que se comporte como control hijo y se ajuste al panel
+			frmProductos.TopLevel = false;
+			frmProductos.FormBorderStyle = FormBorderStyle.None;
+			frmProductos.Dock = DockStyle.Fill; // ← Esto hace que se ajuste al 100% del panel
+
+			// Agrega y muestra
+			panel9.SuspendLayout();
+			panel9.Controls.Add(frmProductos);
+			frmProductos.Show();
+			frmProductos.Location = new Point(0, 0);
+			frmProductos.Size = panel9.ClientSize;
+			frmProductos.BringToFront();
+			panel9.ResumeLayout(false);
+			// Ejecutar el ajuste por si el panel cambió poco después
+			Panel9_SizeChanged(panel9, EventArgs.Empty);
+		}
+	}
 }

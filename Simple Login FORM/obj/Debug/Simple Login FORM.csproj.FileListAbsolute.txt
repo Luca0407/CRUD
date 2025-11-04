@@ -72,7 +72,6 @@ C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login F
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple L.600E2421.Up2Date
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple Login FORM.exe
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple Login FORM.pdb
-C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.PassForm.resources
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.DBLoginForm.resources
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.clientes.resources
 C:\Users\Usuario\Desktop\proyecto_programacion III\CRUD-main\Simple Login FORM\bin\Debug\Simple Login FORM.exe.config
@@ -183,3 +182,5 @@ C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login F
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.proveedor.resources
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.empleados.resources
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.ModPersona.resources
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.productos.resources
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.ventas.resources

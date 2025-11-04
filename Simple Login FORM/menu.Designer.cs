@@ -273,6 +273,7 @@
 			this.Productos.TabIndex = 1;
 			this.Productos.Text = "Productos";
 			this.Productos.UseVisualStyleBackColor = false;
+			this.Productos.Click += new System.EventHandler(this.Productos_Click);
 			// 
 			// pictureBox2
 			// 
