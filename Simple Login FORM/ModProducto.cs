@@ -18,6 +18,7 @@ namespace Simple_Login_FORM {
 		public ModProducto(int idprod, int tipo) {
 			InitializeComponent();
 			this.idprod = idprod;
+			this.tipo = tipo;
 			CargarComboBoxes(tipo);
 			ProductoSeleccionado(idprod);
 			//this.KeyDown += new KeyEventHandler(add_KeyDown);

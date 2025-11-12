@@ -186,3 +186,6 @@ C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login F
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple Login FORM.pdb
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple Login FORM.exe.config
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.Reportes.resources
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.RegisterClientForm.resources
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.RegisterProductForm.resources
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.compras.resources

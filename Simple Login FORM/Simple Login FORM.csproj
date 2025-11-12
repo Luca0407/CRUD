@@ -116,6 +116,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="compras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="compras.Designer.cs">
+      <DependentUpon>compras.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModProducto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +179,18 @@
     <Compile Include="proveedor.Designer.cs">
       <DependentUpon>proveedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="RegisterClientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisterClientForm.Designer.cs">
+      <DependentUpon>RegisterClientForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisterProductForm.Designer.cs">
+      <DependentUpon>RegisterProductForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="RegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,6 +211,9 @@
     <Compile Include="ventas.Designer.cs">
       <DependentUpon>ventas.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="compras.resx">
+      <DependentUpon>compras.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ModPersona.resx">
       <DependentUpon>ModPersona.cs</DependentUpon>
     </EmbeddedResource>
@@ -232,6 +253,12 @@
     </Compile>
     <EmbeddedResource Include="proveedor.resx">
       <DependentUpon>proveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegisterClientForm.resx">
+      <DependentUpon>RegisterClientForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegisterProductForm.resx">
+      <DependentUpon>RegisterProductForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>

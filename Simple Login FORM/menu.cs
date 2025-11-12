@@ -324,5 +324,28 @@ namespace Simple_Login_FORM
 			// Ejecutar el ajuste por si el panel cambió poco después
 			Panel9_SizeChanged(panel9, EventArgs.Empty);
 		}
+
+		private void button1_Click(object sender, EventArgs e) {
+			/*panel9.Controls.Clear();
+
+			// Crea la instancia
+			compras frmProductos = new productos(userRole);
+
+			// Asegura que se comporte como control hijo y se ajuste al panel
+			frmProductos.TopLevel = false;
+			frmProductos.FormBorderStyle = FormBorderStyle.None;
+			frmProductos.Dock = DockStyle.Fill;
+
+			// Agrega y muestra
+			panel9.SuspendLayout();
+			panel9.Controls.Add(frmProductos);
+			frmProductos.Show();
+			frmProductos.Location = new Point(0, 0);
+			frmProductos.Size = panel9.ClientSize;
+			frmProductos.BringToFront();
+			panel9.ResumeLayout(false);
+			// Ejecutar el ajuste por si el panel cambió poco después
+			Panel9_SizeChanged(panel9, EventArgs.Empty);*/
+		}
 	}
 }

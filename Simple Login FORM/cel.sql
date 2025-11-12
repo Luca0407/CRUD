@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `celulares` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `celulares`;
 -- MySQL dump 10.13  Distrib 8.0.42, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: celulares
@@ -37,7 +35,7 @@ CREATE TABLE `caja` (
   KEY `empleado_cierre_idx` (`empleado_cierre`),
   CONSTRAINT `empleado_apertura` FOREIGN KEY (`empleado_apertura`) REFERENCES `empleados` (`ID_empleados`),
   CONSTRAINT `empleado_cierre` FOREIGN KEY (`empleado_cierre`) REFERENCES `empleados` (`ID_empleados`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,6 +44,7 @@ CREATE TABLE `caja` (
 
 LOCK TABLES `caja` WRITE;
 /*!40000 ALTER TABLE `caja` DISABLE KEYS */;
+INSERT INTO `caja` VALUES (1,'2025-11-04',0.00,NULL,NULL,1,NULL);
 /*!40000 ALTER TABLE `caja` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,7 +99,7 @@ CREATE TABLE `detalles_venta` (
   CONSTRAINT `IDproducto` FOREIGN KEY (`producto`) REFERENCES `productos` (`ID_productos`),
   CONSTRAINT `IDventa` FOREIGN KEY (`ID_venta`) REFERENCES `ventas` (`ID_ventas`),
   CONSTRAINT `num_factura` FOREIGN KEY (`num_factura`) REFERENCES `facturas` (`num_factura`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,6 +108,7 @@ CREATE TABLE `detalles_venta` (
 
 LOCK TABLES `detalles_venta` WRITE;
 /*!40000 ALTER TABLE `detalles_venta` DISABLE KEYS */;
+INSERT INTO `detalles_venta` VALUES (1,1,500000,500000,1,1,1,NULL),(2,1,4000,4000,1,3,2,NULL),(3,1,300000,300000,1,2,3,NULL),(4,1,500000,500000,1,1,4,NULL),(5,1,500000,500000,1,1,5,NULL),(6,1,2500,2500,1,11,6,NULL),(7,2,3000,6000,1,12,7,NULL),(8,1,2500,2500,1,11,8,NULL);
 /*!40000 ALTER TABLE `detalles_venta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,6 +124,7 @@ CREATE TABLE `empleados` (
   `rol` int NOT NULL,
   `ID_persona` int NOT NULL,
   `contraseña` varchar(16) NOT NULL,
+  `activo` tinyint NOT NULL,
   PRIMARY KEY (`ID_empleados`),
   KEY `ID_rol_idx` (`rol`),
   KEY `ID_persona_idx` (`ID_persona`),
@@ -138,7 +139,7 @@ CREATE TABLE `empleados` (
 
 LOCK TABLES `empleados` WRITE;
 /*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
-INSERT INTO `empleados` VALUES (1,1,1,'12345678'),(13,2,124,'12341234'),(14,3,125,'56785678');
+INSERT INTO `empleados` VALUES (1,1,1,'12345678',1),(13,2,124,'12341234',1),(14,3,125,'56785678',1);
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -382,7 +383,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,3,150000.00,500000.00,3,1,1,1),(2,3,120000.00,300000.00,3,1,2,2),(3,1,1500.00,4000.00,2,1,1,1),(4,2,1100.00,5433.00,4,8,2,2),(5,6,50000.00,90000.00,5,9,3,7),(6,5,700.00,2500.00,6,1,9,8),(8,3,3500.00,8000.00,25,9,5,3),(9,3,2500.00,6000.00,30,10,6,4),(11,3,800.00,2500.00,50,9,3,5),(12,3,1200.00,3000.00,60,10,5,3);
+INSERT INTO `productos` VALUES (1,3,150.00,5000.00,123,1,8,2),(2,3,120000.00,300000.00,2,1,2,2),(3,1,1500.00,4000.00,1,1,1,1),(4,2,1100.00,5433.00,4,8,2,2),(5,6,50000.00,90000.00,5,9,3,7),(6,5,700.00,2500.00,6,1,9,8),(8,3,3500.00,8000.00,25,9,5,3),(9,3,2500.00,6000.00,30,10,6,4),(11,3,800.00,2500.00,48,9,3,5),(12,3,1200.00,3000.00,58,10,5,3);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -581,7 +582,7 @@ CREATE TABLE `ventas` (
   CONSTRAINT `ID_cliente` FOREIGN KEY (`ID_cliente`) REFERENCES `clientes` (`ID_clientes`),
   CONSTRAINT `ID_empleado` FOREIGN KEY (`ID_empleado`) REFERENCES `empleados` (`ID_empleados`),
   CONSTRAINT `tipo_pago` FOREIGN KEY (`tipo_pago`) REFERENCES `pagos` (`ID_pagos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -590,6 +591,7 @@ CREATE TABLE `ventas` (
 
 LOCK TABLES `ventas` WRITE;
 /*!40000 ALTER TABLE `ventas` DISABLE KEYS */;
+INSERT INTO `ventas` VALUES (1,'2025-11-03',500000.00,500001.00,126,1,1,1),(2,'2025-11-01',4000.00,4000.00,109,1,1,1),(3,'2025-11-02',300000.00,300002.00,138,1,1,1),(4,'2025-11-05',500000.00,500000.00,143,1,1,1),(5,'2025-11-04',500000.00,500000.00,144,1,1,1),(6,'2025-11-03',2500.00,2500.00,141,1,1,1),(7,'2025-11-02',6000.00,6000.00,144,1,1,1),(8,'2025-11-01',2500.00,2500.00,124,1,1,1);
 /*!40000 ALTER TABLE `ventas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -602,4 +604,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-11-04 14:22:36
+-- Dump completed on 2025-11-11 23:31:04
