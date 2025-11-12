@@ -291,7 +291,6 @@ namespace Simple_Login_FORM
 			}
 		}
 
-
 		private void dataGridView1_KeyDown(object sender, KeyEventArgs e) {
 			if(e.KeyCode == Keys.Enter && adding == true) {
 				e.SuppressKeyPress = true; // evita que se mueva a la siguiente celda

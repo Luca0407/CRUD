@@ -22,6 +22,15 @@ namespace Simple_Login_FORM
 			UsernameBox.MaxLength = 20;
 			PasswordBox.MaxLength = 16;
 			PasswordBox.KeyPress += PasswordBox_KeyPress;
+			this.KeyPreview = true;
+			this.KeyDown += new KeyEventHandler(onKeyDown);
+		}
+
+		private void onKeyDown(object sender, KeyEventArgs e) {
+			if(e.KeyCode == Keys.Enter) {
+				LoginButton.Focus();
+				LoginButton_Click(sender, e);
+			}
 		}
 
 		private void LoginForm_Load(object sender, EventArgs e)
@@ -50,10 +59,26 @@ namespace Simple_Login_FORM
 					if(i == 0) {
 						MessageBox.Show("Usuario o contraseña incorrecto.", "ERROR");
 					} else {
-						this.Hide();							// Estas 4 lineas
-						menu fm = new menu(); // sirven para
-						fm.ShowDialog();						// cerrar el formulario
-						this.Close();							// actual y abrir otro.
+						// Get user role
+						MySqlCommand roleCmd = con.CreateCommand();
+						roleCmd.CommandType = CommandType.Text;
+						roleCmd.CommandText = "SELECT e.rol FROM empleados e JOIN personas p ON e.ID_persona = p.ID_persona WHERE p.nombre = @user AND e.contraseña = @pass";
+						roleCmd.Parameters.AddWithValue("@user", UsernameBox.Text);
+						roleCmd.Parameters.AddWithValue("@pass", PasswordBox.Text);
+						int userRole = Convert.ToInt32(roleCmd.ExecuteScalar());
+
+						// Update activo field to 1 for successful login
+						MySqlCommand updateCmd = con.CreateCommand();
+						updateCmd.CommandType = CommandType.Text;
+						updateCmd.CommandText = "UPDATE empleados e JOIN personas p ON e.ID_persona = p.ID_persona SET e.activo = 1 WHERE p.nombre = @user AND e.contraseña = @pass";
+						updateCmd.Parameters.AddWithValue("@user", UsernameBox.Text);
+						updateCmd.Parameters.AddWithValue("@pass", PasswordBox.Text);
+						updateCmd.ExecuteNonQuery();
+
+						this.Hide();
+						menu fm = new menu(userRole); // Pass the user role to menu
+						fm.ShowDialog();
+						this.Close();
 					}
 				}
 			} catch(Exception el) {

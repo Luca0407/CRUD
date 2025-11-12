@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `celulares` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `celulares`;
+-- MySQL dump 10.13  Distrib 8.0.42, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: celulares
 -- ------------------------------------------------------
--- Server version	8.0.39
+-- Server version	8.0.43
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -71,7 +73,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (109,'1235456789',26,NULL),(124,'12345567',104,NULL),(126,'12312312',106,'20123123120'),(138,'123',99,NULL),(141,'45678911',119,NULL),(143,'10666616',122,NULL),(144,'11223124',123,NULL);
+INSERT INTO `clientes` VALUES (109,'1235456789',26,NULL),(124,'12345567',104,'20123123434'),(126,'12312312',106,'20123123120'),(138,'123',99,NULL),(141,'45678911',119,NULL),(143,'10666616',122,NULL),(144,'11223124',123,NULL);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,7 +99,7 @@ CREATE TABLE `detalles_venta` (
   KEY `num_factura_idx` (`num_factura`),
   CONSTRAINT `IDproducto` FOREIGN KEY (`producto`) REFERENCES `productos` (`ID_productos`),
   CONSTRAINT `IDventa` FOREIGN KEY (`ID_venta`) REFERENCES `ventas` (`ID_ventas`),
-  CONSTRAINT `num_factura` FOREIGN KEY (`num_factura`) REFERENCES `factura` (`num_factura`)
+  CONSTRAINT `num_factura` FOREIGN KEY (`num_factura`) REFERENCES `facturas` (`num_factura`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -164,13 +166,13 @@ LOCK TABLES `estados` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `factura`
+-- Table structure for table `facturas`
 --
 
-DROP TABLE IF EXISTS `factura`;
+DROP TABLE IF EXISTS `facturas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `factura` (
+CREATE TABLE `facturas` (
   `num_factura` int NOT NULL AUTO_INCREMENT,
   `venta_total` int NOT NULL,
   `pagado` tinyint NOT NULL,
@@ -181,12 +183,12 @@ CREATE TABLE `factura` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `factura`
+-- Dumping data for table `facturas`
 --
 
-LOCK TABLES `factura` WRITE;
-/*!40000 ALTER TABLE `factura` DISABLE KEYS */;
-/*!40000 ALTER TABLE `factura` ENABLE KEYS */;
+LOCK TABLES `facturas` WRITE;
+/*!40000 ALTER TABLE `facturas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `facturas` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -200,7 +202,7 @@ CREATE TABLE `marcas` (
   `ID_marcas` int NOT NULL AUTO_INCREMENT,
   `nombre_marca` varchar(45) NOT NULL,
   PRIMARY KEY (`ID_marcas`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -209,8 +211,32 @@ CREATE TABLE `marcas` (
 
 LOCK TABLES `marcas` WRITE;
 /*!40000 ALTER TABLE `marcas` DISABLE KEYS */;
-INSERT INTO `marcas` VALUES (1,'Iphone'),(2,'LG'),(3,'Samsung'),(4,'Motorola'),(5,'Xiaomi'),(6,'Huawei'),(7,'Nokia'),(8,'Apple');
+INSERT INTO `marcas` VALUES (1,'Iphone'),(2,'LG'),(3,'Samsung'),(4,'Motorola'),(5,'Xiaomi'),(6,'Huawei'),(7,'Nokia'),(8,'Ipad'),(9,'Universal');
 /*!40000 ALTER TABLE `marcas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `modelos`
+--
+
+DROP TABLE IF EXISTS `modelos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `modelos` (
+  `ID_modelos` int NOT NULL AUTO_INCREMENT,
+  `nombre_modelo` varchar(35) NOT NULL,
+  PRIMARY KEY (`ID_modelos`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `modelos`
+--
+
+LOCK TABLES `modelos` WRITE;
+/*!40000 ALTER TABLE `modelos` DISABLE KEYS */;
+INSERT INTO `modelos` VALUES (1,'X'),(2,'K50S'),(3,'Redmi Note 12'),(4,'P30 Lite'),(5,'Galaxy A54'),(6,'G13'),(7,'S10'),(8,'Universal');
+/*!40000 ALTER TABLE `modelos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -291,7 +317,7 @@ CREATE TABLE `personas` (
 
 LOCK TABLES `personas` WRITE;
 /*!40000 ALTER TABLE `personas` DISABLE KEYS */;
-INSERT INTO `personas` VALUES (1,'Luca','Elizondo','luca11maxi@gmail.com','3644223841','San Juan S/N','e'),(20,'Provetech',NULL,'provetech@gmail.com','3644123456','Lopez y Planes 174','p'),(26,'Juan','Aurelio','mail@gmail.com','2345677889','Manzana 53, Parcela 18, Barrio Rucci','c'),(32,'TecnoSur','Distribuciones','contacto@tecnosur.com.ar','3415551111','Av. Rivadavia 1234','p'),(33,'InsumosGlobal','Mayorista','ventas@insumosglobal.com.ar','3415552222','Córdoba 567','p'),(34,'SoftArg','Proveedores','info@softarg.com.ar','3415553333','San Martín 890','p'),(99,'Martín','Fernández','martin.fernandez@mail.com','2352345233','Urquiza 30312','c'),(104,'Pedro','Picapiedras','asdads@sm.com','1223134123','34','c'),(106,'Albert','Camus','deotrolado@gmail.com','4564564564','sisi nono','c'),(119,'Franz','Kafka','qween@bic.ho','1234565123','1122 north','c'),(122,'Edgar Allan','Poe','cuervos@gmail.com','1187224653','castillo','c'),(123,'Aldoux','Huxley','somaforever@gmail.com','1234567893','brave new world','c'),(124,'Gabriel','Elizondo','gabrielelizondo@gmail.com','3644572525','Superiora Palmira N643','e'),(125,'Daniella','Kolarik','danikol@gmail.com','3644123456','Calle 4 e/5 y 7, centro','e'),(126,'Tech Toys',NULL,'techtoys@games.com','0800123546','Capital','p');
+INSERT INTO `personas` VALUES (1,'Luca','Elizondo','luca11maxi@gmail.com','3644223841','San Juan S/N','e'),(20,'Provetech',NULL,'provetech@gmail.com','3644123456','Lopez y Planes 174','p'),(26,'Juan','Aurelio','mail@gmail.com','2345677889','Manzana 53, Parcela 18, Barrio Rucci','c'),(32,'TecnoSur','Distribuciones','contacto@tecnosur.com.ar','3415551111','Av. Rivadavia 1234','p'),(33,'InsumosGlobal','Mayorista','ventas@insumosglobal.com.ar','3415552222','Córdoba 567','p'),(34,'SoftArg','Proveedores','info@softarg.com.ar','3415553333','San Martín 890','p'),(99,'Martín','Fernández','martin.fernandez@mail.com','2352345233','Urquiza 30312','c'),(104,'Pedro','Pica piedras','asdads@sm.com','1223134123','34','c'),(106,'Albert','Camus','deotrolado@gmail.com','4564564564','sisi nono','c'),(119,'Franz','Kafka','qween@bic.ho','1234565123','1122 north','c'),(122,'Edgar Allan','Poe','cuervos@gmail.com','1187224653','castillo','c'),(123,'Aldoux','Huxley','somaforever@gmail.com','1234567893','brave new world','c'),(124,'Gabriel','Elizondo','gabrielelizondo@gmail.com','3644572525','Superiora Palmira N643','e'),(125,'Daniella','Kolarik','danikol@gmail.com','3644123456','Calle 4 e/5 y 7, centro','e'),(126,'Tech Toys',NULL,'techtoys@games.com','0800123546','Capital','p');
 /*!40000 ALTER TABLE `personas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -331,19 +357,21 @@ DROP TABLE IF EXISTS `productos`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `productos` (
   `ID_productos` int NOT NULL AUTO_INCREMENT,
+  `nombre_producto` int NOT NULL,
   `precio_costo` decimal(10,2) NOT NULL,
   `precio_venta` decimal(12,2) NOT NULL,
   `stock` int NOT NULL,
   `proveedor` int NOT NULL,
   `marca` int NOT NULL,
-  `tipo_producto` int NOT NULL,
-  `modelo` varchar(45) DEFAULT NULL,
+  `modelo` int DEFAULT NULL,
   PRIMARY KEY (`ID_productos`),
   KEY `proveedor_pieza_idx` (`proveedor`),
   KEY `ID_marca_idx` (`marca`),
-  KEY `ID_tipo_producto_idx` (`tipo_producto`),
+  KEY `nombre_producto_idx` (`nombre_producto`),
+  KEY `model_idx` (`modelo`),
   CONSTRAINT `ID_marca` FOREIGN KEY (`marca`) REFERENCES `marcas` (`ID_marcas`),
-  CONSTRAINT `ID_tipo_producto` FOREIGN KEY (`tipo_producto`) REFERENCES `tipos_productos` (`ID_tipos_productos`),
+  CONSTRAINT `model` FOREIGN KEY (`modelo`) REFERENCES `modelos` (`ID_modelos`),
+  CONSTRAINT `nombre_producto` FOREIGN KEY (`nombre_producto`) REFERENCES `productos_genericos` (`ID_nombre_productos`),
   CONSTRAINT `proveedor_pieza` FOREIGN KEY (`proveedor`) REFERENCES `proveedores` (`ID_proveedores`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -354,8 +382,35 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,150000.00,500000.00,3,1,1,3,'X'),(2,120000.00,300000.00,3,1,2,3,'K50s'),(8,3500.00,8000.00,25,9,5,1,'Redmi Note 12'),(9,2500.00,6000.00,30,10,6,1,'P30 Lite'),(11,800.00,2500.00,50,9,3,2,'Galaxy A54'),(12,1200.00,3000.00,60,10,5,2,'Redmi Note 12');
+INSERT INTO `productos` VALUES (1,3,150000.00,500000.00,3,1,1,1),(2,3,120000.00,300000.00,3,1,2,2),(3,1,1500.00,4000.00,2,1,1,1),(4,2,1100.00,5433.00,4,8,2,2),(5,6,50000.00,90000.00,5,9,3,7),(6,5,700.00,2500.00,6,1,9,8),(8,3,3500.00,8000.00,25,9,5,3),(9,3,2500.00,6000.00,30,10,6,4),(11,3,800.00,2500.00,50,9,3,5),(12,3,1200.00,3000.00,60,10,5,3);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `productos_genericos`
+--
+
+DROP TABLE IF EXISTS `productos_genericos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `productos_genericos` (
+  `ID_nombre_productos` int NOT NULL AUTO_INCREMENT,
+  `nombre_generico` varchar(45) NOT NULL,
+  `tipo_producto` int NOT NULL,
+  PRIMARY KEY (`ID_nombre_productos`),
+  KEY `id_tipo_idx` (`tipo_producto`),
+  CONSTRAINT `id_tipo` FOREIGN KEY (`tipo_producto`) REFERENCES `tipos_productos` (`ID_tipos_productos`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `productos_genericos`
+--
+
+LOCK TABLES `productos_genericos` WRITE;
+/*!40000 ALTER TABLE `productos_genericos` DISABLE KEYS */;
+INSERT INTO `productos_genericos` VALUES (1,'pin de carga',1),(2,'funda transparente',2),(3,'celular',3),(4,'tablet',3),(5,'adaptador USB C a USB',2),(6,'modulo',1);
+/*!40000 ALTER TABLE `productos_genericos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -486,7 +541,7 @@ DROP TABLE IF EXISTS `tipos_productos`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tipos_productos` (
   `ID_tipos_productos` int NOT NULL AUTO_INCREMENT,
-  `nombre_producto` varchar(45) NOT NULL,
+  `nombre_tipo_producto` varchar(15) NOT NULL,
   PRIMARY KEY (`ID_tipos_productos`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -547,4 +602,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-10-28 14:52:00
+-- Dump completed on 2025-11-04 14:22:36

@@ -67,6 +67,7 @@
 			this.label11 = new System.Windows.Forms.Label();
 			this.label12 = new System.Windows.Forms.Label();
 			this.label13 = new System.Windows.Forms.Label();
+			this.button6 = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
@@ -351,6 +352,7 @@
 			this.button2.TabIndex = 5;
 			this.button2.Text = "Agregar";
 			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.button2_Click_1);
 			// 
 			// dataGridView1
 			// 
@@ -418,6 +420,7 @@
 			this.textBox9.Name = "textBox9";
 			this.textBox9.Size = new System.Drawing.Size(177, 22);
 			this.textBox9.TabIndex = 8;
+			this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged_1);
 			// 
 			// textBox10
 			// 
@@ -436,6 +439,7 @@
 			this.button4.TabIndex = 10;
 			this.button4.Text = "Crear Venta";
 			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.button4_Click_1);
 			// 
 			// label11
 			// 
@@ -467,12 +471,23 @@
 			this.label13.TabIndex = 13;
 			this.label13.Text = "Cambio";
 			// 
+			// button6
+			// 
+			this.button6.Location = new System.Drawing.Point(1182, 464);
+			this.button6.Name = "button6";
+			this.button6.Size = new System.Drawing.Size(62, 35);
+			this.button6.TabIndex = 14;
+			this.button6.Text = "Exacto";
+			this.button6.UseVisualStyleBackColor = true;
+			this.button6.Click += new System.EventHandler(this.button6_Click);
+			// 
 			// ventas
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.OldLace;
 			this.ClientSize = new System.Drawing.Size(1280, 720);
+			this.Controls.Add(this.button6);
 			this.Controls.Add(this.label13);
 			this.Controls.Add(this.label12);
 			this.Controls.Add(this.label11);
@@ -545,5 +560,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
 		private System.Windows.Forms.DataGridViewButtonColumn X;
 		private System.Windows.Forms.Button button5;
+		private System.Windows.Forms.Button button6;
 	}
 }

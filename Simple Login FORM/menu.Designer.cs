@@ -32,7 +32,9 @@
 			this.panelContenedor = new System.Windows.Forms.Panel();
 			this.panel9 = new System.Windows.Forms.Panel();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.panel10 = new System.Windows.Forms.Panel();
 			this.panel8 = new System.Windows.Forms.Panel();
+			this.button1 = new System.Windows.Forms.Button();
 			this.btnReportes = new System.Windows.Forms.Button();
 			this.panel7 = new System.Windows.Forms.Panel();
 			this.btnEmpleado = new System.Windows.Forms.Button();
@@ -70,7 +72,7 @@
 			this.panelContenedor.Location = new System.Drawing.Point(0, 0);
 			this.panelContenedor.Margin = new System.Windows.Forms.Padding(4);
 			this.panelContenedor.Name = "panelContenedor";
-			this.panelContenedor.Size = new System.Drawing.Size(1733, 800);
+			this.panelContenedor.Size = new System.Drawing.Size(1733, 842);
 			this.panelContenedor.TabIndex = 2;
 			this.panelContenedor.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContenedor_Paint);
 			// 
@@ -78,17 +80,19 @@
 			// 
 			this.panel9.AutoSize = true;
 			this.panel9.BackColor = System.Drawing.Color.Transparent;
-			this.panel9.Location = new System.Drawing.Point(268, 43);
+			this.panel9.Location = new System.Drawing.Point(260, 43);
 			this.panel9.Margin = new System.Windows.Forms.Padding(4);
 			this.panel9.Name = "panel9";
-			this.panel9.Size = new System.Drawing.Size(1465, 757);
+			this.panel9.Size = new System.Drawing.Size(1473, 799);
 			this.panel9.TabIndex = 4;
 			this.panel9.Paint += new System.Windows.Forms.PaintEventHandler(this.panel9_Paint);
 			// 
 			// panel2
 			// 
 			this.panel2.BackColor = System.Drawing.Color.FloralWhite;
+			this.panel2.Controls.Add(this.panel10);
 			this.panel2.Controls.Add(this.panel8);
+			this.panel2.Controls.Add(this.button1);
 			this.panel2.Controls.Add(this.btnReportes);
 			this.panel2.Controls.Add(this.panel7);
 			this.panel2.Controls.Add(this.btnEmpleado);
@@ -105,19 +109,45 @@
 			this.panel2.Location = new System.Drawing.Point(0, 43);
 			this.panel2.Margin = new System.Windows.Forms.Padding(4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(267, 757);
+			this.panel2.Size = new System.Drawing.Size(267, 799);
 			this.panel2.TabIndex = 2;
 			this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+			// 
+			// panel10
+			// 
+			this.panel10.BackColor = System.Drawing.Color.DeepSkyBlue;
+			this.panel10.Location = new System.Drawing.Point(4, 718);
+			this.panel10.Margin = new System.Windows.Forms.Padding(4);
+			this.panel10.Name = "panel10";
+			this.panel10.Size = new System.Drawing.Size(13, 68);
+			this.panel10.TabIndex = 14;
 			// 
 			// panel8
 			// 
 			this.panel8.BackColor = System.Drawing.Color.DeepSkyBlue;
-			this.panel8.Location = new System.Drawing.Point(4, 650);
+			this.panel8.Location = new System.Drawing.Point(4, 617);
 			this.panel8.Margin = new System.Windows.Forms.Padding(4);
 			this.panel8.Name = "panel8";
 			this.panel8.Size = new System.Drawing.Size(13, 68);
 			this.panel8.TabIndex = 12;
 			this.panel8.Paint += new System.Windows.Forms.PaintEventHandler(this.panel8_Paint);
+			// 
+			// button1
+			// 
+			this.button1.BackColor = System.Drawing.Color.LightCyan;
+			this.button1.FlatAppearance.BorderSize = 0;
+			this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGoldenrodYellow;
+			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button1.ForeColor = System.Drawing.Color.Black;
+			this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+			this.button1.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+			this.button1.Location = new System.Drawing.Point(16, 718);
+			this.button1.Margin = new System.Windows.Forms.Padding(4);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(247, 68);
+			this.button1.TabIndex = 13;
+			this.button1.Text = "Pantalla";
+			this.button1.UseVisualStyleBackColor = false;
 			// 
 			// btnReportes
 			// 
@@ -128,7 +158,7 @@
 			this.btnReportes.ForeColor = System.Drawing.Color.Black;
 			this.btnReportes.Image = ((System.Drawing.Image)(resources.GetObject("btnReportes.Image")));
 			this.btnReportes.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-			this.btnReportes.Location = new System.Drawing.Point(16, 650);
+			this.btnReportes.Location = new System.Drawing.Point(16, 617);
 			this.btnReportes.Margin = new System.Windows.Forms.Padding(4);
 			this.btnReportes.Name = "btnReportes";
 			this.btnReportes.Size = new System.Drawing.Size(247, 68);
@@ -140,7 +170,7 @@
 			// panel7
 			// 
 			this.panel7.BackColor = System.Drawing.Color.DeepSkyBlue;
-			this.panel7.Location = new System.Drawing.Point(4, 549);
+			this.panel7.Location = new System.Drawing.Point(4, 516);
 			this.panel7.Margin = new System.Windows.Forms.Padding(4);
 			this.panel7.Name = "panel7";
 			this.panel7.Size = new System.Drawing.Size(13, 68);
@@ -156,7 +186,7 @@
 			this.btnEmpleado.ForeColor = System.Drawing.Color.Black;
 			this.btnEmpleado.Image = ((System.Drawing.Image)(resources.GetObject("btnEmpleado.Image")));
 			this.btnEmpleado.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-			this.btnEmpleado.Location = new System.Drawing.Point(16, 549);
+			this.btnEmpleado.Location = new System.Drawing.Point(16, 516);
 			this.btnEmpleado.Margin = new System.Windows.Forms.Padding(4);
 			this.btnEmpleado.Name = "btnEmpleado";
 			this.btnEmpleado.Size = new System.Drawing.Size(247, 68);
@@ -168,7 +198,7 @@
 			// panel6
 			// 
 			this.panel6.BackColor = System.Drawing.Color.DeepSkyBlue;
-			this.panel6.Location = new System.Drawing.Point(4, 447);
+			this.panel6.Location = new System.Drawing.Point(4, 414);
 			this.panel6.Margin = new System.Windows.Forms.Padding(4);
 			this.panel6.Name = "panel6";
 			this.panel6.Size = new System.Drawing.Size(13, 68);
@@ -183,7 +213,7 @@
 			this.btnClientes.ForeColor = System.Drawing.Color.Black;
 			this.btnClientes.Image = ((System.Drawing.Image)(resources.GetObject("btnClientes.Image")));
 			this.btnClientes.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-			this.btnClientes.Location = new System.Drawing.Point(16, 447);
+			this.btnClientes.Location = new System.Drawing.Point(16, 414);
 			this.btnClientes.Margin = new System.Windows.Forms.Padding(4);
 			this.btnClientes.Name = "btnClientes";
 			this.btnClientes.Size = new System.Drawing.Size(247, 68);
@@ -195,7 +225,7 @@
 			// panel5
 			// 
 			this.panel5.BackColor = System.Drawing.Color.DeepSkyBlue;
-			this.panel5.Location = new System.Drawing.Point(4, 351);
+			this.panel5.Location = new System.Drawing.Point(4, 318);
 			this.panel5.Margin = new System.Windows.Forms.Padding(4);
 			this.panel5.Name = "panel5";
 			this.panel5.Size = new System.Drawing.Size(13, 68);
@@ -211,7 +241,7 @@
 			this.btnCompras.ForeColor = System.Drawing.Color.Black;
 			this.btnCompras.Image = ((System.Drawing.Image)(resources.GetObject("btnCompras.Image")));
 			this.btnCompras.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnCompras.Location = new System.Drawing.Point(16, 351);
+			this.btnCompras.Location = new System.Drawing.Point(16, 318);
 			this.btnCompras.Margin = new System.Windows.Forms.Padding(4);
 			this.btnCompras.Name = "btnCompras";
 			this.btnCompras.Size = new System.Drawing.Size(247, 68);
@@ -223,7 +253,7 @@
 			// panel4
 			// 
 			this.panel4.BackColor = System.Drawing.Color.DeepSkyBlue;
-			this.panel4.Location = new System.Drawing.Point(4, 256);
+			this.panel4.Location = new System.Drawing.Point(4, 223);
 			this.panel4.Margin = new System.Windows.Forms.Padding(4);
 			this.panel4.Name = "panel4";
 			this.panel4.Size = new System.Drawing.Size(13, 68);
@@ -239,7 +269,7 @@
 			this.btnVentas.ForeColor = System.Drawing.Color.Black;
 			this.btnVentas.Image = ((System.Drawing.Image)(resources.GetObject("btnVentas.Image")));
 			this.btnVentas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnVentas.Location = new System.Drawing.Point(16, 256);
+			this.btnVentas.Location = new System.Drawing.Point(16, 223);
 			this.btnVentas.Margin = new System.Windows.Forms.Padding(4);
 			this.btnVentas.Name = "btnVentas";
 			this.btnVentas.Size = new System.Drawing.Size(247, 68);
@@ -251,7 +281,7 @@
 			// panel3
 			// 
 			this.panel3.BackColor = System.Drawing.Color.DeepSkyBlue;
-			this.panel3.Location = new System.Drawing.Point(4, 166);
+			this.panel3.Location = new System.Drawing.Point(4, 133);
 			this.panel3.Margin = new System.Windows.Forms.Padding(4);
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(13, 68);
@@ -266,7 +296,7 @@
 			this.Productos.ForeColor = System.Drawing.Color.Black;
 			this.Productos.Image = ((System.Drawing.Image)(resources.GetObject("Productos.Image")));
 			this.Productos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.Productos.Location = new System.Drawing.Point(16, 166);
+			this.Productos.Location = new System.Drawing.Point(16, 133);
 			this.Productos.Margin = new System.Windows.Forms.Padding(4);
 			this.Productos.Name = "Productos";
 			this.Productos.Size = new System.Drawing.Size(247, 68);
@@ -278,7 +308,7 @@
 			// pictureBox2
 			// 
 			this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-			this.pictureBox2.Location = new System.Drawing.Point(4, -52);
+			this.pictureBox2.Location = new System.Drawing.Point(1, -61);
 			this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
 			this.pictureBox2.Name = "pictureBox2";
 			this.pictureBox2.Size = new System.Drawing.Size(262, 262);
@@ -359,7 +389,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1733, 800);
+			this.ClientSize = new System.Drawing.Size(1733, 842);
 			this.Controls.Add(this.panelContenedor);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Margin = new System.Windows.Forms.Padding(4);
@@ -402,5 +432,7 @@
         private System.Windows.Forms.Button btnEmpleado;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.PictureBox pictureBox3;
-    }
+		private System.Windows.Forms.Panel panel10;
+		private System.Windows.Forms.Button button1;
+	}
 }
