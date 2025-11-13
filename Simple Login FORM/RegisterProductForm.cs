@@ -9,7 +9,7 @@ namespace Simple_Login_FORM
     {
         private productos productosForm;
 
-        public RegisterProductForm(productos form)
+        public RegisterProductForm(productos form = null)
         {
             InitializeComponent();
             productosForm = form;
@@ -222,5 +222,9 @@ namespace Simple_Login_FORM
         {
             this.Close();
         }
-    }
+
+		private void RegisterProductForm_Load(object sender, EventArgs e) {
+
+		}
+	}
 }

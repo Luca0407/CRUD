@@ -62,6 +62,26 @@ namespace Simple_Login_FORM
 		
 		// Configure load button
 		loadButton.Click += loadButton_Click;
+		
+		// Load estados to Estado column in dataGridView1
+		CargarEstados();
+		
+		// Configure autocomplete for ingreso reparacion search
+		CargarAutocompleteIngresoReparacion();
+		
+		// Configure autocomplete for repuestos (RepBox)
+		CargarAutocompleteRepuestos();
+		button2.Click += button2_Click;
+		
+		// Make repName and repPrice readonly
+		repName.ReadOnly = true;
+		
+		// Configure loadServ button
+		loadServ.Click += loadServ_Click;
+		
+		// Configure dataGridView1 CellValueChanged event for Estado column
+		dataGridView1.CellValueChanged += dataGridView1_CellValueChanged;
+		dataGridView1.CurrentCellDirtyStateChanged += dataGridView1_CurrentCellDirtyStateChanged;
 	}
 
 	private void CargarProductos(int tipoProducto, DataGridView dgv) {
@@ -105,6 +125,73 @@ namespace Simple_Login_FORM
 			combo.DisplayMember = display;
 			combo.ValueMember = value;
 			combo.SelectedIndex = -1; // sin selección inicial
+		}
+	}
+
+	private void CargarIngresoReparacion() {
+		try {
+			using (MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
+				con.Open();
+				
+				// Get list of terminated service IDs from dataGridView1
+				List<string> terminatedIds = new List<string>();
+				foreach (DataGridViewRow row in dataGridView1.Rows) {
+					if (!row.IsNewRow) {
+						string estado = row.Cells["Estado"].Value?.ToString();
+						if (estado != null && estado.ToLower() == "terminado") {
+							string idServicio = row.Cells["ID_Ingreso"].Value?.ToString();
+							if (!string.IsNullOrEmpty(idServicio)) {
+								terminatedIds.Add(idServicio);
+							}
+						}
+					}
+				}
+				
+				// Consulta para obtener los datos de ingreso_reparacion con información adicional
+				string sql = @"SELECT ir.idingreso_reparacion, 
+							  CONCAT(p.nombre, ' ', p.apellido) as cliente,
+							  CONCAT(pg.nombre_generico, ' ', m.nombre_marca, ' ', mo.nombre_modelo) as producto,
+							  ir.cantidad,
+							  ir.descripcion
+							  FROM ingreso_reparacion ir
+							  JOIN clientes c ON ir.cliente = c.ID_clientes
+							  JOIN personas p ON c.ID_persona = p.ID_persona
+							  JOIN productos pr ON ir.producto = pr.ID_productos
+							  JOIN productos_genericos pg ON pr.nombre_producto = pg.ID_nombre_productos
+							  JOIN marcas m ON pr.marca = m.ID_marcas
+							  JOIN modelos mo ON pr.modelo = mo.ID_modelos";
+				
+				MySqlCommand cmd = new MySqlCommand(sql, con);
+				MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+				DataTable dt = new DataTable();
+				da.Fill(dt);
+				
+				// Limpiar el DataGridView antes de cargar nuevos datos
+				dataGridView2.Rows.Clear();
+				
+				// Agregar los datos al DataGridView, excluyendo los terminados
+				foreach (DataRow row in dt.Rows) {
+					string idIngreso = row["idingreso_reparacion"].ToString();
+					
+					// Skip if this ingreso is already in terminated state
+					if (terminatedIds.Contains(idIngreso)) {
+						continue;
+					}
+					
+					int rowIndex = dataGridView2.Rows.Add(
+						row["idingreso_reparacion"].ToString(), // ID servicio
+						row["cliente"].ToString(), // Cliente
+						row["producto"].ToString(), // Producto
+						row["cantidad"].ToString(), // Cantidad
+						row["descripcion"].ToString() // Descripción del problema
+					);
+					
+					// Guardar el ID del ingreso en el Tag de la fila
+					dataGridView2.Rows[rowIndex].Tag = row["idingreso_reparacion"];
+				}
+			}
+		} catch (Exception ex) {
+			MessageBox.Show("Error al cargar los datos de ingreso reparación: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 	}
 
@@ -198,6 +285,7 @@ namespace Simple_Login_FORM
 			devices.Text = "Dispositivos";
 			repuest.Text = "Accesorios";
 			misc.Text = "Repuestos";
+			tabPage3.Text = "Servicios";
 
 			currentDGV = DGVdisp;
 			currentTipoProducto = 3;
@@ -210,8 +298,18 @@ namespace Simple_Login_FORM
 				CargarProductos(2, DGVrep);
 			}
 			
+			// Load services data
+			CargarServicios();
+			
+			// Load ingreso reparacion data
+			CargarIngresoReparacion();
+			
 			CargarComboBox(BrandBox, combomarca, "nombre_marca", "ID_marcas");
 			CargarComboBox(ModBox, combomodelo, "nombre_modelo", "ID_modelos");
+		}
+
+		private void saveButton_Click(object sender, EventArgs e) {
+			GuardarIngresoReparacion();
 		}
 
 		private void Stock_ValueChanged(object sender, EventArgs e) {
@@ -256,8 +354,16 @@ namespace Simple_Login_FORM
 				currentDGV = DGVrep;
 				currentTipoProducto = 2;
 				panel1.Visible = false;
-			} else if(Products.SelectedTab == tabPage2 || Products.SelectedTab == tabPage1) {
-				// Ingreso Reparacion or Servicio Reparacion tabs
+			} else if(Products.SelectedTab == tabPage3) {
+				// Servicios tab selected - refresh the data
+				CargarServicios();
+				panel1.Visible = false;
+			} else if(Products.SelectedTab == tabPage2) {
+				// Ingreso Reparacion tab selected - refresh the data
+				CargarIngresoReparacion();
+				panel1.Visible = false;
+			} else if(Products.SelectedTab == tabPage1) {
+				// Servicio Reparacion tab
 				panel1.Visible = true;
 			}
 		}
@@ -322,6 +428,158 @@ namespace Simple_Login_FORM
 				}
 			} catch(Exception ex) {
 				MessageBox.Show("Error al cargar autocomplete de clientes: " + ex.Message);
+			}
+		}
+		
+		private void CargarAutocompleteIngresoReparacion() {
+			try {
+				using(MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
+					con.Open();
+									
+					// Get list of terminated service IDs from dataGridView1
+					List<string> terminatedIds = new List<string>();
+					foreach (DataGridViewRow row in dataGridView1.Rows) {
+						if (!row.IsNewRow) {
+							string estado = row.Cells["Estado"].Value?.ToString();
+							if (estado != null && estado.ToLower() == "terminado") {
+								string idServicio = row.Cells["ID_Ingreso"].Value?.ToString();
+								if (!string.IsNullOrEmpty(idServicio)) {
+									terminatedIds.Add(idServicio);
+								}
+							}
+						}
+					}
+									
+					string query = @"SELECT ir.idingreso_reparacion, CONCAT_WS(' ', p.nombre, p.apellido) as NombreCompleto
+									 FROM ingreso_reparacion ir
+									 JOIN clientes c ON ir.cliente = c.ID_clientes
+									 JOIN personas p ON c.ID_persona = p.ID_persona
+									 ORDER BY ir.idingreso_reparacion DESC";
+					MySqlCommand cmd = new MySqlCommand(query, con);
+					MySqlDataReader reader = cmd.ExecuteReader();
+		
+					AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
+		
+					while(reader.Read()) {
+						string id = reader.GetValue(reader.GetOrdinal("idingreso_reparacion")).ToString();
+						string nombreCompleto = reader.GetString("NombreCompleto");
+										
+						// Skip if this ingreso is already in terminated state
+						if (terminatedIds.Contains(id)) {
+							continue;
+						}
+										
+						coleccion.Add($"{id} - {nombreCompleto}");
+					}
+		
+					ServBox.AutoCompleteMode = AutoCompleteMode.Suggest;
+					ServBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+					ServBox.AutoCompleteCustomSource = coleccion;
+				}
+			} catch(Exception ex) {
+				MessageBox.Show("Error al cargar autocomplete de ingreso reparación: " + ex.Message);
+			}
+		}
+		
+		private void CargarEstados() {
+			try {
+				using(MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
+					con.Open();
+					string query = "SELECT nombre_estado FROM estados ORDER BY ID_estados ASC";
+					MySqlCommand cmd = new MySqlCommand(query, con);
+					MySqlDataReader reader = cmd.ExecuteReader();
+		
+					// Clear existing items in Estado column
+					DataGridViewComboBoxColumn estadoColumn = (DataGridViewComboBoxColumn)dataGridView1.Columns["Estado"];
+					estadoColumn.Items.Clear();
+		
+					// Add estados from database
+					while(reader.Read()) {
+						string nombreEstado = reader.GetString("nombre_estado");
+						estadoColumn.Items.Add(nombreEstado);
+					}
+				}
+			} catch(Exception ex) {
+				MessageBox.Show("Error al cargar estados: " + ex.Message);
+			}
+		}
+		
+		private void CargarAutocompleteRepuestos() {
+			try {
+				using(MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
+					con.Open();
+					string query = @"SELECT p.ID_productos, pg.nombre_generico
+									 FROM productos p
+									 JOIN productos_genericos pg ON p.nombre_producto = pg.ID_nombre_productos
+									 WHERE pg.tipo_producto = 1
+									 ORDER BY pg.nombre_generico ASC";
+					MySqlCommand cmd = new MySqlCommand(query, con);
+					MySqlDataReader reader = cmd.ExecuteReader();
+		
+					AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
+		
+					while(reader.Read()) {
+						string id = reader.GetValue(reader.GetOrdinal("ID_productos")).ToString();
+						string nombreGenerico = reader.GetString("nombre_generico");
+						coleccion.Add($"{id} - {nombreGenerico}");
+					}
+		
+					RepBox.AutoCompleteMode = AutoCompleteMode.Suggest;
+					RepBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+					RepBox.AutoCompleteCustomSource = coleccion;
+				}
+			} catch(Exception ex) {
+				MessageBox.Show("Error al cargar autocomplete de repuestos: " + ex.Message);
+			}
+		}
+		
+		private void button2_Click(object sender, EventArgs e) {
+			string busqueda = RepBox.Text.Trim();
+		
+			if(string.IsNullOrWhiteSpace(busqueda)) {
+				MessageBox.Show("Por favor, ingrese un código de repuesto para buscar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+		
+			try {
+				using(MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
+					con.Open();
+		
+					// Extract ID if text contains " - " (autocomplete format)
+					string idText = busqueda;
+					if(busqueda.Contains(" - ")) {
+						string[] parts = busqueda.Split(new string[] { " -" }, StringSplitOptions.None);
+						if(parts.Length >= 2) {
+							idText = parts[0].Trim();
+						}
+					}
+		
+					string query = @"SELECT p.ID_productos, pg.nombre_generico, p.precio_venta
+									 FROM productos p
+									 JOIN productos_genericos pg ON p.nombre_producto = pg.ID_nombre_productos
+									 WHERE pg.tipo_producto = 1
+									 AND (p.ID_productos = @id OR pg.nombre_generico LIKE @busqueda)
+									 LIMIT 1";
+		
+					MySqlCommand cmd = new MySqlCommand(query, con);
+					cmd.Parameters.AddWithValue("@id", idText);
+					cmd.Parameters.AddWithValue("@busqueda", $"%{busqueda}%");
+		
+					MySqlDataReader reader = cmd.ExecuteReader();
+		
+					if(reader.Read()) {
+						RepBox.Text = reader.GetValue(reader.GetOrdinal("ID_productos")).ToString();
+						repName.Text = reader.GetString("nombre_generico");
+						repPrice.Value = reader.GetDecimal("precio_venta");
+					} else {
+						MessageBox.Show("No se encontró ningún repuesto con ese criterio de búsqueda.", "Repuesto no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						RepBox.Clear();
+						repName.Clear();
+						repPrice.Value = 0;
+					}
+				}
+			} catch(Exception ex) {
+				MessageBox.Show("Error al buscar repuesto: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 
@@ -510,5 +768,329 @@ namespace Simple_Login_FORM
 		private void label15_Click(object sender, EventArgs e) {
 
 		}
+
+		private void GuardarIngresoReparacion() {
+			// Validar que haya filas en el DataGridView
+			if (dataGridView2.Rows.Count == 0) {
+				MessageBox.Show("No hay servicios para guardar. Por favor, agregue al menos un servicio usando el botón 'Cargar'.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+		
+			try {
+				using (MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
+					con.Open();
+					
+					int serviciosGuardados = 0;
+					
+					// Recorrer todas las filas del DataGridView
+					foreach (DataGridViewRow row in dataGridView2.Rows) {
+						if (row.IsNewRow) continue;
+						
+						// Si la fila ya tiene un ID de servicio, significa que ya fue guardada
+						if (!string.IsNullOrWhiteSpace(row.Cells["IDService"].Value?.ToString())) {
+							continue;
+						}
+						
+						// Obtener datos de la fila
+						string clienteNombre = row.Cells["Cliente"].Value?.ToString();
+						string productoNombre = row.Cells["Prod"].Value?.ToString();
+						string cantidadStr = row.Cells["Cant"].Value?.ToString();
+						string descripcion = row.Cells["Problema"].Value?.ToString();
+						
+						// Validar que los datos no estén vacíos
+						if (string.IsNullOrWhiteSpace(clienteNombre) || 
+							string.IsNullOrWhiteSpace(productoNombre) || 
+							string.IsNullOrWhiteSpace(cantidadStr) || 
+							string.IsNullOrWhiteSpace(descripcion)) {
+							continue;
+						}
+						
+						if (!int.TryParse(cantidadStr, out int cantidad) || cantidad <= 0) {
+							continue;
+						}
+						
+						// Obtener el ID del producto desde el Tag de la fila
+						int productoId = 0;
+						if (row.Tag != null && int.TryParse(row.Tag.ToString(), out productoId)) {
+							// Usar el ID del Tag
+						} else {
+							// Si no hay Tag, intentar buscar el producto por nombre
+							string sqlBuscarProducto = @"SELECT p.ID_productos 
+														FROM productos p 
+														JOIN productos_genericos pg ON p.nombre_producto = pg.ID_nombre_productos
+														JOIN marcas m ON p.marca = m.ID_marcas
+														LEFT JOIN modelos mo ON p.modelo = mo.ID_modelos
+														WHERE CONCAT_WS(' ', pg.nombre_generico, m.nombre_marca, mo.nombre_modelo) = @nombreProducto
+														LIMIT 1";
+							using (MySqlCommand cmdBuscar = new MySqlCommand(sqlBuscarProducto, con)) {
+								cmdBuscar.Parameters.AddWithValue("@nombreProducto", productoNombre);
+								object result = cmdBuscar.ExecuteScalar();
+								if (result != null) {
+									productoId = Convert.ToInt32(result);
+								} else {
+									continue; // No se encontró el producto, saltar esta fila
+								}
+							}
+						}
+						
+						// Obtener el ID del cliente por nombre
+						int clienteId = 0;
+						string sqlCliente = @"SELECT c.ID_clientes 
+												FROM clientes c 
+												INNER JOIN personas p ON c.ID_persona = p.ID_persona 
+												WHERE CONCAT_WS(' ', p.nombre, p.apellido) = @nombreCliente
+												LIMIT 1";
+						using (MySqlCommand cmdCliente = new MySqlCommand(sqlCliente, con)) {
+							cmdCliente.Parameters.AddWithValue("@nombreCliente", clienteNombre);
+							object result = cmdCliente.ExecuteScalar();
+							if (result != null) {
+								clienteId = Convert.ToInt32(result);
+							} else {
+								continue; // No se encontró el cliente, saltar esta fila
+							}
+						}
+						
+						// Insertar en la tabla ingreso_reparacion
+						string sqlIngreso = @"INSERT INTO ingreso_reparacion (descripcion, producto, cantidad, cliente) 
+												VALUES (@descripcion, @producto, @cantidad, @cliente);
+												SELECT LAST_INSERT_ID();";
+						using (MySqlCommand cmdIngreso = new MySqlCommand(sqlIngreso, con)) {
+							cmdIngreso.Parameters.AddWithValue("@descripcion", descripcion);
+							cmdIngreso.Parameters.AddWithValue("@producto", productoId);
+							cmdIngreso.Parameters.AddWithValue("@cantidad", cantidad);
+							cmdIngreso.Parameters.AddWithValue("@cliente", clienteId);
+							
+							object insertedId = cmdIngreso.ExecuteScalar();
+							if (insertedId != null) {
+								// Actualizar el ID de servicio en el DataGridView
+								row.Cells["IDService"].Value = insertedId.ToString();
+								serviciosGuardados++;
+							}
+						}
+					}
+					
+					if (serviciosGuardados > 0) {
+						MessageBox.Show($"Se guardaron {serviciosGuardados} servicio(s) de reparación correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						
+						// Limpiar los campos de texto
+						DocClient.Clear();
+						ClientName.Clear();
+						codProd.Clear();
+						prodName.Clear();
+						numericUpDown2.Value = 0;
+						Descripcion.Clear();
+					} else {
+						MessageBox.Show("No se guardó ningún servicio. Todos los servicios ya fueron guardados o tienen datos incompletos.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					}
+				}
+			} catch (Exception ex) {
+				MessageBox.Show("Error al guardar los ingresos de reparación: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
+		private void delButton_Click(object sender, EventArgs e) {
+			EliminarProducto();
+		}
+
+		public void EliminarProducto() {
+			if (currentDGV.SelectedRows.Count == 0) {
+				MessageBox.Show("Selecciona al menos una fila para eliminar.");
+				return;
+			}
+
+			DialogResult result = MessageBox.Show(
+				"¿Seguro que deseas eliminar los registros seleccionados?",
+				"Confirmar eliminación",
+				MessageBoxButtons.YesNo,
+				MessageBoxIcon.Warning
+			);
+
+			if (result != DialogResult.Yes)
+				return;
+
+			try {
+				using (MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
+					con.Open();
+
+					foreach (DataGridViewRow fila in currentDGV.SelectedRows) {
+						if (fila.IsNewRow)
+							continue;
+
+						string id = fila.Cells["ID_productos"].Value?.ToString();
+						if (string.IsNullOrEmpty(id))
+							continue;
+
+						// Eliminar el producto
+						try {
+							string sqlDeleteProducto = "DELETE FROM productos WHERE ID_productos = @id";
+							using (MySqlCommand cmdDelProducto = new MySqlCommand(sqlDeleteProducto, con)) {
+								cmdDelProducto.Parameters.AddWithValue("@id", id);
+								cmdDelProducto.ExecuteNonQuery();
+							}
+
+							// Quitar la fila visualmente
+							currentDGV.Rows.Remove(fila);
+						} catch (MySqlException ex) {
+							if (ex.Number == 1451) { // Error de restricción de clave foránea
+								MessageBox.Show($"No se pudo eliminar el producto con ID {id} porque está vinculado a una venta o reparación.", 
+									"Error de eliminación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+								return;
+							} else {
+								throw;
+							}
+						}
+					}
+
+					MessageBox.Show("Eliminación completada.");
+				}
+			} catch (Exception ex) {
+				MessageBox.Show("Error al eliminar: " + ex.Message);
+			}
+		}
+
+		private void tabPage2_Click(object sender, EventArgs e) {
+
+		}
+
+		private void addButton_Click(object sender, EventArgs e) {
+			using(RegisterProductForm pf = new RegisterProductForm()) {
+				if(pf.ShowDialog() == DialogResult.OK) {
+					// Recargar el grid actual después de agregar el producto
+					CargarProductos(currentTipoProducto, currentDGV);
+					MessageBox.Show("Producto agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				} else {
+					MessageBox.Show("Inserción cancelada", "Cancelada");
+				}
+			}
+		}
+
+		private void DGVrep_CellContentClick(object sender, DataGridViewCellEventArgs e) {
+
+		}
+
+		private void CargarServicios() {
+		using(MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
+			con.Open();
+
+			string sql = @"SELECT ID_servicios as 'ID Servicio', descripcion as 'Descripción', precio as 'Precio' 
+						  FROM servicios";
+
+			MySqlCommand cmd = new MySqlCommand(sql, con);
+			MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+			DataTable dt = new DataTable();
+			da.Fill(dt);
+
+			dataGridView3.DataSource = dt;
+		}
 	}
+	
+		private void loadServ_Click(object sender, EventArgs e) {
+			// Validar que todos los campos estén completos
+			if (string.IsNullOrWhiteSpace(ServBox.Text)) {
+				MessageBox.Show("Por favor, ingrese un ID de servicio.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+	
+			if (string.IsNullOrWhiteSpace(RepBox.Text)) {
+				MessageBox.Show("Por favor, seleccione un repuesto.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+	
+			if (servPrice.Value <= 0) {
+				MessageBox.Show("El precio del servicio debe ser mayor a 0.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+	
+			try {
+				using(MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
+					con.Open();
+	
+					// Extract ID if text contains " - " (autocomplete format)
+					string idIngresoText = ServBox.Text.Trim();
+					if(ServBox.Text.Contains(" - ")) {
+						string[] parts = ServBox.Text.Split(new string[] { " -" }, StringSplitOptions.None);
+						if(parts.Length >= 2) {
+							idIngresoText = parts[0].Trim();
+						}
+					}
+	
+					// Get ingreso_reparacion data including client name and cantidad
+					string queryIngreso = @"SELECT ir.idingreso_reparacion, ir.cantidad,
+											CONCAT_WS(' ', p.nombre, p.apellido) as NombreCliente
+											FROM ingreso_reparacion ir
+											JOIN clientes c ON ir.cliente = c.ID_clientes
+											JOIN personas p ON c.ID_persona = p.ID_persona
+											WHERE ir.idingreso_reparacion = @idIngreso";
+	
+					MySqlCommand cmdIngreso = new MySqlCommand(queryIngreso, con);
+					cmdIngreso.Parameters.AddWithValue("@idIngreso", idIngresoText);
+					MySqlDataReader readerIngreso = cmdIngreso.ExecuteReader();
+	
+					if(!readerIngreso.Read()) {
+						MessageBox.Show("No se encontró el servicio de reparación especificado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						readerIngreso.Close();
+						return;
+					}
+	
+					string idServicio = readerIngreso.GetValue(readerIngreso.GetOrdinal("idingreso_reparacion")).ToString();
+					int cantidad = readerIngreso.GetInt32("cantidad");
+					string nombreCliente = readerIngreso.GetString("NombreCliente");
+					readerIngreso.Close();
+	
+					// Calculate SubTotal: (repPrice * cantidad) + servPrice
+					decimal precioRepuesto = repPrice.Value;
+					decimal precioServicio = servPrice.Value;
+					decimal subtotal = (precioRepuesto * cantidad) + precioServicio;
+	
+					// Add row to dataGridView1
+					int rowIndex = dataGridView1.Rows.Add(
+						idServicio,          // ID servicio
+						nombreCliente,       // Nombre del Cliente
+						repName.Text,        // Repuesto (nombre_generico)
+						precioRepuesto,      // Precio Unitario
+						cantidad,            // Cantidad
+						subtotal,            // SubTotal
+						"en espera"         // Estado (default)
+					);
+	
+					// Clear all input fields
+					ServBox.Clear();
+					RepBox.Clear();
+					repName.Clear();
+					repPrice.Value = 0;
+					servPrice.Value = 0;
+					ServBox.Focus();
+				}
+			} catch(Exception ex) {
+				MessageBox.Show("Error al cargar el servicio: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+	
+		private void dataGridView1_CurrentCellDirtyStateChanged(object sender, EventArgs e) {
+			if (dataGridView1.IsCurrentCellDirty) {
+				dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
+			}
+		}
+	
+		private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e) {
+			// Check if the changed cell is in the Estado column
+			if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView1.Columns["Estado"].Index) {
+				DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+				string estado = row.Cells["Estado"].Value?.ToString();
+	
+				// If estado is "terminado", refresh the ingreso_reparacion tab
+				if (estado != null && estado.ToLower() == "terminado") {
+					// Reload the ingreso_reparacion data to exclude terminated entries
+					CargarIngresoReparacion();
+					// Also refresh the autocomplete for ServBox
+					CargarAutocompleteIngresoReparacion();
+				}
+			}
+		}
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
