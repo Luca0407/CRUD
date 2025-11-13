@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.Products = new System.Windows.Forms.TabControl();
 			this.devices = new System.Windows.Forms.TabPage();
 			this.DGVdisp = new System.Windows.Forms.DataGridView();
@@ -69,12 +69,26 @@
 			this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Problema = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.saveServ = new System.Windows.Forms.Button();
+			this.loadServ = new System.Windows.Forms.Button();
+			this.repPrice = new System.Windows.Forms.NumericUpDown();
+			this.servPrice = new System.Windows.Forms.NumericUpDown();
+			this.label6 = new System.Windows.Forms.Label();
+			this.button2 = new System.Windows.Forms.Button();
 			this.label9 = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
 			this.RepBox = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.ID_Ingreso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.client = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Repuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Estado = new System.Windows.Forms.DataGridViewComboBoxColumn();
+			this.x = new System.Windows.Forms.DataGridViewButtonColumn();
 			this.repName = new System.Windows.Forms.TextBox();
 			this.ServBox = new System.Windows.Forms.TextBox();
 			this.addButton = new System.Windows.Forms.Button();
@@ -89,19 +103,6 @@
 			this.label4 = new System.Windows.Forms.Label();
 			this.Stock = new System.Windows.Forms.NumericUpDown();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.button2 = new System.Windows.Forms.Button();
-			this.label6 = new System.Windows.Forms.Label();
-			this.servPrice = new System.Windows.Forms.NumericUpDown();
-			this.repPrice = new System.Windows.Forms.NumericUpDown();
-			this.loadServ = new System.Windows.Forms.Button();
-			this.ID_Ingreso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.client = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Repuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Estado = new System.Windows.Forms.DataGridViewComboBoxColumn();
-			this.x = new System.Windows.Forms.DataGridViewButtonColumn();
 			this.Products.SuspendLayout();
 			this.devices.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.DGVdisp)).BeginInit();
@@ -115,10 +116,10 @@
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
 			this.tabPage1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.repPrice)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.servPrice)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.Stock)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.servPrice)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repPrice)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// Products
@@ -132,7 +133,7 @@
 			this.Products.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.Products.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
 			this.Products.Location = new System.Drawing.Point(24, 174);
-			this.Products.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.Products.Margin = new System.Windows.Forms.Padding(4);
 			this.Products.Name = "Products";
 			this.Products.SelectedIndex = 0;
 			this.Products.Size = new System.Drawing.Size(1229, 537);
@@ -144,9 +145,9 @@
 			this.devices.AutoScroll = true;
 			this.devices.Controls.Add(this.DGVdisp);
 			this.devices.Location = new System.Drawing.Point(4, 27);
-			this.devices.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.devices.Margin = new System.Windows.Forms.Padding(4);
 			this.devices.Name = "devices";
-			this.devices.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.devices.Padding = new System.Windows.Forms.Padding(4);
 			this.devices.Size = new System.Drawing.Size(1221, 506);
 			this.devices.TabIndex = 0;
 			this.devices.Text = "Dispositivos";
@@ -162,28 +163,28 @@
 			this.DGVdisp.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.DGVdisp.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
 			this.DGVdisp.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-			dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-			dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.DGVdisp.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+			dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+			dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.DGVdisp.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
 			this.DGVdisp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.DGVdisp.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
 			this.DGVdisp.Location = new System.Drawing.Point(0, 0);
 			this.DGVdisp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.DGVdisp.Name = "DGVdisp";
 			this.DGVdisp.ReadOnly = true;
-			dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-			dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.DGVdisp.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
+			dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+			dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.DGVdisp.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
 			this.DGVdisp.RowHeadersWidth = 51;
 			this.DGVdisp.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
 			this.DGVdisp.RowTemplate.Height = 24;
@@ -195,9 +196,9 @@
 			// 
 			this.repuest.Controls.Add(this.DGVrep);
 			this.repuest.Location = new System.Drawing.Point(4, 27);
-			this.repuest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.repuest.Margin = new System.Windows.Forms.Padding(4);
 			this.repuest.Name = "repuest";
-			this.repuest.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.repuest.Padding = new System.Windows.Forms.Padding(4);
 			this.repuest.Size = new System.Drawing.Size(1221, 506);
 			this.repuest.TabIndex = 1;
 			this.repuest.Text = "Repuestos";
@@ -213,28 +214,28 @@
 			this.DGVrep.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.DGVrep.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
 			this.DGVrep.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-			dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-			dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.DGVrep.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+			dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+			dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.DGVrep.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
 			this.DGVrep.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.DGVrep.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
 			this.DGVrep.Location = new System.Drawing.Point(0, 0);
 			this.DGVrep.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.DGVrep.Name = "DGVrep";
 			this.DGVrep.ReadOnly = true;
-			dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-			dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.DGVrep.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
+			dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+			dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.DGVrep.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
 			this.DGVrep.RowHeadersWidth = 51;
 			this.DGVrep.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
 			this.DGVrep.RowTemplate.Height = 24;
@@ -246,9 +247,9 @@
 			this.misc.BackColor = System.Drawing.Color.OldLace;
 			this.misc.Controls.Add(this.DGVacc);
 			this.misc.Location = new System.Drawing.Point(4, 27);
-			this.misc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.misc.Margin = new System.Windows.Forms.Padding(4);
 			this.misc.Name = "misc";
-			this.misc.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.misc.Padding = new System.Windows.Forms.Padding(4);
 			this.misc.Size = new System.Drawing.Size(1221, 506);
 			this.misc.TabIndex = 2;
 			this.misc.Text = "Accesorios";
@@ -265,28 +266,28 @@
 			this.DGVacc.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.DGVacc.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
 			this.DGVacc.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-			dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-			dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.DGVacc.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+			dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+			dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.DGVacc.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
 			this.DGVacc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.DGVacc.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
 			this.DGVacc.Location = new System.Drawing.Point(0, 0);
 			this.DGVacc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.DGVacc.Name = "DGVacc";
 			this.DGVacc.ReadOnly = true;
-			dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-			dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.DGVacc.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
+			dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+			dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.DGVacc.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
 			this.DGVacc.RowHeadersWidth = 51;
 			this.DGVacc.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
 			this.DGVacc.RowTemplate.Height = 24;
@@ -297,9 +298,9 @@
 			// 
 			this.tabPage3.Controls.Add(this.dataGridView3);
 			this.tabPage3.Location = new System.Drawing.Point(4, 27);
-			this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
 			this.tabPage3.Name = "tabPage3";
-			this.tabPage3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
 			this.tabPage3.Size = new System.Drawing.Size(1221, 506);
 			this.tabPage3.TabIndex = 5;
 			this.tabPage3.Text = "Servicios";
@@ -310,7 +311,7 @@
 			this.dataGridView3.BackgroundColor = System.Drawing.Color.OldLace;
 			this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView3.Location = new System.Drawing.Point(0, 0);
-			this.dataGridView3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.dataGridView3.Margin = new System.Windows.Forms.Padding(4);
 			this.dataGridView3.Name = "dataGridView3";
 			this.dataGridView3.RowHeadersWidth = 51;
 			this.dataGridView3.Size = new System.Drawing.Size(1217, 502);
@@ -340,9 +341,9 @@
 			this.tabPage2.Controls.Add(this.dataGridView2);
 			this.tabPage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tabPage2.Location = new System.Drawing.Point(4, 27);
-			this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
 			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
 			this.tabPage2.Size = new System.Drawing.Size(1221, 506);
 			this.tabPage2.TabIndex = 4;
 			this.tabPage2.Text = "Ingreso Reparacion";
@@ -368,7 +369,7 @@
 			this.buscarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.buscarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
 			this.buscarCliente.Location = new System.Drawing.Point(184, 37);
-			this.buscarCliente.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.buscarCliente.Margin = new System.Windows.Forms.Padding(4);
 			this.buscarCliente.Name = "buscarCliente";
 			this.buscarCliente.RightToLeft = System.Windows.Forms.RightToLeft.No;
 			this.buscarCliente.Size = new System.Drawing.Size(37, 37);
@@ -386,7 +387,7 @@
 			this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
 			this.button9.Location = new System.Drawing.Point(387, 41);
-			this.button9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.button9.Margin = new System.Windows.Forms.Padding(4);
 			this.button9.Name = "button9";
 			this.button9.RightToLeft = System.Windows.Forms.RightToLeft.No;
 			this.button9.Size = new System.Drawing.Size(37, 37);
@@ -588,6 +589,7 @@
 			// tabPage1
 			// 
 			this.tabPage1.BackColor = System.Drawing.Color.OldLace;
+			this.tabPage1.Controls.Add(this.saveServ);
 			this.tabPage1.Controls.Add(this.loadServ);
 			this.tabPage1.Controls.Add(this.repPrice);
 			this.tabPage1.Controls.Add(this.servPrice);
@@ -603,13 +605,88 @@
 			this.tabPage1.Controls.Add(this.ServBox);
 			this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tabPage1.Location = new System.Drawing.Point(4, 27);
-			this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
 			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
 			this.tabPage1.Size = new System.Drawing.Size(1221, 506);
 			this.tabPage1.TabIndex = 3;
 			this.tabPage1.Text = "Servicio Reparacion";
 			this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+			// 
+			// saveServ
+			// 
+			this.saveServ.Location = new System.Drawing.Point(1091, 86);
+			this.saveServ.Name = "saveServ";
+			this.saveServ.Size = new System.Drawing.Size(104, 53);
+			this.saveServ.TabIndex = 28;
+			this.saveServ.Text = "Guardar Servicio";
+			this.saveServ.UseVisualStyleBackColor = true;
+			this.saveServ.Click += new System.EventHandler(this.saveServ_Click);
+			// 
+			// loadServ
+			// 
+			this.loadServ.Location = new System.Drawing.Point(1091, 15);
+			this.loadServ.Name = "loadServ";
+			this.loadServ.Size = new System.Drawing.Size(104, 53);
+			this.loadServ.TabIndex = 27;
+			this.loadServ.Text = "cargar servicio";
+			this.loadServ.UseVisualStyleBackColor = true;
+			// 
+			// repPrice
+			// 
+			this.repPrice.BackColor = System.Drawing.SystemColors.Window;
+			this.repPrice.Enabled = false;
+			this.repPrice.InterceptArrowKeys = false;
+			this.repPrice.Location = new System.Drawing.Point(658, 115);
+			this.repPrice.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
+			this.repPrice.Name = "repPrice";
+			this.repPrice.ReadOnly = true;
+			this.repPrice.Size = new System.Drawing.Size(120, 24);
+			this.repPrice.TabIndex = 26;
+			// 
+			// servPrice
+			// 
+			this.servPrice.Location = new System.Drawing.Point(898, 44);
+			this.servPrice.Maximum = new decimal(new int[] {
+            9999999,
+            0,
+            0,
+            0});
+			this.servPrice.Name = "servPrice";
+			this.servPrice.Size = new System.Drawing.Size(120, 24);
+			this.servPrice.TabIndex = 25;
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(637, 85);
+			this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(188, 18);
+			this.label6.TabIndex = 24;
+			this.label6.Text = "Precio unitario del repuesto";
+			// 
+			// button2
+			// 
+			this.button2.BackColor = System.Drawing.Color.FloralWhite;
+			this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.button2.FlatAppearance.BorderColor = System.Drawing.Color.SteelBlue;
+			this.button2.FlatAppearance.BorderSize = 2;
+			this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightCyan;
+			this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+			this.button2.Location = new System.Drawing.Point(487, 40);
+			this.button2.Margin = new System.Windows.Forms.Padding(4);
+			this.button2.Name = "button2";
+			this.button2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+			this.button2.Size = new System.Drawing.Size(37, 37);
+			this.button2.TabIndex = 22;
+			this.button2.Text = "🔍";
+			this.button2.UseVisualStyleBackColor = false;
 			// 
 			// label9
 			// 
@@ -644,7 +721,7 @@
 			// RepBox
 			// 
 			this.RepBox.Location = new System.Drawing.Point(324, 46);
-			this.RepBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.RepBox.Margin = new System.Windows.Forms.Padding(4);
 			this.RepBox.Name = "RepBox";
 			this.RepBox.Size = new System.Drawing.Size(151, 24);
 			this.RepBox.TabIndex = 6;
@@ -662,6 +739,8 @@
 			// 
 			// dataGridView1
 			// 
+			this.dataGridView1.AllowUserToAddRows = false;
+			this.dataGridView1.AllowUserToDeleteRows = false;
 			this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -674,17 +753,74 @@
             this.Estado,
             this.x});
 			this.dataGridView1.Location = new System.Drawing.Point(0, 159);
-			this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.RowHeadersWidth = 51;
 			this.dataGridView1.Size = new System.Drawing.Size(1219, 336);
 			this.dataGridView1.TabIndex = 3;
 			this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
 			// 
+			// ID_Ingreso
+			// 
+			this.ID_Ingreso.HeaderText = "ID servicio";
+			this.ID_Ingreso.MinimumWidth = 6;
+			this.ID_Ingreso.Name = "ID_Ingreso";
+			this.ID_Ingreso.ReadOnly = true;
+			// 
+			// client
+			// 
+			this.client.HeaderText = "Nombre del Cliente";
+			this.client.MinimumWidth = 6;
+			this.client.Name = "client";
+			this.client.ReadOnly = true;
+			// 
+			// Repuesto
+			// 
+			this.Repuesto.HeaderText = "Repuesto";
+			this.Repuesto.MinimumWidth = 6;
+			this.Repuesto.Name = "Repuesto";
+			this.Repuesto.ReadOnly = true;
+			// 
+			// Precio
+			// 
+			this.Precio.HeaderText = "Precio Unitario";
+			this.Precio.MinimumWidth = 6;
+			this.Precio.Name = "Precio";
+			this.Precio.ReadOnly = true;
+			// 
+			// Cantidad
+			// 
+			this.Cantidad.HeaderText = "Cantidad";
+			this.Cantidad.MinimumWidth = 6;
+			this.Cantidad.Name = "Cantidad";
+			this.Cantidad.ReadOnly = true;
+			// 
+			// SubTotal
+			// 
+			this.SubTotal.HeaderText = "SubTotal";
+			this.SubTotal.MinimumWidth = 6;
+			this.SubTotal.Name = "SubTotal";
+			this.SubTotal.ReadOnly = true;
+			// 
+			// Estado
+			// 
+			this.Estado.HeaderText = "Estado";
+			this.Estado.MinimumWidth = 6;
+			this.Estado.Name = "Estado";
+			this.Estado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.Estado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			// 
+			// x
+			// 
+			this.x.HeaderText = "X";
+			this.x.MinimumWidth = 6;
+			this.x.Name = "x";
+			this.x.ReadOnly = true;
+			// 
 			// repName
 			// 
 			this.repName.Location = new System.Drawing.Point(659, 46);
-			this.repName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.repName.Margin = new System.Windows.Forms.Padding(4);
 			this.repName.Name = "repName";
 			this.repName.Size = new System.Drawing.Size(181, 24);
 			this.repName.TabIndex = 1;
@@ -692,7 +828,7 @@
 			// ServBox
 			// 
 			this.ServBox.Location = new System.Drawing.Point(32, 46);
-			this.ServBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.ServBox.Margin = new System.Windows.Forms.Padding(4);
 			this.ServBox.Name = "ServBox";
 			this.ServBox.Size = new System.Drawing.Size(159, 24);
 			this.ServBox.TabIndex = 0;
@@ -706,7 +842,7 @@
 			this.addButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightCyan;
 			this.addButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.addButton.Location = new System.Drawing.Point(1091, 121);
-			this.addButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.addButton.Margin = new System.Windows.Forms.Padding(4);
 			this.addButton.Name = "addButton";
 			this.addButton.Size = new System.Drawing.Size(164, 46);
 			this.addButton.TabIndex = 1;
@@ -723,7 +859,7 @@
 			this.delButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightCyan;
 			this.delButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.delButton.Location = new System.Drawing.Point(1091, 66);
-			this.delButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.delButton.Margin = new System.Windows.Forms.Padding(4);
 			this.delButton.Name = "delButton";
 			this.delButton.Size = new System.Drawing.Size(164, 46);
 			this.delButton.TabIndex = 2;
@@ -739,7 +875,7 @@
 			this.editButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightCyan;
 			this.editButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.editButton.Location = new System.Drawing.Point(1091, 14);
-			this.editButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.editButton.Margin = new System.Windows.Forms.Padding(4);
 			this.editButton.Name = "editButton";
 			this.editButton.Size = new System.Drawing.Size(164, 46);
 			this.editButton.TabIndex = 3;
@@ -757,7 +893,7 @@
 			this.Filtro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.Filtro.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
 			this.Filtro.Location = new System.Drawing.Point(687, 62);
-			this.Filtro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.Filtro.Margin = new System.Windows.Forms.Padding(4);
 			this.Filtro.Name = "Filtro";
 			this.Filtro.RightToLeft = System.Windows.Forms.RightToLeft.No;
 			this.Filtro.Size = new System.Drawing.Size(55, 55);
@@ -859,129 +995,6 @@
 			this.panel1.Size = new System.Drawing.Size(1244, 155);
 			this.panel1.TabIndex = 14;
 			// 
-			// button2
-			// 
-			this.button2.BackColor = System.Drawing.Color.FloralWhite;
-			this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.button2.FlatAppearance.BorderColor = System.Drawing.Color.SteelBlue;
-			this.button2.FlatAppearance.BorderSize = 2;
-			this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightCyan;
-			this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-			this.button2.Location = new System.Drawing.Point(487, 40);
-			this.button2.Margin = new System.Windows.Forms.Padding(4);
-			this.button2.Name = "button2";
-			this.button2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.button2.Size = new System.Drawing.Size(37, 37);
-			this.button2.TabIndex = 22;
-			this.button2.Text = "🔍";
-			this.button2.UseVisualStyleBackColor = false;
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(637, 85);
-			this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(188, 18);
-			this.label6.TabIndex = 24;
-			this.label6.Text = "Precio unitario del repuesto";
-			// 
-			// servPrice
-			// 
-			this.servPrice.Location = new System.Drawing.Point(898, 44);
-			this.servPrice.Maximum = new decimal(new int[] {
-            9999999,
-            0,
-            0,
-            0});
-			this.servPrice.Name = "servPrice";
-			this.servPrice.Size = new System.Drawing.Size(120, 24);
-			this.servPrice.TabIndex = 25;
-			// 
-			// repPrice
-			// 
-			this.repPrice.BackColor = System.Drawing.SystemColors.Window;
-			this.repPrice.Enabled = false;
-			this.repPrice.InterceptArrowKeys = false;
-			this.repPrice.Location = new System.Drawing.Point(658, 115);
-			this.repPrice.Maximum = new decimal(new int[] {
-            99999999,
-            0,
-            0,
-            0});
-			this.repPrice.Name = "repPrice";
-			this.repPrice.ReadOnly = true;
-			this.repPrice.Size = new System.Drawing.Size(120, 24);
-			this.repPrice.TabIndex = 26;
-			// 
-			// loadServ
-			// 
-			this.loadServ.Location = new System.Drawing.Point(1088, 40);
-			this.loadServ.Name = "loadServ";
-			this.loadServ.Size = new System.Drawing.Size(104, 53);
-			this.loadServ.TabIndex = 27;
-			this.loadServ.Text = "cargar servicio";
-			this.loadServ.UseVisualStyleBackColor = true;
-			// 
-			// ID_Ingreso
-			// 
-			this.ID_Ingreso.HeaderText = "ID servico";
-			this.ID_Ingreso.MinimumWidth = 6;
-			this.ID_Ingreso.Name = "ID_Ingreso";
-			this.ID_Ingreso.ReadOnly = true;
-			// 
-			// client
-			// 
-			this.client.HeaderText = "Nombre del Cliente";
-			this.client.MinimumWidth = 6;
-			this.client.Name = "client";
-			this.client.ReadOnly = true;
-			// 
-			// Repuesto
-			// 
-			this.Repuesto.HeaderText = "Repuesto";
-			this.Repuesto.MinimumWidth = 6;
-			this.Repuesto.Name = "Repuesto";
-			this.Repuesto.ReadOnly = true;
-			// 
-			// Precio
-			// 
-			this.Precio.HeaderText = "Precio Unitario";
-			this.Precio.MinimumWidth = 6;
-			this.Precio.Name = "Precio";
-			this.Precio.ReadOnly = true;
-			// 
-			// Cantidad
-			// 
-			this.Cantidad.HeaderText = "Cantidad";
-			this.Cantidad.MinimumWidth = 6;
-			this.Cantidad.Name = "Cantidad";
-			this.Cantidad.ReadOnly = true;
-			// 
-			// SubTotal
-			// 
-			this.SubTotal.HeaderText = "SubTotal";
-			this.SubTotal.MinimumWidth = 6;
-			this.SubTotal.Name = "SubTotal";
-			this.SubTotal.ReadOnly = true;
-			// 
-			// Estado
-			// 
-			this.Estado.HeaderText = "Estado";
-			this.Estado.MinimumWidth = 6;
-			this.Estado.Name = "Estado";
-			this.Estado.ReadOnly = true;
-			this.Estado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.Estado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			// 
-			// x
-			// 
-			this.x.HeaderText = "X";
-			this.x.MinimumWidth = 6;
-			this.x.Name = "x";
-			this.x.ReadOnly = true;
-			// 
 			// productos
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1002,7 +1015,7 @@
 			this.Controls.Add(this.Products);
 			this.Controls.Add(this.panel1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-			this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "productos";
 			this.Text = "productos";
 			this.Load += new System.EventHandler(this.productos_Load);
@@ -1021,10 +1034,10 @@
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.repPrice)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.servPrice)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.Stock)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.servPrice)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repPrice)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1092,6 +1105,7 @@
 		private System.Windows.Forms.NumericUpDown repPrice;
 		private System.Windows.Forms.NumericUpDown servPrice;
 		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.Button saveServ;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ID_Ingreso;
 		private System.Windows.Forms.DataGridViewTextBoxColumn client;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Repuesto;

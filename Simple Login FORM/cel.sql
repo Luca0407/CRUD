@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `celulares` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `celulares`;
+-- MySQL dump 10.13  Distrib 8.0.42, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: celulares
 -- ------------------------------------------------------
--- Server version	8.0.39
+-- Server version	8.0.43
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -170,7 +172,7 @@ CREATE TABLE `empleados` (
 
 LOCK TABLES `empleados` WRITE;
 /*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
-INSERT INTO `empleados` VALUES (1,1,1,'12345678',1),(13,2,124,'12341234',1),(14,3,125,'56785678',1);
+INSERT INTO `empleados` VALUES (1,1,1,'1',1),(13,2,124,'12341234',1),(14,3,125,'56785678',1);
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,7 +187,7 @@ CREATE TABLE `estados` (
   `ID_estados` int NOT NULL AUTO_INCREMENT,
   `nombre_estado` varchar(25) NOT NULL,
   PRIMARY KEY (`ID_estados`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,7 +196,7 @@ CREATE TABLE `estados` (
 
 LOCK TABLES `estados` WRITE;
 /*!40000 ALTER TABLE `estados` DISABLE KEYS */;
-INSERT INTO `estados` VALUES (1,'en espera'),(2,'en proceso'),(3,'terminado');
+INSERT INTO `estados` VALUES (1,'en espera'),(2,'en proceso'),(3,'terminado'),(4,'cancelado');
 /*!40000 ALTER TABLE `estados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,7 +270,7 @@ CREATE TABLE `ingreso_reparacion` (
   KEY `client_idx` (`cliente`),
   CONSTRAINT `client` FOREIGN KEY (`cliente`) REFERENCES `clientes` (`ID_clientes`) ON DELETE SET NULL,
   CONSTRAINT `Productos` FOREIGN KEY (`producto`) REFERENCES `productos` (`ID_productos`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -277,7 +279,7 @@ CREATE TABLE `ingreso_reparacion` (
 
 LOCK TABLES `ingreso_reparacion` WRITE;
 /*!40000 ALTER TABLE `ingreso_reparacion` DISABLE KEYS */;
-INSERT INTO `ingreso_reparacion` VALUES (1,'no funciona el pin ',25,1,143),(2,'flex roto',27,1,109),(3,'jajksdkasdkad',16,1,138);
+INSERT INTO `ingreso_reparacion` VALUES (1,'no funciona el pin ',25,1,143),(2,'flex roto',27,1,109),(3,'jajksdkasdkad',16,1,138),(4,'jeje jojo',2,1,138),(5,'juas juas',29,1,124),(6,'murio lol',1,2,141);
 /*!40000 ALTER TABLE `ingreso_reparacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -463,7 +465,7 @@ CREATE TABLE `productos` (
   CONSTRAINT `model` FOREIGN KEY (`modelo`) REFERENCES `modelos` (`ID_modelos`) ON DELETE SET NULL,
   CONSTRAINT `nombre_producto` FOREIGN KEY (`nombre_producto`) REFERENCES `productos_genericos` (`ID_nombre_productos`) ON DELETE SET NULL,
   CONSTRAINT `proveedor_pieza` FOREIGN KEY (`proveedor`) REFERENCES `proveedores` (`ID_proveedores`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -472,7 +474,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,3,150.00,5000.00,123,1,8,2),(2,3,120000.00,300000.00,2,1,2,2),(16,7,1000.00,2500.00,50,1,2,4),(25,8,2000.00,3500.00,20,1,2,5),(26,9,1400.00,2600.00,14,10,5,4),(27,10,2230.00,4000.00,11,8,5,3),(28,11,5600.00,10000.00,5,9,3,4),(29,2,2000.00,5000.00,11,10,4,6),(30,5,3000.00,6000.00,9,1,1,1);
+INSERT INTO `productos` VALUES (1,3,150.00,5000.00,123,1,8,2),(2,3,120000.00,300000.00,2,1,2,2),(16,7,1000.00,2500.00,50,1,2,4),(25,8,2000.00,3500.00,20,1,2,5),(26,9,1400.00,2600.00,14,10,5,4),(27,10,2230.00,4000.00,11,8,5,3),(28,11,5600.00,10000.00,5,9,3,4),(29,2,2000.00,5000.00,11,10,4,6),(30,5,3000.00,6000.00,9,1,1,1),(31,1,7.00,14.00,5,8,6,5),(32,6,4.00,1.00,2,1,4,4),(33,2,5.00,9.00,1,11,6,4);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -607,15 +609,15 @@ DROP TABLE IF EXISTS `servicio_reparacion`;
 CREATE TABLE `servicio_reparacion` (
   `idservicio_reparacion` int NOT NULL AUTO_INCREMENT,
   `ingreso` int DEFAULT NULL,
-  `precio_pieza` int DEFAULT NULL,
-  `cantidad` int NOT NULL,
+  `repuesto` int DEFAULT NULL,
+  `subtotal` int NOT NULL,
   `estado` int DEFAULT NULL,
   PRIMARY KEY (`idservicio_reparacion`),
   KEY `Ingreso_idx` (`ingreso`),
-  KEY `pieza_idx` (`precio_pieza`),
+  KEY `pieza_idx` (`repuesto`),
   KEY `status_idx` (`estado`),
   CONSTRAINT `Ingreso` FOREIGN KEY (`ingreso`) REFERENCES `ingreso_reparacion` (`idingreso_reparacion`) ON DELETE SET NULL,
-  CONSTRAINT `pieza` FOREIGN KEY (`precio_pieza`) REFERENCES `productos` (`ID_productos`) ON DELETE SET NULL,
+  CONSTRAINT `pieza` FOREIGN KEY (`repuesto`) REFERENCES `productos` (`ID_productos`) ON DELETE SET NULL,
   CONSTRAINT `status` FOREIGN KEY (`estado`) REFERENCES `estados` (`ID_estados`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -725,4 +727,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-11-13  1:45:20
+-- Dump completed on 2025-11-13 14:25:00
