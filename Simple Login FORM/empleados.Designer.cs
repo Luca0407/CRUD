@@ -69,7 +69,7 @@
 			this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridView1.EnableHeadersVisualStyles = false;
 			this.dataGridView1.Location = new System.Drawing.Point(44, 137);
-			this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.RowHeadersWidth = 51;
 			this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -133,7 +133,6 @@
 			this.label1.Size = new System.Drawing.Size(87, 20);
 			this.label1.TabIndex = 7;
 			this.label1.Text = "Filtrar por:";
-			this.label1.Click += new System.EventHandler(this.label1_Click);
 			// 
 			// label3
 			// 
@@ -145,7 +144,6 @@
 			this.label3.Size = new System.Drawing.Size(145, 20);
 			this.label3.TabIndex = 11;
 			this.label3.Text = "Nombre y Apellido";
-			this.label3.Click += new System.EventHandler(this.label3_Click);
 			// 
 			// fullName
 			// 
@@ -154,7 +152,6 @@
 			this.fullName.Name = "fullName";
 			this.fullName.Size = new System.Drawing.Size(191, 22);
 			this.fullName.TabIndex = 10;
-			this.fullName.TextChanged += new System.EventHandler(this.fullName_TextChanged);
 			// 
 			// button4
 			// 
@@ -189,7 +186,7 @@
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.dataGridView1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-			this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.Margin = new System.Windows.Forms.Padding(4);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "empleados";

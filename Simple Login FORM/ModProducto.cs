@@ -23,6 +23,9 @@ namespace Simple_Login_FORM {
 			ProductoSeleccionado(idprod);
 			//this.KeyDown += new KeyEventHandler(add_KeyDown);
 			this.KeyPreview = true;
+
+			// Wire up event to autocomplete precio_costo when product name changes
+			prodBox.SelectedIndexChanged += ProdBox_SelectedIndexChanged;
 		}
 		private void ModProducto_Load(object sender, EventArgs e) {
 
@@ -109,6 +112,40 @@ namespace Simple_Login_FORM {
 				
 				}
 			}
+
+		private void ProdBox_SelectedIndexChanged(object sender, EventArgs e) {
+			if(prodBox.SelectedValue == null || brandBox.SelectedValue == null || 
+			   modelBox.SelectedValue == null || pageBox.SelectedValue == null) {
+				return;
+			}
+
+			try {
+				using(MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
+					con.Open();
+					string sql = @"SELECT precio_costo FROM productos 
+								   WHERE nombre_producto = @nombre 
+								   AND marca = @marca 
+								   AND modelo = @modelo 
+								   AND proveedor = @proveedor 
+								   LIMIT 1";
+
+					using(MySqlCommand cmd = new MySqlCommand(sql, con)) {
+						cmd.Parameters.AddWithValue("@nombre", prodBox.SelectedValue);
+						cmd.Parameters.AddWithValue("@marca", brandBox.SelectedValue);
+						cmd.Parameters.AddWithValue("@modelo", modelBox.SelectedValue);
+						cmd.Parameters.AddWithValue("@proveedor", pageBox.SelectedValue);
+
+						object result = cmd.ExecuteScalar();
+
+						if(result != null && result != DBNull.Value) {
+							costBox.Value = Convert.ToDecimal(result);
+						}
+					}
+				}
+			} catch {
+				// Silently fail - user can enter manually
+			}
+		}
 
 		public bool ActualizarProducto(Products datos, int id) {
 			try {

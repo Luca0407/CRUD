@@ -20,6 +20,7 @@ namespace Simple_Login_FORM
             InitializeComponent();
 			ListarProducto();
 			ListarNombres();
+			ListarServiciosReparacion();
 			CargarMetodosPago();
 			dataGridView1.Columns["X"].Width = 37;
 			dataGridView1.CellContentClick += DataGridView1_CellContentClick;
@@ -154,6 +155,38 @@ namespace Simple_Login_FORM
 			}
 		}
 
+		private void ListarServiciosReparacion() {
+			try {
+				using(MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
+					con.Open();
+					string sql = @"SELECT DISTINCT sr.idservicio_reparacion, ir.descripcion
+									FROM servicio_reparacion sr
+									JOIN ingreso_reparacion ir ON sr.ingreso = ir.idingreso_reparacion
+									WHERE sr.idservicio_reparacion LIKE @busqueda";
+
+					MySqlCommand cmd = new MySqlCommand(sql, con);
+					cmd.Parameters.AddWithValue("@busqueda", "%" + textBox1.Text + "%");
+
+					MySqlDataReader reader = cmd.ExecuteReader();
+
+					AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
+
+					while(reader.Read()) {
+						string id = reader.GetValue(reader.GetOrdinal("idservicio_reparacion")).ToString();
+						string descripcion = reader.GetString("descripcion");
+						string sugerencia = id + " - " + descripcion;
+						coleccion.Add(sugerencia);
+					}
+
+					textBox1.AutoCompleteMode = AutoCompleteMode.Suggest;
+					textBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
+					textBox1.AutoCompleteCustomSource = coleccion;
+				}
+			} catch(Exception ex) {
+				MessageBox.Show("Error al cargar servicios de reparación: " + ex.Message);
+			}
+		}
+
 		private void CargarProducto(int idProducto) {
 			try {
 				using(MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
@@ -195,14 +228,55 @@ namespace Simple_Login_FORM
 			numericUpDown1.Value = 1;
 		}
 
+		private void CargarServicioReparacion(int idServicioReparacion) {
+			try {
+				using(MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString())) {
+					con.Open();
+					string sql = @"SELECT sr.idservicio_reparacion,
+											ir.descripcion,
+											sr.subtotal,
+											ir.cantidad
+										FROM servicio_reparacion sr
+										JOIN ingreso_reparacion ir ON sr.ingreso = ir.idingreso_reparacion
+										WHERE sr.idservicio_reparacion = @id";
+
+					MySqlCommand cmd = new MySqlCommand(sql, con);
+					cmd.Parameters.AddWithValue("@id", idServicioReparacion);
+					MySqlDataReader reader = cmd.ExecuteReader();
+
+					if(reader.Read()) {
+						textBox5.Text = reader.GetString("descripcion");
+						textBox6.Text = reader.GetInt32("subtotal").ToString("N2");
+						int cantidad = reader.GetInt32("cantidad");
+						numericUpDown1.Value = cantidad;
+						textBox7.Clear();
+					} else {
+						MessageBox.Show("Servicio de reparación no encontrado");
+						LimpiarCamposProducto();
+					}
+				}
+			} catch(Exception ex) {
+				MessageBox.Show("Error al cargar servicio de reparación: " + ex.Message);
+			}
+		}
+
 		private void AgregarProductoAGrid() {
-			if(string.IsNullOrWhiteSpace(CodProd.Text)) {
-				MessageBox.Show("Ingrese un código de producto");
+			// Check if it's a product or service
+			bool esProducto = !string.IsNullOrWhiteSpace(CodProd.Text);
+			bool esServicio = !string.IsNullOrWhiteSpace(textBox1.Text);
+
+			if(!esProducto && !esServicio) {
+				MessageBox.Show("Ingrese un código de producto o servicio");
+				return;
+			}
+
+			if(esProducto && esServicio) {
+				MessageBox.Show("Solo puede agregar un producto o servicio a la vez");
 				return;
 			}
 
 			if(string.IsNullOrWhiteSpace(textBox5.Text)) {
-				MessageBox.Show("Busque el producto primero");
+				MessageBox.Show("Busque el producto o servicio primero");
 				return;
 			}
 
@@ -211,43 +285,58 @@ namespace Simple_Login_FORM
 				return;
 			}
 
-			// Get product ID from CodProd textbox
-			string codProdText = CodProd.Text.Trim();
-			int idProducto;
-			if(codProdText.Contains("-")) {
-				string[] parts = codProdText.Split('-');
-				if(!int.TryParse(parts[0].Trim(), out idProducto)) {
-					MessageBox.Show("Código de producto inválido");
-					return;
-				}
-			} else {
-				if(!int.TryParse(codProdText, out idProducto)) {
-					MessageBox.Show("Código de producto inválido");
-					return;
-				}
-			}
-
-			string producto = textBox5.Text;
+			string descripcion = textBox5.Text;
 			decimal precio = decimal.Parse(textBox6.Text);
 			int cantidad = (int)numericUpDown1.Value;
 			decimal subtotal = precio * cantidad;
 
-			// Check if product already exists in grid
+			// Check if item already exists in grid
 			foreach(DataGridViewRow row in dataGridView1.Rows) {
 				if(row.Cells["Producto"].Value != null && 
-				   row.Cells["Producto"].Value.ToString() == producto) {
-					MessageBox.Show("El producto ya está en la lista");
+				   row.Cells["Producto"].Value.ToString() == descripcion) {
+					MessageBox.Show("El producto/servicio ya está en la lista");
 					return;
 				}
 			}
 
-			// Add to grid with ID as Tag
-			int rowIndex = dataGridView1.Rows.Add(producto, precio.ToString("N2"), cantidad, subtotal.ToString("N2"), "X");
-			dataGridView1.Rows[rowIndex].Tag = idProducto; // Store product ID
+			if(esProducto) {
+				// Get product ID from CodProd textbox
+				string codProdText = CodProd.Text.Trim();
+				int idProducto;
+				if(codProdText.Contains("-")) {
+					string[] parts = codProdText.Split('-');
+					if(!int.TryParse(parts[0].Trim(), out idProducto)) {
+						MessageBox.Show("Código de producto inválido");
+						return;
+					}
+				} else {
+					if(!int.TryParse(codProdText, out idProducto)) {
+						MessageBox.Show("Código de producto inválido");
+						return;
+					}
+				}
+
+				// Add to grid with product ID as Tag
+				int rowIndex = dataGridView1.Rows.Add(descripcion, precio.ToString("N2"), cantidad, subtotal.ToString("N2"), "X");
+				dataGridView1.Rows[rowIndex].Tag = idProducto;
+			} else {
+				// Get service ID from textBox1
+				string codServicioText = textBox1.Text.Trim();
+				int idServicio;
+				if(!int.TryParse(codServicioText, out idServicio)) {
+					MessageBox.Show("Código de servicio inválido");
+					return;
+				}
+
+				// Add to grid with service ID as Tag (negative to distinguish from products)
+				int rowIndex = dataGridView1.Rows.Add(descripcion, precio.ToString("N2"), cantidad, subtotal.ToString("N2"), "X");
+				dataGridView1.Rows[rowIndex].Tag = -idServicio; // Negative ID for services
+			}
 
 			ActualizarTotal();
 			LimpiarCamposProducto();
 			CodProd.Clear();
+			textBox1.Clear();
 			CodProd.Focus();
 		}
 
@@ -344,28 +433,31 @@ namespace Simple_Login_FORM
 
 						int empleadoId = Convert.ToInt32(empleadoObj);
 
-						// Validate stock availability BEFORE processing the sale
+						// Validate stock availability BEFORE processing the sale (only for products)
 						foreach(DataGridViewRow row in dataGridView1.Rows) {
 							if(row.Tag != null && !row.IsNewRow) {
-								int productoId = (int) row.Tag;
-								int cantidadSolicitada = int.Parse(row.Cells["Cantidad"].Value.ToString());
+								int itemId = (int) row.Tag;
+								// Only validate stock for products (positive IDs)
+								if(itemId > 0) {
+									int cantidadSolicitada = int.Parse(row.Cells["Cantidad"].Value.ToString());
 
-								string sqlCheckStock = "SELECT stock FROM productos WHERE ID_productos = @id";
-								MySqlCommand cmdCheckStock = new MySqlCommand(sqlCheckStock, con, transaction);
-								cmdCheckStock.Parameters.AddWithValue("@id", productoId);
-								object stockObj = cmdCheckStock.ExecuteScalar();
+									string sqlCheckStock = "SELECT stock FROM productos WHERE ID_productos = @id";
+									MySqlCommand cmdCheckStock = new MySqlCommand(sqlCheckStock, con, transaction);
+									cmdCheckStock.Parameters.AddWithValue("@id", itemId);
+									object stockObj = cmdCheckStock.ExecuteScalar();
 
-								if(stockObj == null) {
-									MessageBox.Show($"Producto ID {productoId} no encontrado");
-									transaction.Rollback();
-									return;
-								}
+									if(stockObj == null) {
+										MessageBox.Show($"Producto ID {itemId} no encontrado");
+										transaction.Rollback();
+										return;
+									}
 
-								int stockDisponible = Convert.ToInt32(stockObj);
-								if(stockDisponible < cantidadSolicitada) {
-									MessageBox.Show($"Stock insuficiente para el producto '{row.Cells["Producto"].Value}'.\nDisponible: {stockDisponible}, Solicitado: {cantidadSolicitada}");
-									transaction.Rollback();
-									return;
+									int stockDisponible = Convert.ToInt32(stockObj);
+									if(stockDisponible < cantidadSolicitada) {
+										MessageBox.Show($"Stock insuficiente para el producto '{row.Cells["Producto"].Value}'.\nDisponible: {stockDisponible}, Solicitado: {cantidadSolicitada}");
+										transaction.Rollback();
+										return;
+									}
 								}
 							}
 						}
@@ -407,26 +499,36 @@ namespace Simple_Login_FORM
 						// Insert detalles_venta and update stock
 						foreach(DataGridViewRow row in dataGridView1.Rows) {
 							if(row.Tag != null && !row.IsNewRow) {
-								int productoId = (int) row.Tag;
+								int itemId = (int) row.Tag;
 								int cantidad = int.Parse(row.Cells["Cantidad"].Value.ToString());
 								decimal precioUnit = decimal.Parse(row.Cells["Precio"].Value.ToString());
 								decimal subtotal = decimal.Parse(row.Cells["SubTotal"].Value.ToString());
 
-								string sqlDetalle = @"INSERT INTO detalles_venta (cantidad, precio_unitario, subtotal, pagado, producto, ID_venta)
-												VALUES (@cantidad, @precio, @subtotal, 1, @producto, @venta)";
-								MySqlCommand cmdDetalle = new MySqlCommand(sqlDetalle, con, transaction);
-								cmdDetalle.Parameters.AddWithValue("@cantidad", cantidad);
-								cmdDetalle.Parameters.AddWithValue("@precio", precioUnit);
-								cmdDetalle.Parameters.AddWithValue("@subtotal", subtotal);
-								cmdDetalle.Parameters.AddWithValue("@producto", productoId);
-								cmdDetalle.Parameters.AddWithValue("@venta", ventaId);
-								cmdDetalle.ExecuteNonQuery();
+								if(itemId > 0) {
+									// It's a product
+									string sqlDetalle = @"INSERT INTO detalles_venta (cantidad, precio_unitario, subtotal, pagado, producto, ID_venta)
+														VALUES (@cantidad, @precio, @subtotal, 1, @producto, @venta)";
+									MySqlCommand cmdDetalle = new MySqlCommand(sqlDetalle, con, transaction);
+									cmdDetalle.Parameters.AddWithValue("@cantidad", cantidad);
+									cmdDetalle.Parameters.AddWithValue("@precio", precioUnit);
+									cmdDetalle.Parameters.AddWithValue("@subtotal", subtotal);
+									cmdDetalle.Parameters.AddWithValue("@producto", itemId);
+									cmdDetalle.Parameters.AddWithValue("@venta", ventaId);
+									cmdDetalle.ExecuteNonQuery();
 
-								string sqlStock = "UPDATE productos SET stock = stock - @cantidad WHERE ID_productos = @id";
-								MySqlCommand cmdStock = new MySqlCommand(sqlStock, con, transaction);
-								cmdStock.Parameters.AddWithValue("@cantidad", cantidad);
-								cmdStock.Parameters.AddWithValue("@id", productoId);
-								cmdStock.ExecuteNonQuery();
+									string sqlStock = "UPDATE productos SET stock = stock - @cantidad WHERE ID_productos = @id";
+									MySqlCommand cmdStock = new MySqlCommand(sqlStock, con, transaction);
+									cmdStock.Parameters.AddWithValue("@cantidad", cantidad);
+									cmdStock.Parameters.AddWithValue("@id", itemId);
+									cmdStock.ExecuteNonQuery();
+								} else {
+									// It's a service (negative ID, convert back to positive)
+									int servicioId = -itemId;
+									// For services, we don't insert into detalles_venta, but we could track them differently
+									// For now, we'll just skip inserting services or handle them separately if needed
+									// Note: The database schema doesn't seem to have a clear way to track service sales
+									// You may need to create a separate table or modify the schema
+								}
 							}
 						}
 
@@ -450,6 +552,7 @@ namespace Simple_Login_FORM
 			DocNum.Clear();
 			NameBox.Clear();
 			CodProd.Clear();
+			textBox1.Clear();
 			LimpiarCamposProducto();
 			dataGridView1.Rows.Clear();
 			textBox8.Clear();
@@ -539,10 +642,6 @@ namespace Simple_Login_FORM
 			GuardarVenta();
 		}
 
-		private void textBox9_TextChanged(object sender, EventArgs e) {
-			
-		}
-
 		private void button2_Click_1(object sender, EventArgs e) {
 			// Add product to cart
 			AgregarProductoAGrid();
@@ -560,6 +659,35 @@ namespace Simple_Login_FORM
 
 		private void button6_Click(object sender, EventArgs e) {
 			textBox9.Text = textBox8.Text;
+		}
+
+		private void button8_Click(object sender, EventArgs e) {
+			// Search service repair button
+			if(string.IsNullOrWhiteSpace(textBox1.Text)) {
+				MessageBox.Show("Ingrese un código de servicio");
+				return;
+			}
+
+			string codServicioText = textBox1.Text.Trim();
+			int idServicio;
+
+			// Extract ID from autocomplete format "ID - Description" or just ID
+			if(codServicioText.Contains("-")) {
+				string[] parts = codServicioText.Split('-');
+				if(!int.TryParse(parts[0].Trim(), out idServicio)) {
+					MessageBox.Show("Código de servicio inválido");
+					return;
+				}
+				// Keep only the ID in textBox1
+				textBox1.Text = idServicio.ToString();
+			} else {
+				if(!int.TryParse(codServicioText, out idServicio)) {
+					MessageBox.Show("Código de servicio inválido");
+					return;
+				}
+			}
+
+			CargarServicioReparacion(idServicio);
 		}
 	}
 

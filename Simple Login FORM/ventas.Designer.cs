@@ -478,6 +478,7 @@
             this.button8.TabIndex = 15;
             this.button8.Text = "🔍";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // ventas
             // 

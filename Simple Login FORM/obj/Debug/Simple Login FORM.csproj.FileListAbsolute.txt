@@ -131,6 +131,25 @@ C:\Users\Usuario\Desktop\pop\CRUD-main\Simple Login FORM\obj\Debug\Simple Login 
 C:\Users\Usuario\Desktop\pop\CRUD-main\Simple Login FORM\obj\Debug\Simple L.600E2421.Up2Date
 C:\Users\Usuario\Desktop\pop\CRUD-main\Simple Login FORM\obj\Debug\Simple Login FORM.exe
 C:\Users\Usuario\Desktop\pop\CRUD-main\Simple Login FORM\obj\Debug\Simple Login FORM.pdb
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple Login FORM.csproj.AssemblyReference.cache
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.compras.resources
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.ModPersona.resources
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.clientes.resources
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.DBLoginForm.resources
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.empleados.resources
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.LoginForm.resources
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.menu.resources
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.ModProducto.resources
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.productos.resources
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.Reportes.resources
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.Properties.Resources.resources
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.proveedor.resources
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.RegisterClientForm.resources
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.RegisterProductForm.resources
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.RegisterForm.resources
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.ventas.resources
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple Login FORM.csproj.GenerateResource.cache
+C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple Login FORM.csproj.CoreCompileInputs.cache
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\bin\Debug\Simple Login FORM.exe.config
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\bin\Debug\Simple Login FORM.exe
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\bin\Debug\Simple Login FORM.pdb
@@ -166,26 +185,7 @@ C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login F
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\bin\Debug\System.Threading.Tasks.Extensions.xml
-C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple Login FORM.csproj.AssemblyReference.cache
-C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.ModPersona.resources
-C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.clientes.resources
-C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.DBLoginForm.resources
-C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.empleados.resources
-C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.LoginForm.resources
-C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.menu.resources
-C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.ModProducto.resources
-C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.productos.resources
-C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.Properties.Resources.resources
-C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.proveedor.resources
-C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.RegisterForm.resources
-C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.ventas.resources
-C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple Login FORM.csproj.GenerateResource.cache
-C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple Login FORM.csproj.CoreCompileInputs.cache
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple L.600E2421.Up2Date
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple Login FORM.exe
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple Login FORM.pdb
 C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple Login FORM.exe.config
-C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.Reportes.resources
-C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.RegisterClientForm.resources
-C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.RegisterProductForm.resources
-C:\Users\Luca\Downloads\Programacion\Simple-CSharp-LoginForm-main\Simple Login FORM\obj\Debug\Simple_Login_FORM.compras.resources

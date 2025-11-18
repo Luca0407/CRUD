@@ -54,11 +54,12 @@ namespace Simple_Login_FORM
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
-			this.label1.Location = new System.Drawing.Point(100, 20);
+			this.label1.Location = new System.Drawing.Point(131, 20);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(315, 29);
+			this.label1.Size = new System.Drawing.Size(269, 29);
 			this.label1.TabIndex = 0;
-			this.label1.Text = "Registro Rápido Producto";
+			this.label1.Text = "Restock de Productos";
+			this.label1.Click += new System.EventHandler(this.label1_Click);
 			// 
 			// NombreBox
 			// 
@@ -147,7 +148,7 @@ namespace Simple_Login_FORM
 			this.RegisterButton.Name = "RegisterButton";
 			this.RegisterButton.Size = new System.Drawing.Size(120, 40);
 			this.RegisterButton.TabIndex = 8;
-			this.RegisterButton.Text = "Registrar";
+			this.RegisterButton.Text = "Comprar";
 			this.RegisterButton.UseVisualStyleBackColor = false;
 			this.RegisterButton.Click += new System.EventHandler(this.RegisterButton_Click);
 			// 

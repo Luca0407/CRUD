@@ -226,5 +226,9 @@ namespace Simple_Login_FORM
 		private void RegisterProductForm_Load(object sender, EventArgs e) {
 
 		}
+
+		private void label1_Click(object sender, EventArgs e) {
+
+		}
 	}
 }

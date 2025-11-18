@@ -1,0 +1,105 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\AutoTesting\\AutoTesting.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\AutoTesting\\AutoTesting.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\AutoTesting\\AutoTesting.csproj",
+        "projectName": "AutoTesting",
+        "projectPath": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\AutoTesting\\AutoTesting.csproj",
+        "packagesPath": "C:\\Users\\Luca\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\AutoTesting\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Luca\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net48"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net48": {
+            "targetAlias": "net48",
+            "projectReferences": {
+              "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\Simple Login FORM.csproj": {
+                "projectPath": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\Simple Login FORM.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net48": {
+          "targetAlias": "net48",
+          "dependencies": {
+            "MSTest": {
+              "target": "Package",
+              "version": "[3.6.4, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.12.0, )"
+            },
+            "Microsoft.Testing.Extensions.TrxReport": {
+              "target": "Package",
+              "version": "[1.4.3, )"
+            },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[9.4.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.2, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win-x86": {
+          "#import": []
+        }
+      }
+    },
+    "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\Simple Login FORM.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\Simple Login FORM.csproj",
+        "projectName": "Simple Login FORM",
+        "projectPath": "C:\\Users\\Luca\\Downloads\\Programacion\\Simple-CSharp-LoginForm-main\\Simple Login FORM\\Simple Login FORM.csproj",
+        "UsingMicrosoftNETSdk": false,
+        "frameworks": {
+          "net48": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net48": {}
+      }
+    }
+  }
+}

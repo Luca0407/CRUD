@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Simple_Login_FORM.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,22 +14,22 @@ using static Org.BouncyCastle.Math.EC.ECCurve;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
-namespace Simple_Login_FORM
-{
-    public partial class RegisterForm : Form
-    {
+namespace Simple_Login_FORM {
+	public partial class RegisterForm: Form {
 		static string phone_ph = "número de 10 digitos";
 		static string pass_ph = "hasta16caractere";
 		static string mail_ph = "correo@mail.com";
 		static string user_ph = "nombre";
 		static string surname_ph = "apellido";
 		static string dom_ph = "domicilio";
-		string[] placeholders = { phone_ph, pass_ph, mail_ph, user_ph, surname_ph, dom_ph};
-		
-		MySqlConnection con = new MySqlConnection(DBConfig.GetConnectionString());
-        public RegisterForm()
-        {
-            InitializeComponent();
+		string[] placeholders = { phone_ph, pass_ph, mail_ph, user_ph, surname_ph, dom_ph };
+		private readonly RegisterService _registerService;
+
+		public RegisterForm() : this(new RegisterService(new DefaultConnectionFactory(DBConfig.GetConnectionString()))) { }
+
+		public RegisterForm(RegisterService registerService) {
+			InitializeComponent();
+			_registerService = registerService;
 			this.MaximizeBox = false;
 			this.FormBorderStyle = FormBorderStyle.FixedSingle;
 			PasswordBox.MaxLength = 16;
@@ -41,77 +42,26 @@ namespace Simple_Login_FORM
 			PhoneBox.KeyPress += PhoneBox_KeyPress;
 		}
 
-        private void ReturnButton_Click(object sender, EventArgs e)
-        {
-			this.Close();
-		}
-
-		private bool EsCorreoValido(string correo) {
-			string patron = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-			return Regex.IsMatch(correo, patron);
-		}
-
 		private void CreateButton_Click(object sender, EventArgs e) {
-			System.Windows.Forms.TextBox[] datos = { PhoneBox, PasswordBox, EmailBox, UsernameBox };
 			try {
-				string selected = RoleBox.SelectedItem.ToString();
-				// Limpia los placeholders si quedaron
-				datos.Zip(placeholders, (box, ph) =>
-					new {
-						box,
-						ph
-					}).ToList().ForEach(x => {
-						if(x.box.Text == x.ph)
-							x.box.Clear();
-					});
+				// limpiar placeholders ya existentes en tu código original
+				string mail = EmailBox.Text;
+				string telefono = PhoneBox.Text;
+				string password = PasswordBox.Text;
+				string nombre = UsernameBox.Text;
+				string apellido = SurnameBox.Text;
+				string domicilio = DomBox.Text;
+				string rol = RoleBox.Text;
 
-				// Verifica si falta algún dato
-				if(datos.Any(tb => string.IsNullOrWhiteSpace(tb.Text))) {
-					MessageBox.Show("Faltan datos para realizar el registro", "Advertencia");
-					return;
-				}
-
-				if(!EsCorreoValido(EmailBox.Text)) {
-					MessageBox.Show("El correo electrónico no es válido", "Error");
-					return;
-				}
-
-				con.Open();
-
-				// 🔹 INSERT en personas
-				using(MySqlCommand cmd = con.CreateCommand()) {
-					cmd.CommandText = @"INSERT INTO personas (mail, nombre, apellido, telefono, domicilio, tipo) 
-                                VALUES (@mail, @nombre, @apellido, @telefono, @domicilio, @tipo)";
-					cmd.Parameters.AddWithValue("@mail", EmailBox.Text);
-					cmd.Parameters.AddWithValue("@nombre", UsernameBox.Text);
-					cmd.Parameters.AddWithValue("@apellido", SurnameBox.Text);
-					cmd.Parameters.AddWithValue("@telefono", PhoneBox.Text);
-					cmd.Parameters.AddWithValue("@domicilio", DomBox.Text);
-					cmd.Parameters.AddWithValue("@tipo", "e");
-					cmd.ExecuteNonQuery();
-				}
-
-				// 🔹 INSERT en empleados (usando el último ID insertado)
-				using(MySqlCommand cmd = con.CreateCommand()) {
-					cmd.CommandText = @"INSERT INTO empleados (rol, contraseña, ID_persona) 
-                                VALUES (
-                                    (SELECT ID_roles FROM roles WHERE nombre_rol = @rol),
-                                    @password,
-                                    LAST_INSERT_ID()
-                                )";
-					cmd.Parameters.AddWithValue("@rol", RoleBox.Text);
-					cmd.Parameters.AddWithValue("@password", PasswordBox.Text);
-					cmd.ExecuteNonQuery();
-				}
+				_registerService.RegistrarEmpleado(mail, telefono, password, nombre, apellido, domicilio, rol);
 
 				MessageBox.Show("Empleado registrado con éxito!");
 				this.DialogResult = DialogResult.OK;
 				this.Close();
-			} catch(Exception ex) {
-				MessageBox.Show("Error: " + ex.Message);
-			} finally {
-				if(con.State == ConnectionState.Open)
-					con.Close();
+			} catch(ArgumentException ex) {
+				MessageBox.Show(ex.Message, "Error");
+			} catch(Exception) {
+				MessageBox.Show("Faltan datos para realizar el registro.", "Error");
 			}
 		}
 
@@ -207,14 +157,6 @@ namespace Simple_Login_FORM
 			}
 		}
 
-		private void RegisterForm_Load(object sender, EventArgs e) {
-
-		}
-
-		private void label4_Click(object sender, EventArgs e) {
-
-		}
-
 		private void PasswordBox_KeyPress(object sender, KeyPressEventArgs e) {
 			if(char.IsLetterOrDigit(e.KeyChar) ||
 				char.IsControl(e.KeyChar) || // backspace, delete, enter
@@ -235,6 +177,14 @@ namespace Simple_Login_FORM
 			}
 		}
 
+		private void RegisterForm_Load(object sender, EventArgs e) {
+
+		}
+
+		private void label4_Click(object sender, EventArgs e) {
+
+		}
+
 		private void label5_Click(object sender, EventArgs e) {
 
 		}
@@ -245,6 +195,10 @@ namespace Simple_Login_FORM
 
 		private void DomBox_TextChanged(object sender, EventArgs e) {
 
+		}
+
+		private void ReturnButton_Click(object sender, EventArgs e) {
+			this.Close();
 		}
 	}
 }

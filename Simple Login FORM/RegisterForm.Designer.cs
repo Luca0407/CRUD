@@ -197,7 +197,6 @@ namespace Simple_Login_FORM
 			this.RoleBox.Name = "RoleBox";
 			this.RoleBox.Size = new System.Drawing.Size(244, 24);
 			this.RoleBox.TabIndex = 5;
-			// this.RoleBox.SelectedIndexChanged += new System.EventHandler(this.RoleBox_SelectedIndexChanged);
 			// 
 			// label5
 			// 

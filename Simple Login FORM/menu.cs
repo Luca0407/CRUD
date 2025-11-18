@@ -326,6 +326,9 @@ namespace Simple_Login_FORM
 		}
 
 		private void button1_Click(object sender, EventArgs e) {
+			using(RegisterProductForm form = new RegisterProductForm()) {
+				form.ShowDialog();
+			}
 			/*panel9.Controls.Clear();
 
 			// Crea la instancia

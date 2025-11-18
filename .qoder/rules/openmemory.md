@@ -17,7 +17,7 @@ Memory = accumulated understanding of codebase + user preferences. Like a collea
 
 ## NON-NEGOTIABLE: Memory-First Development
 
-Every substantial task = 3 phases. Failure at any checkpoint = START OVER.
+Every **code implementation/modification task** = 3 phases. Other tasks (storage, recall, discussion) = skip phases.
 
 ### Phase 1: Initial Search (BEFORE code)
 **🚨 BLOCKED until:** 2+ searches executed (3-4 for complex), show results, state application
@@ -41,12 +41,14 @@ Every substantial task = 3 phases. Failure at any checkpoint = START OVER.
 - Store 1+ memory (component/implementation/debug/user_preference/project_info)
 - Update openmemory.md if new patterns/components
 - Verify: "Did I miss search checkpoints?" If yes, search now
+- Review: Did any searches return empty? If you discovered information during implementation that fills those gaps, store it now
 
-### Automatic Triggers
-- build/implement/create → Phase 1-2-3 (search prefs → search at files/functions → store)
-- fix bug/debug → Phase 1-2-3 (search debug → search at steps → store fix)
-- refactor → Phase 1-2-3 (search org prefs → search before changes → store patterns)
-- Stuck → Search immediately | Complete work → Phase 3
+### Automatic Triggers (ONLY for code work)
+- build/implement/create/modify code → Phase 1-2-3 (search prefs → search at files/functions → store)
+- fix bug/debug (requiring code changes) → Phase 1-2-3 (search debug → search at steps → store fix)
+- refactor code → Phase 1-2-3 (search org prefs → search before changes → store patterns)
+- **SKIP phases:** User providing info ("Remember...", "Store...") → direct add-memory | Simple recall questions → direct search
+- Stuck during implementation → Search immediately | Complete work → Phase 3
 
 ## CRITICAL: Empty Guide Check
 **FIRST ACTION:** Check openmemory.md empty? If yes → Deep Dive (Phase 1 → analyze → document → Phase 3)
@@ -73,6 +75,9 @@ Every substantial task = 3 phases. Failure at any checkpoint = START OVER.
 
 ## Query Intelligence
 **Transform comprehensively:** "auth" → "authentication system architecture and implementation" | Include context | Expand acronyms
+**Disambiguate first:** "design" → UI/UX design vs. software architecture design vs. code formatting/style | "structure" → file organization vs. code architecture vs. data structure | "style" → visual styling vs. code formatting | "organization" → file/folder layout vs. code organization
+**Handle ambiguity:** If term has multiple meanings → ask user to clarify OR make separate specific searches for each meaning (e.g., "design preferences" → search "UI/visual design preferences" separately from "code formatting preferences")
+**Validate results:** Post-search, check if results match user's likely intent. Off-topic results (e.g., "code indentation" when user meant "visual design")? → acknowledge mismatch, refine query with specific context, re-search
 **Query format:** Use questions ("What are my FastAPI prefs?") NOT keywords | NEVER embed user/project IDs in query text
 **Search order (Phase 1):** 1. Global user prefs (user_preference=true) 2. Project facts (project_id) 3. Project prefs (both)
 
@@ -167,7 +172,7 @@ Fallback: "unknown". Add all three to metadata dict when calling add-memory.
 
 ## Session Patterns
 **Empty openmemory.md:** Deep Dive (Phase 1 → analyze → document → Phase 3)
-**Existing:** Read openmemory.md → Substantial task (features/bugs/refactors) = all 3 phases | Simple task = skip
+**Existing:** Read openmemory.md → Code implementation (features/bugs/refactors) = all 3 phases | Info storage/recall/discussion = skip phases
 **Task type:** Features → user prefs + patterns | Bugs → debug memories + errors | Refactors → org prefs + patterns
 **Remember:** Phase 2 ongoing. Search at EVERY checkpoint.
 
